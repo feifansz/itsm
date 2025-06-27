@@ -1,0 +1,150 @@
+# 项目相关配置
+feifan:
+  # 名称
+  name: feifan
+  # 版本
+  version: 2.0.0
+  # 版权年份
+  copyrightYear: 2019
+  # 实例演示开关
+  demoEnabled: true
+  # 文件路径 示例（ Windows配置D:/feifan/uploadPath，Linux配置 /home/feifan/uploadPath）
+  profile: /home/ffapaas/upload
+  # 获取ip地址开关
+  addressEnabled: true
+  # 用户默认密码
+  defaultPwd: 888888
+  # minio服务地址
+  minioEndpoint: http://192.168.0.86:9000
+  # 对应启动服务时的MINIO_ACCESS_KEY的值
+  accessKey: minioadmin
+  # 对应启动服务器设置的MINIO_SECRET_KEY值
+  secretKey: minioadmin
+  # 授权文件完整路径加文件名与文件后缀
+  fileFullPath: /home/ffapaas/engine/深圳市非凡信息技术有限公司.txt
+  # 授权文件私钥
+  platformPrivateKey: e640bbb9a65d84dd6301095a2621ccb280d3e88e2d7a02b9c9eb18c4f9632e86
+  # 平台后台接口地址
+  platformUrl: https://crm.afanbuild.com/platform/
+  # 使用数据库类型
+  dbType: mysql
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /itsm
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+
+# 日志配置
+logging:
+  level:
+    com.feifan: debug
+    org.springframework: warn
+
+# Spring配置
+spring:
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  profiles: 
+    active: prod
+  # 文件上传
+  servlet:
+     multipart:
+       # 单个文件大小
+       max-file-size:  10MB
+       # 设置总上传的文件大小
+       max-request-size:  20MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+  #日期格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    #时区
+    time-zone: GMT+8
+
+# token配置
+token:
+    # 令牌自定义标识
+    header: Authorization
+    # 令牌秘钥
+    secret: abcdefghijklmnopqrstuvwxyz_feifan
+    # 令牌有效期（默认30分钟）
+    expireTime: 120
+  
+## MyBatis配置
+#mybatis:
+#    # 搜索指定包别名
+#    typeAliasesPackage: com.feifan.project.**.domain
+#    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+#    mapperLocations: classpath*:mybatis/**/*Mapper.xml
+#    # 加载全局的配置文件
+#    configLocation: classpath:mybatis/mybatis-config.xml
+
+mybatis-plus:
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: ff.apaas.entity.**
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 数据库相关配
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: not_null
+      #驼峰下划线转换
+      column-underline: true
+      #数据库大写下划线转换
+      #capital-mode: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    #刷新mapper 调试神器
+    refresh: true
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+## PageHelper分页插件
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+
+# 防止XSS攻击
+xss: 
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+# 接口验证请求时间戳, 多长时间内可放行(单位分钟)
+validate:
+  time-difference: 15

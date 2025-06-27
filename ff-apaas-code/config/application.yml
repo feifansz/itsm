@@ -1,0 +1,195 @@
+# 项目相关配置
+feifan:
+  # 名称
+  name: feifan
+  # 版本
+  version: 2.0.0
+  # 版权年份
+  copyrightYear: 2019
+  # 实例演示开关
+  demoEnabled: true
+  # 文件路径 示例（ Windows配置D:/feifan/uploadPath，Linux配置 /home/feifan/uploadPath）
+  profile: /home/ffapaas/upload
+  # 获取ip地址开关
+  addressEnabled: true
+  # 用户默认密码
+  defaultPwd: 888888
+  # minio服务地址
+  minioEndpoint: http://192.168.0.86:9000
+  # 对应启动服务时的MINIO_ACCESS_KEY的值
+  accessKey: minioadmin
+  # 对应启动服务器设置的MINIO_SECRET_KEY值
+  secretKey: minioadmin
+  # 引擎后台接口地址
+  engineUrl: http://192.168.0.86:6161/ff-apaas-engine/
+  # 移动后端接口地址
+  mobileBackEnd: http://192.168.0.86:7070/ff-apaas-mobilecode/  
+  # 使用数据库类型 mysql/dm
+  dbType: mysql
+  # 签名验证 编号
+  appKey: 5WAONECP
+  # 签名验证 密钥
+  appSecret: BFA0B0FAF6CF41C18B216CDBC4D3B08A
+  # 签名验证 签名来源
+  signSource: 3EC4CC45888B405C895960A097434ABA
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /itsm
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+
+# 日志配置
+logging:
+  level:
+    ff.apaas: debug
+    org.springframework: warn
+    org.springframework.data.elasticsearch.client.WIRE: TRACE
+    org.elasticsearch.client: TRACE
+    org.apache.http: TRACE
+# Loki 日志配置
+loki:
+  # Loki 服务的 URL，用于推送日志数据
+  url: http://localhost:3100/loki/api/v1/push
+  # 标签配置，用于标识日志来源的额外信息
+  label:
+    # 服务名称标签，标识日志来源的服务名称
+    job-name: 86服务器
+    # 主机 IP 标签，标识日志来源的主机 IP 地址
+    host-ip: localhost
+# Spring配置
+spring:
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  profiles: 
+    active: prod
+  # 文件上传
+  servlet:
+     multipart:
+       # 单个文件大小
+       max-file-size:  1024MB
+       # 设置总上传的文件大小
+       max-request-size:  2048MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+  #日期格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    #时区
+    time-zone: GMT+8
+
+# token配置
+token:
+    # 令牌自定义标识
+    header: Authorization
+    # 令牌秘钥
+    secret: abcdefghijklmnopqrstuvwxyz_feifan
+    # 令牌有效期（默认30分钟）
+    expireTime: 120
+  
+## MyBatis配置
+#mybatis:
+#    # 搜索指定包别名
+#    typeAliasesPackage: com.feifan.project.**.domain
+#    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+#    mapperLocations: classpath*:mybatis/**/*Mapper.xml
+#    # 加载全局的配置文件
+#    configLocation: classpath:mybatis/mybatis-config.xml
+
+mybatis-plus:
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: ff.apaas.entity.**
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 数据库相关配
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: not_null
+      #驼峰下划线转换
+      column-underline: true
+      #数据库大写下划线转换
+      #capital-mode: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    #刷新mapper 调试神器
+    refresh: true
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+## PageHelper分页插件
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+
+# 防止XSS攻击
+xss: 
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+  
+# 代码生成
+gen: 
+  # 作者
+  author: feifan
+  # 默认生成包路径 system 需改成自己的模块名称 如 system monitor tool
+  packageName: com.feifan.project.system
+  # 自动去除表前缀，默认是true
+  autoRemovePre: false
+  # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
+  tablePrefix: sys_
+  # 生成代码的根目录
+  outputDir: D:/gitsource/jitsm/src/main  
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  
+# 接口验证请求时间戳, 多长时间内可放行(单位分钟)
+validate:
+  time-difference: 15
+# 是否启用从Elasticsearch查询首页待办,自定义应用列表数
+elasticsearch:
+  client:
+    reactive:
+      enabled: false
+      full-enabled: false # 全文检索是否开启
+      endpoints:
+        - 192.168.0.85:9200
+      username: elastic
+      password: elastic
+      connection-timeout: 10
+      socket-timeout: 10
+# 是否开启动态短信
+sms:
+   enabled: false
+

@@ -1,0 +1,88 @@
+﻿# 开发环境配置
+server:
+    # 服务器的HTTP端口，默认为8080
+    port: 8080
+# 数据源配置
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        druid:
+            # 主库数据源
+            master:
+                url: jdbc:mysql://127.0.0.1:3306/ffapaas?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+                username: root
+                password: 0412439b05be1f92654b3cc67427c90a7407dadf2a4ad0816cad871e039500182eaec66aade6094ccd6086d105b344086a4b6de4c27ca63c963acf1d04e951b17e72ebc6a467611986848e215dd38553a1cb286d1edb35dac3e71165bbc97aeba7b93089c58a2c
+            # 从库数据源
+            slave:
+                # 从数据源开关/默认关闭
+                enabled: false
+                url:
+                username:
+                password:
+            # 初始连接数
+            initialSize: 5
+            # 最小连接池数量
+            minIdle: 10
+            # 最大连接池数量
+            maxActive: 20
+            # 配置获取连接等待超时的时间
+            maxWait: 60000
+            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+            timeBetweenEvictionRunsMillis: 60000
+            # 配置一个连接在池中最小生存的时间，单位是毫秒
+            minEvictableIdleTimeMillis: 300000
+            # 配置一个连接在池中最大生存的时间，单位是毫秒
+            maxEvictableIdleTimeMillis: 900000
+            # 配置检测连接是否有效
+            validationQuery: SELECT 1 FROM DUAL
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            webStatFilter:
+                enabled: true
+            statViewServlet:
+                enabled: true
+                # 设置白名单，不填则允许所有访问
+                allow:
+                url-pattern: /druid/*
+                # 控制台管理用户名和密码
+                login-username:
+                login-password:
+            filter:
+                stat:
+                    enabled: true
+                    # 慢SQL记录
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true
+                config:
+                    enabled: true
+            passwordCallback: ff.apaas.framework.config.MySqlPasswordCallBack
+            privateKey: d1b1608c0f1ce2e50781bebb2377553c483730b90c34d3b105f1ec8422791db2
+            connection-properties: config.decrypt=true;config.decrypt.key=${spring.datasource.druid.privateKey}
+    redis:
+        # 地址
+        #host: 192.168.0.80
+        host: 127.0.0.1
+        # 端口，默认为6379
+        port: 6379
+        # 连接超时时间
+        timeout: 10s
+        lettuce:
+            pool:
+                # 连接池中的最小空闲连接
+                min-idle: 1
+                # 连接池中的最大空闲连接
+                max-idle: 8
+                # 连接池的最大数据库连接数
+                max-active: 8
+                # #连接池最大阻塞等待时间（使用负值表示没有限制）
+                max-wait: -1ms
+        password: 123456
+        database: 0
+
+
