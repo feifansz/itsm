@@ -141,4 +141,4 @@
 ---
 
 
-[返回顶部 :fa-arrow-circle-up: ](#it服务管理平台itsm)
+[返回顶部](#it服务管理平台itsm)
