@@ -1,3981 +1,4012 @@
-drop table if exists doc_t_catalog_info;
-
-drop table if exists doc_t_document_info;
-
-drop table if exists doc_t_person_recycle;
-
-drop table if exists doc_t_personal_document;
-
-drop table if exists doc_t_shared_info;
-
-drop table if exists doc_t_shared_with_me_skip;
-
-drop table if exists ff_apaas_app_oper_log;
-
-drop table if exists ff_apaas_bulletin;
-
-drop table if exists ff_apaas_bulletin_record;
-
-drop table if exists ff_apaas_business_api;
-
-drop table if exists ff_apaas_business_ref_app_config;
-
-drop table if exists ff_apaas_es_actorcond;
-
-drop table if exists ff_apaas_es_actorextdef;
-
-drop table if exists ff_apaas_es_agent;
-
-drop table if exists ff_apaas_es_app;
-
-drop table if exists ff_apaas_es_app_actiontype;
-
-drop table if exists ff_apaas_es_app_actiontype_default;
-
-drop table if exists ff_apaas_es_app_organization;
-
-drop table if exists ff_apaas_es_app_special;
-
-drop table if exists ff_apaas_es_app_submit_limit;
-
-drop table if exists ff_apaas_es_app_submit_log;
-
-drop table if exists ff_apaas_es_catalog;
-
-drop table if exists ff_apaas_es_f_actors;
-
-drop table if exists ff_apaas_es_f_specactor;
-
-drop index index_es_fields_formid on ff_apaas_es_fields;
-
-drop index index_es_fields_appid on ff_apaas_es_fields;
-
-drop table if exists ff_apaas_es_fields;
-
-drop table if exists ff_apaas_es_fields_special;
-
-drop index es_flow_premessageid on ff_apaas_es_flow;
-
-drop table if exists ff_apaas_es_flow;
-
-drop table if exists ff_apaas_es_flowdelelog;
-
-drop table if exists ff_apaas_es_flowfromto;
-
-drop table if exists ff_apaas_es_flowmodel;
-
-drop table if exists ff_apaas_es_flowmodel_notice_config;
-
-drop table if exists ff_apaas_es_flowmodel_visit_config;
-
-drop table if exists ff_apaas_es_flowpauselog;
-
-drop table if exists ff_apaas_es_influx_result;
-
-drop index index_message_flowid on ff_apaas_es_message;
-
-drop table if exists ff_apaas_es_message;
-
-drop index messagefromto_fmessageid on ff_apaas_es_messagefromto;
-
-drop table if exists ff_apaas_es_messagefromto;
-
-drop table if exists ff_apaas_es_messageopinion;
-
-drop table if exists ff_apaas_es_msgprocess;
-
-drop table if exists ff_apaas_es_msgsupervise;
-
-drop table if exists ff_apaas_es_msgurg_log;
-
-drop table if exists ff_apaas_es_n_m_action;
-
-drop table if exists ff_apaas_es_n_m_action_bind;
-
-drop table if exists ff_apaas_es_n_m_action_influxactor;
-
-drop table if exists ff_apaas_es_n_m_actor;
-
-drop table if exists ff_apaas_es_n_m_att_config;
-
-drop index index_n_m_field_flowmodelid on ff_apaas_es_n_m_field;
-
-drop table if exists ff_apaas_es_n_m_field;
-
-drop table if exists ff_apaas_es_n_m_flow;
-
-drop table if exists ff_apaas_es_n_m_link;
-
-drop table if exists ff_apaas_es_n_m_specactor;
-
-drop index index_es_node_flowmodelid on ff_apaas_es_node;
-
-drop index index_es_node_flowid on ff_apaas_es_node;
-
-drop table if exists ff_apaas_es_node;
-
-drop table if exists ff_apaas_es_node_temp;
-
-drop table if exists ff_apaas_es_nodefromto;
-
-drop table if exists ff_apaas_es_nodemodel;
-
-drop table if exists ff_apaas_es_notice_log;
-
-drop table if exists ff_apaas_es_overtime_notice_config;
-
-drop table if exists ff_apaas_es_receivelist;
-
-drop table if exists ff_apaas_es_site_news;
-
-drop table if exists ff_apaas_open_api;
-
-drop table if exists ff_apaas_sys_config;
-
-drop table if exists ff_apaas_sys_job;
-
-drop table if exists ff_apaas_sys_job_log;
-
-drop table if exists ff_apaas_sys_logininfor;
-
-drop table if exists ff_apaas_sys_oper_log;
-
-drop table if exists ff_apaas_t_api_authorization;
-
-drop table if exists ff_apaas_t_api_authorization_terminal;
-
-drop table if exists ff_apaas_t_batch_operate_log;
-
-drop table if exists ff_apaas_t_bookmark;
-
-drop table if exists ff_apaas_t_bookmark_catalog;
-
-drop table if exists ff_apaas_t_business_operation_log;
-
-drop table if exists ff_apaas_t_business_right;
-
-drop table if exists ff_apaas_t_business_right_item;
-
-drop table if exists ff_apaas_t_business_right_whitelist;
-
-drop table if exists ff_apaas_t_coderule;
-
-drop table if exists ff_apaas_t_codevalue;
-
-drop table if exists ff_apaas_t_custom_door;
-
-drop table if exists ff_apaas_t_custom_door_right;
-
-drop index index_custom_deleted_refappid on ff_apaas_t_custom_flowinfo;
-
-drop index index_custom_flowid on ff_apaas_t_custom_flowinfo;
-
-drop table if exists ff_apaas_t_custom_flowinfo;
-
-drop table if exists ff_apaas_t_custom_form;
-
-drop table if exists ff_apaas_t_display_column;
-
-drop table if exists ff_apaas_t_exception_record;
-
-drop table if exists ff_apaas_t_fastopinion;
-
-drop table if exists ff_apaas_t_flowlink_info;
-
-drop table if exists ff_apaas_t_local_method;
-
-drop table if exists ff_apaas_t_login_lock;
-
-drop table if exists ff_apaas_t_manager_app_info;
-
-drop table if exists ff_apaas_t_manager_info;
-
-drop table if exists ff_apaas_t_mobile_app_bind;
-
-drop table if exists ff_apaas_t_mobile_terminal_bind;
-
-drop table if exists ff_apaas_t_mobile_terminal_user;
-
-drop table if exists ff_apaas_t_notice_log;
-
-drop table if exists ff_apaas_t_notice_method;
-
-drop table if exists ff_apaas_t_notice_method_config;
-
-drop table if exists ff_apaas_t_notice_method_config_wxmp;
-
-drop table if exists ff_apaas_t_notice_method_enable;
-
-drop table if exists ff_apaas_t_online_users;
-
-drop index index_outer_link on ff_apaas_t_outer_link;
-
-drop table if exists ff_apaas_t_outer_link;
-
-drop table if exists ff_apaas_t_outer_link_config;
-
-drop table if exists ff_apaas_t_password_history_tracker;
-
-drop table if exists ff_apaas_t_password_strength;
-
-drop table if exists ff_apaas_t_platform_config;
-
-drop table if exists ff_apaas_t_project_info;
-
-drop table if exists ff_apaas_t_qiyuesuo_config;
-
-drop table if exists ff_apaas_t_qiyuesuo_contract;
-
-drop table if exists ff_apaas_t_register_exporter;
-
-drop table if exists ff_apaas_t_relation_view_config;
-
-drop table if exists ff_apaas_t_right_app_lot;
-
-drop table if exists ff_apaas_t_right_lot;
-
-drop table if exists ff_apaas_t_searchcond;
-
-drop table if exists ff_apaas_t_serial_number_coderule;
-
-drop table if exists ff_apaas_t_synch_field_mapping;
-
-drop table if exists ff_apaas_t_synch_log;
-
-drop table if exists ff_apaas_t_synch_rule;
-
-drop table if exists ff_apaas_t_template_config;
-
-drop table if exists ff_apaas_t_time_process;
-
-drop table if exists ff_apaas_t_timing_task;
-
-drop table if exists ff_apaas_t_user_regist;
-
-drop table if exists ff_apaas_ts_actormembers;
-
-drop table if exists ff_apaas_ts_actors;
-
-drop table if exists ff_apaas_ts_business_api_group;
-
-drop table if exists ff_apaas_ts_cross_project_right;
-
-drop table if exists ff_apaas_ts_dept;
-
-drop table if exists ff_apaas_ts_menu;
-
-drop table if exists ff_apaas_ts_menu_mobile;
-
-drop table if exists ff_apaas_ts_open_api_group;
-
-drop table if exists ff_apaas_ts_oprateallot;
-
-drop table if exists ff_apaas_ts_oprateallot_field;
-
-drop index index_oprateallot_field_objectid on ff_apaas_ts_oprateallot_field_user;
-
-drop table if exists ff_apaas_ts_oprateallot_field_user;
-
-drop table if exists ff_apaas_ts_oprateallot_rightrange;
-
-drop table if exists ff_apaas_ts_platform_manager;
-
-drop table if exists ff_apaas_ts_user;
-
-drop table if exists ff_apaas_ts_user_expand;
-
-drop table if exists ff_apaas_ts_user_launch_new_top;
-
-drop index index_oprateallot_objectid on ff_apaas_ts_user_oprateallot;
-
-drop table if exists ff_apaas_ts_user_oprateallot;
-
-drop index index_oprateallot_rightrange_objectid on ff_apaas_ts_user_oprateallot_rightrange;
-
-drop table if exists ff_apaas_ts_user_oprateallot_rightrange;
-
-drop table if exists ff_apaas_ts_user_temp;
-
-drop table if exists ff_apaas_up_attachment;
-
-drop table if exists ff_apaas_up_attasecurity;
-
-drop table if exists knowledge_t_base_info;
-
-drop table if exists knowledge_t_catalog;
-
-drop table if exists knowledge_t_comment;
-
-drop table if exists knowledge_t_filed;
-
-drop table if exists knowledge_t_flow_info;
-
-drop table if exists knowledge_t_reference;
-
-drop table if exists knowledge_t_related;
-
-drop table if exists qrtz_blob_triggers;
-
-drop table if exists qrtz_calendars;
-
-drop table if exists qrtz_cron_triggers;
-
-drop table if exists qrtz_fired_triggers;
-
-drop table if exists qrtz_job_details;
-
-drop table if exists qrtz_locks;
-
-drop table if exists qrtz_paused_trigger_grps;
-
-drop table if exists qrtz_scheduler_state;
-
-drop table if exists qrtz_simple_triggers;
-
-drop table if exists qrtz_simprop_triggers;
-
-drop table if exists qrtz_triggers;
-
-drop table if exists t_expenses_chaim;
-
-drop table if exists t_expenses_chaim_detail;
-
-/*==============================================================*/
-/* Table: doc_t_catalog_info                                    */
-/*==============================================================*/
-create table doc_t_catalog_info
-(
-   catalog_id           varchar(50) not null comment 'Ä¿Â¼±àºÅ',
-   catalog_name         varchar(200) not null comment 'Ä¿Â¼Ãû³Æ',
-   parent_id            varchar(50) not null default '0' comment '¸¸¼¶±àºÅ',
-   full_id              varchar(2000) not null comment 'Ä¿Â¼µ¼º½±àºÅ(¸ñÊ½:parent_id +,+ catalog_id)',
-   classyear            int not null default 1 comment 'Ä¿Â¼²ã¼¶',
-   sortid               int not null default 1 comment 'Ä¿Â¼ĞòºÅ',
-   doc_belong_type      int not null default 2 comment 'Ä¿Â¼¹éÊô·ÖÀà(1-¸öÈË,2-·Ç¸öÈË)',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   create_id            varchar(50) comment '´´½¨ÈËID',
-   create_name          varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            varchar(50) comment '¸üĞÂÈËID',
-   update_name          varchar(200) comment '¸üĞÂÈËÃû³Æ',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı(0-Î´É¾³ı,1-ÒÑÉ¾³ı)',
-   primary key (catalog_id)
-)
-COMMENT 'ÎÄµµÄ¿Â¼ĞÅÏ¢±í';
-
-alter table doc_t_catalog_info comment 'ÎÄµµÄ¿Â¼ĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: doc_t_document_info                                   */
-/*==============================================================*/
-create table doc_t_document_info
-(
-   iidd                 varchar(50) not null comment 'ÎÄµµ±àºÅ',
-   doc_name             varchar(200) not null comment 'ÎÄµµÃû³Æ',
-   doc_size             bigint not null default 0 comment 'ÎÄµµ´óĞ¡',
-   doc_path             varchar(200) not null comment 'ÎÄ¼ş´æ´¢ÔÚminioµÄÂ·¾¶',
-   preview_path         varchar(200) not null comment 'Ô¤ÀÀPDFÎÄ¼şÂ·¾¶',
-   doc_suffix           varchar(20) not null default 'unknown' comment 'ÎÄµµºó×º(ÓĞµÄÎÄ¼şÃ»ÓĞºó×º£¬ÔòÊ¹ÓÃunknow×÷ÎªÇø·Ö)',
-   doc_catalog_id       varchar(50) not null default '0' comment 'ÎÄµµÄ¿Â¼±àºÅ£¨Ã»ÓĞÄ¿Â¼µÄÄ¬ÈÏÎª0£©',
-   doc_belong_type      int(2) not null default 2 comment 'ÎÄµµ¹éÊô·ÖÀà(1-¸öÈËÎÄµµ,2-·Ç¸öÈË)',
-   up_user_id           varchar(50) not null comment 'ÉÏ´«ÓÃ»§±àºÅ',
-   up_user_name         varchar(200) not null comment 'ÉÏ´«ÓÃ»§Ãû³Æ',
-   up_time              timestamp not null default CURRENT_TIMESTAMP comment 'ÎÄµµÉÏ´«Ê±¼ä',
-   deleted              int(1) not null default 0 comment '0:Î´É¾³ı£¬1:ÒÑÉ¾³ı',
-   deleted_time         timestamp not null default CURRENT_TIMESTAMP comment 'É¾³ıÊ±¼ä',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   primary key (iidd)
-);
-
-alter table doc_t_document_info comment 'ÎÄµµĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: doc_t_person_recycle                                  */
-/*==============================================================*/
-create table doc_t_person_recycle
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   userid               varchar(50) not null comment 'ÓÃ»§±àºÅ',
-   doc_type             enum ('0', '1') not null default '0' comment 'ÎÄ¼ş»òÄ¿Â¼, 0:Ä¿Â¼,1:ÎÄ¼ş',
-   doc_id               varchar(50) not null comment 'ÎÄµµ±àºÅ»òÕßÄ¿Â¼±àºÅ',
-   deleted_time         timestamp not null default CURRENT_TIMESTAMP comment 'É¾³ıÊ±¼ä',
-   doc_name             varchar(200) not null comment 'ÎÄµµ»òÄ¿Â¼Ãû³Æ',
-   primary key (iidd)
-);
-
-/*==============================================================*/
-/* Table: doc_t_personal_document                               */
-/*==============================================================*/
-create table doc_t_personal_document
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   userid               varchar(50) not null comment 'ÓÃ»§±àºÅ',
-   doc_id               varchar(50) not null comment 'ÎÄµµ±àºÅ',
-   deleted              int(1) not null comment 'ÊÇ·ñÉ¾³ı(0-Î´É¾³ı,1-ÒÑÉ¾³ı)',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   primary key (iidd)
-);
-
-alter table doc_t_personal_document comment '¸öÈËÎÄµµĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: doc_t_shared_info                                     */
-/*==============================================================*/
-create table doc_t_shared_info
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   doc_iidd             varchar(50) not null comment 'ÎÄµµ±àºÅ',
-   shared_type          int(1) not null comment '¹²ÏíÀàĞÍ(0-Ä¿Â¼£¬1-ÎÄ¼ş)',
-   batch_id             bigint not null comment '¹²ÏíÅú´Î±àºÅ',
-   shared_time          timestamp not null default CURRENT_TIMESTAMP comment '¹²ÏíÊ±¼ä',
-   shared_userid        varchar(50) not null comment '¹²ÏíÓÃ»§±àºÅ',
-   shared_username      varchar(200) not null comment '¹²ÏíÓÃ»§Ãû³Æ',
-   shared_receive_type  int(1) not null comment '¹²Ïí½ÓÊÕ¶ÔÏóÀàĞÍ(0-±íÊ¾ÓÃ»§,1-±íÊ¾ÓÃ»§×é, 2-±íÊ¾²¿ÃÅ)',
-   shared_receive_object_id varchar(50) not null comment 'ÓÃ»§£¬ÓÃ»§×é£¬²¿ÃÅ±àºÅ',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   root_node            int not null default 0 comment '0:·Ç¸ùÄ¿Â¼,1:ÊÇ¸ùÄ¿Â¼',
-   primary key (iidd)
-);
-
-alter table doc_t_shared_info comment 'ÎÄµµ·ÖÏíĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: doc_t_shared_with_me_skip                             */
-/*==============================================================*/
-create table doc_t_shared_with_me_skip
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   userid               varchar(50) not null comment 'É¾³ıÓÃ»§±àºÅ',
-   shared_id            varchar(50) not null comment '·ÖÏí¼ÇÂ¼µÄÖ÷¼üID',
-   primary key (iidd)
-)
-ENGINE = innodb DEFAULT CHARACTER SET = 'utf8' COMMENT '¹²Ïí¸øÎÒÉ¾³ı±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_app_oper_log                                 */
-/*==============================================================*/
-create table ff_apaas_app_oper_log
-(
-   oper_id              bigint(20) not null auto_increment comment 'ÈÕÖ¾Ö÷¼ü',
-   oper_account         varchar(50) default '' comment '²Ù×÷ÕËºÅ',
-   oper_name            varchar(50) default '' comment '²Ù×÷ÈËÔ±(Ò³ÃæÏÔÊ¾)',
-   oper_time            datetime comment '²Ù×÷Ê±¼ä',
-   belong_app           varchar(200) default '' comment 'ËùÊôÓ¦ÓÃ',
-   business_type        int default 1 comment 'ÒµÎñÀàĞÍ£¨1ĞÂÔö 2ĞŞ¸Ä 3É¾³ı£©',
-   oper_channel         int default 1 comment '²Ù×÷ÇşµÀ£¨1WEBÕ¾µã 2Î¢ĞÅ¹«ÖÚºÅ 3OPENAPI£©',
-   oper_ip              varchar(128) default '' comment '²Ù×÷ÈËIP',
-   oper_desc            varchar(2000) default '' comment '²Ù×÷ÃèÊö',
-   ref_deptid           varchar(50) comment '¹«Ë¾±àºÅ',
-   dept_name            varchar(50) default '' comment '²¿ÃÅÃû³Æ',
-   ref_appid            varchar(50) comment 'Ó¦ÓÃ±àºÅ',
-   app_type             int default 0 comment 'ÒµÎñÀàĞÍ£¨0»ù´¡×ÊÁÏ 1Á÷³ÌÓ¦ÓÃ£©',
-   log_type             int default 0 comment 'ÈÕÖ¾ÀàĞÍ£¨0Êı¾İÈÕÖ¾ 1¸½¼şÈÕÖ¾£©',
-   oper_content         longtext default NULL comment '²Ù×÷Êı¾İÄÚÈİ',
-   content              text default NULL comment '´æ´¢ÄÚÈİ',
-   primary key (oper_id)
-)
-comment 'Ó¦ÓÃ²Ù×÷ÈÕÖ¾¼ÇÂ¼±í';
-
-alter table ff_apaas_app_oper_log comment 'Ó¦ÓÃ²Ù×÷ÈÕÖ¾¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_bulletin                                     */
-/*==============================================================*/
-create table ff_apaas_bulletin
-(
-   flowid               varchar(50) not null comment 'Á÷³Ìid',
-   flowmodelid          varchar(50) default NULL comment 'Á÷³ÌÄ£ĞÍid',
-   nodemodelid          varchar(50) default NULL comment '»·½ÚÄ£ĞÍid',
-   flowno               varchar(200) default NULL comment 'Á÷³Ìµ¥ºÅ',
-   create_userid        varchar(50) default NULL comment '´´½¨ÈËid',
-   create_username      varchar(200) default NULL comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) default NULL comment '´´½¨²¿ÃÅid',
-   create_deptname      varchar(200) default NULL comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) default NULL comment '´´½¨»ú¹¹id',
-   create_orgname       varchar(200) default NULL comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime default NULL comment '´´½¨Ê±¼ä',
-   update_userid        varchar(50) default NULL comment 'ĞŞ¸ÄÈËid',
-   update_username      varchar(200) default NULL comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime default NULL comment 'ĞŞ¸ÄÊ±¼ä',
-   ref_deptid           varchar(50) default NULL comment '¹ØÁª¹«Ë¾id',
-   ref_projectid        varchar(50) default NULL comment 'ËùÊôÏîÄ¿id',
-   deleted              int not null default '0' comment 'ÊÇ·ñÉ¾³ı',
-   current_nodename     varchar(1000) default NULL comment 'µ±Ç°´¦Àí»·½Ú',
-   current_hander       varchar(1000) default NULL comment 'µ±Ç°´¦ÀíÈË',
-   business_status      varchar(500) default NULL comment 'ÒµÎñ×´Ì¬',
-   bulletin_type        tinyint not null comment '¹«¸æÀàĞÍ (0:È«²¿¡¢1:ÔËÓªÉÌ¡¢2:¹«ÓĞÔÆ×¢²áÆóÒµ¡¢3:Ö¸¶¨·¶Î§)',
-   title                varchar(500) not null comment '¹«¸æÖ÷Ìâ',
-   content              text not null comment '¹«¸æÄÚÈİ',
-   fixed_deptid         text comment 'Ö¸¶¨¹«Ë¾id,¶à¸öÓ¢ÎÄ¶ººÅ·Ö¸ô',
-   deadline             datetime comment 'Í¨ÖªÄÚÈİÓĞĞ§½ØÖÁÊ±¼ä',
-   message_type         tinyint not null default 0 comment 'ÏûÏ¢ÀàĞÍ(0:Ë³ĞòÏûÏ¢,1:ÑÓ³ÙÏûÏ¢,2:¶¨Ê±ÏûÏ¢)',
-   delay_time           INT comment 'ÑÓ³Ù¶àÉÙÃë',
-   scheduled_time       datetime comment '¶¨Ê±·¢ËÍ¾ßÌåÊ±¼ä',
-   primary key (flowid)
-)
-engine = innodb
-  default charset = utf8mb4
-  collate = utf8mb4_0900_ai_ci
-    comment ='·¢²¼¹«¸æ¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_bulletin_record                              */
-/*==============================================================*/
-create table ff_apaas_bulletin_record
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   bulletin_id          varchar(50) not null comment '¹«¸æ±íid',
-   userid               varchar(50) not null comment 'ĞèÒªÍ¨ÖªµÄÓÃ»§id',
-   ref_deptid           varchar(50) not null comment 'ÓÃ»§¹«Ë¾id',
-   status               tinyint not null default 0 comment 'ÏûÏ¢×´Ì¬ (0:Î´¶Á,1:ÒÑ¶Á)',
-   primary key (iidd)
-)
-engine = innodb
-  default charset = utf8mb4
-  collate = utf8mb4_0900_ai_ci
-    comment ='¹«¸æÍ¨Öª¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_business_api                                 */
-/*==============================================================*/
-create table ff_apaas_business_api
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   name                 varchar(250) not null comment '½Ó¿ÚÃû³Æ',
-   group_id             text not null comment '·Ö×é±àºÅ',
-   group_name           varchar(500) not null comment '·Ö×éÃû³Æ',
-   url                  varchar(500) not null comment 'ÇëÇóµØÖ·ºó×º(/user/login)',
-   method               int not null comment 'ÇëÇó·½·¨(1:GET,2:POST)',
-   sign                 int not null default 0 comment 'ÊÇ·ñÑéÖ¤Ç©Ãû(0: ·ñ, 1: ÊÇ)',
-   context_type         int not null comment 'ÄÚÈİÀàĞÍ:(0: none, 1:application/x-www-form-urlencoded, 2: multipart/form-data, 3: application/json, 4: application/octet-stream)',
-   body                 text comment 'ÇëÇó²ÎÊı',
-   response             text not null comment 'ÏìÓ¦²ÎÊı',
-   sort_id              int not null default 0 comment 'ÅÅĞòÖµ',
-   create_time          datetime not null comment '´´½¨Ê±¼ä',
-   create_id            varchar(50) not null comment '´´½¨ÈËID',
-   create_person        varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   update_time          datetime not null comment '¸üĞÂÊ±¼ä',
-   update_id            varchar(50) not null comment '¸üĞÂÈËID',
-   update_person        varchar(50) not null comment '¸üĞÂÈËÃû³Æ',
-   ref_app_id           varchar(50) not null comment 'Ó¦ÓÃ±àºÅ',
-   ref_app_name         varchar(500) not null comment 'Ó¦ÓÃÃû³Æ',
-   ref_project_id       varchar(50) not null comment 'ÏîÄ¿±àºÅ',
-   ref_dept_id          varchar(50) not null comment '¹«Ë¾±àºÅ',
-   primary key (iidd)
-)
-COMMENT 'open api ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_business_ref_app_config                      */
-/*==============================================================*/
-create table ff_apaas_business_ref_app_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   business_api_id      varchar(50) not null comment 'ÒµÎñ½Ó¿ÚID',
-   business_api_name    varchar(250) not null comment 'ÒµÎñ½Ó¿ÚÃû³Æ',
-   trigger_type         tinyint(1) not null comment '´¥·¢ÀàĞÍ(1: ¶¨Ê±·şÎñ, 2: Á÷³Ì)',
-   trigger_rule         varchar(50) comment '´¥·¢¹æÔò(1: ²Ù×÷Íê³ÉÇ°,2: ²Ù×÷Íê³Éºó)',
-   trigger_server       varchar(50) comment '´¥·¢·şÎñ',
-   trigger_server_name  varchar(200) comment '´¥·¢·şÎñÃû³Æ',
-   node_id              varchar(50) comment '»·½ÚID',
-   node_name            varchar(250) comment '»·½ÚÃû³Æ',
-   action_id            varchar(50) comment '¶¯×÷ID',
-   action_name          varchar(50) comment '¶¯×÷Ãû³Æ',
-   remark               text comment 'ËµÃ÷',
-   create_time          datetime not null comment '´´½¨Ê±¼ä',
-   create_id            varchar(50) not null comment '´´½¨ÈËID',
-   create_name          varchar(200) not null comment '´´½¨ÈËÃû³Æ',
-   update_time          datetime not null comment '¸üĞÂÊ±¼ä',
-   update_id            varchar(50) not null comment '¸üĞÂÈËID',
-   update_name          varchar(200) not null comment '¸üĞÂÈËÃû³Æ',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍID',
-   flowmodelname        varchar(500) comment 'Á÷³ÌÄ£ĞÍÃû³Æ',
-   oflowmodelid         varchar(50) comment 'Á÷³ÌÄ£ĞÍIDÔ­Ê¼Öµ',
-   primary key (iidd)
-)
-COMMENT 'ÒµÎñ¹ØÁªÓ¦ÓÃÅäÖÃ';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_actorcond                                 */
-/*==============================================================*/
-create table ff_apaas_es_actorcond
-(
-   condid               varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   condname             varchar(200) comment 'Ìõ¼şÈËÔ±Ãû³Æ',
-   statement            text comment 'Ìõ¼şÓï¾ä',
-   remark               varchar(2000) comment '±¸×¢',
-   primary key (condid, flowmodelid)
-);
-
-alter table ff_apaas_es_actorcond comment 'Á÷³Ì»·½ÚÌõ¼şÈËÔ±ÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_actorextdef                               */
-/*==============================================================*/
-create table ff_apaas_es_actorextdef
-(
-   actorext_id          varchar(50) not null comment '±àºÅ',
-   actorext_name        varchar(200) comment 'À©Õ¹ÈËÔ±Ãû³Æ',
-   actorext_desc        varchar(500) comment 'À©Õ¹ÃèÊö',
-   assemblyname         varchar(200) comment '³ÌĞòÀàÃû',
-   actorext_type        int not null comment 'À©Õ¹ÀàĞÍ 0È«¾Ö 1ÏîÄ¿ÄÚ',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (actorext_id)
-);
-
-alter table ff_apaas_es_actorextdef comment 'Á÷³ÌÀ©Õ¹ÈËÔ±ÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_agent                                     */
-/*==============================================================*/
-create table ff_apaas_es_agent
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   userid               varchar(50) comment 'ÓÃ»§±àºÅ',
-   appid                varchar(50) comment 'Ó¦ÓÃ±àºÅ',
-   agentid              varchar(50) comment '´úÀíÈË±àºÅ',
-   begintime            datetime comment '¿ªÊ¼Ê±¼ä',
-   endtime              datetime comment '½áÊøÊ±¼ä',
-   agentstatus          int not null default 0 comment '´úÀí×´Ì¬ 0 Î´ÆôÓÃ 1ÆôÓÃ',
-   createtime           datetime not null comment '´´½¨Ê±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_agent comment '³ö²îÊÚÈ¨±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_app                                       */
-/*==============================================================*/
-create table ff_apaas_es_app
-(
-   appid                varchar(50) not null comment 'Ó¦ÓÃ±àºÅ',
-   appname              varchar(200) comment 'Ó¦ÓÃÃû³Æ',
-   app_tablename        varchar(100) comment 'Ó¦ÓÃ±í',
-   listurl              varchar(500) comment 'Ó¦ÓÃÁĞ±íµØÖ·',
-   formurl              varchar(500) comment 'Ó¦ÓÃÏêÇéµØÖ·',
-   subject_config       varchar(500) comment 'Á÷³Ì´ı°ìÖ÷ÌâÅäÖÃ',
-   remark               varchar(2000) comment 'Ó¦ÓÃÃèÊö',
-   project              varchar(200) comment 'ÏîÄ¿±ê¼Ç',
-   appcode              varchar(200) comment 'Ó¦ÓÃ´úºÅ',
-   source_type          int not null default 0 comment 'Ó¦ÓÃÀ´Ô´ 0 ×Ô¶¨Òå 1¶ş´Î¿ª·¢',
-   app_type             int not null default 1 comment 'Ó¦ÓÃÀàĞÍ 0»ù´¡×ÊÁÏ 1Á÷³ÌÓ¦ÓÃ',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            varchar(50) comment '×îºó¸üĞÂÈËID',
-   update_name          varchar(200) comment '×îºó¸üĞÂÈËÃû³Æ',
-   update_time          datetime comment '×îºó¸üĞÂÊ±¼ä',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   status               int not null default 0 comment 'Ó¦ÓÃ×´Ì¬ 0Í£ÓÃ 1ÆôÓÃ',
-   icon                 varchar(300) comment 'Ó¦ÓÃÍ¼±ê',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   show_config          longtext comment 'Õ¹Ê¾·½Ê½ ´æ´¢·½Ê½ÅäÖÃJSON×Ö·û´®',
-   primary key (appid)
-);
-
-alter table ff_apaas_es_app comment 'Ó¦ÓÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_app_actiontype                            */
-/*==============================================================*/
-create table ff_apaas_es_app_actiontype
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   actiontype_name      varchar(100) comment '²Ù×÷ÏîÃû³Æ',
-   actiontype           varchar(50) comment '²Ù×÷Ïî',
-   sortid               int not null default 0 comment 'ÅÅĞòÖµ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_app_actiontype comment 'Ó¦ÓÃ²Ù×÷Ïî±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_app_actiontype_default                    */
-/*==============================================================*/
-create table ff_apaas_es_app_actiontype_default
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   app_type             int not null default 1 comment 'Ó¦ÓÃÀàĞÍ 0»ù´¡×ÊÁÏ 1Á÷³ÌÓ¦ÓÃ',
-   actiontype_name      varchar(100) comment '²Ù×÷ÏîÃû³Æ',
-   actiontype           varchar(50) comment '²Ù×÷Ïî',
-   sortid               int not null default 0 comment 'ÅÅĞòÖµ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_app_actiontype_default comment 'Ä¬ÈÏÓ¦ÓÃ²Ù×÷Ïî±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_app_organization                          */
-/*==============================================================*/
-create table ff_apaas_es_app_organization
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   appid                varchar(50) not null comment 'Ó¦ÓÃ±àºÅ',
-   config_info          longtext not null comment 'ÅäÖÃĞÅÏ¢',
-   trigger_mode         int not null comment '´¥·¢·½Ê½ 1ĞÂÔö 2 ĞŞ¸Ä 3É¾³ı',
-   update_id            varchar(50) comment '×îºó¸üĞÂÈËID',
-   update_name          varchar(200) comment '×îºó¸üĞÂÈËÃû³Æ',
-   update_time          datetime comment '×îºó¸üĞÂÊ±¼ä',
-   projectid            varchar(50) not null comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) not null comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_app_organization comment 'Ó¦ÓÃÁª¶¯×éÖ¯¼Ü¹¹±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_app_special                               */
-/*==============================================================*/
-create table ff_apaas_es_app_special
-(
-   appid                varchar(50) not null comment 'Ó¦ÓÃ±àºÅ',
-   appname              varchar(200) comment 'Ó¦ÓÃÃû³Æ',
-   app_tablename        varchar(100) comment 'Ó¦ÓÃ±í',
-   app_type             int not null default 1 comment 'Ó¦ÓÃÀàĞÍ 0È«¾ÖÓ¦ÓÃ 1ÏîÄ¿Ó¦ÓÃ',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            varchar(50) comment '×îºó¸üĞÂÈËID',
-   update_name          varchar(200) comment '×îºó¸üĞÂÈËÃû³Æ',
-   update_time          datetime comment '×îºó¸üĞÂÊ±¼ä',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   primary key (appid)
-);
-
-alter table ff_apaas_es_app_special comment 'ÌØÊâÓ¦ÓÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_app_submit_limit                          */
-/*==============================================================*/
-create table ff_apaas_es_app_submit_limit
-(
-   appid                varchar(50) not null comment 'Ó¦ÓÃID',
-   is_all_limit         int comment 'ÊÇ·ñÏŞÖÆÌá½»×ÜÁ¿(0·ñ1ÊÇ)',
-   all_limit_total      int comment 'Ìá½»ÏŞÖÆ×ÜÁ¿',
-   is_month_limit       int comment 'ÊÇ·ñÏŞÖÆÔÂÌá½»×ÜÁ¿(0·ñ1ÊÇ)',
-   month_limit_total    int comment 'ÔÂÌá½»ÏŞÖÆ×ÜÁ¿',
-   is_timing_limit      int comment 'ÊÇ·ñ¶¨Ê±ÏŞÖÆ(0·ñ1ÊÇ)',
-   begin_time           datetime comment 'ÏŞÖÆÌá½»ÆğÊ¼Ê±¼ä',
-   end_time             datetime comment 'ÏŞÖÆÌá½»½áÊøÊ±¼ä',
-   extention            longtext comment 'À©Õ¹ĞÅÏ¢',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   deleted              int comment 'ÊÇ·ñÉ¾³ı(0·ñ1ÊÇ)',
-   ref_project          varchar(50) comment 'ËùÊôÏîÄ¿',
-   ref_deptid           varchar(50) comment 'ËùÊô¹«Ë¾',
-   primary key (appid)
-);
-
-alter table ff_apaas_es_app_submit_limit comment 'Ó¦ÓÃÊı¾İÌá½»ÏŞÖÆ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_app_submit_log                            */
-/*==============================================================*/
-create table ff_apaas_es_app_submit_log
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   extention            longtext comment 'À©Õ¹ĞÅÏ¢',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   deleted              int comment 'ÊÇ·ñÉ¾³ı(0·ñ1ÊÇ)',
-   ref_appid            varchar(50) comment 'ËùÊôÓ¦ÓÃ',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿',
-   ref_deptid           varchar(50) comment 'ËùÊô¹«Ë¾',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_app_submit_log comment 'Ó¦ÓÃÊı¾İÌá½»ÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_catalog                                   */
-/*==============================================================*/
-create table ff_apaas_es_catalog
-(
-   catalogid            varchar(50) not null comment 'Àà±ğ±àºÅ',
-   fullid               varchar(1000) comment 'FULL±àºÅ',
-   catalogname          varchar(200) comment 'Àà±ğÃû³Æ',
-   parentid             varchar(50) comment 'ÉÏ¼¶·ÖÀà',
-   remark               varchar(500) comment '±¸×¢',
-   sortid               int comment 'ÅÅĞòÖµ',
-   classlayer           int not null default 1 comment '²ã¼¶',
-   deleted              int comment 'ÊÇ·ñÉ¾³ı',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   special_type         int not null default 0 comment 'ÊÇ·ñÌØÊâÀà±ğ 0·ñ 1ÊÇ',
-   primary key (catalogid)
-);
-
-alter table ff_apaas_es_catalog comment '³£ÓÃÀà±ğ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_f_actors                                  */
-/*==============================================================*/
-create table ff_apaas_es_f_actors
-(
-   faid                 varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   actorseq             int not null default 1 comment '½ÇÉ«ĞòºÅ',
-   actortype            int not null default 10 comment '½ÇÉ«Àà±ğ 10²¿ÃÅ¡¢20ÓÃ»§¡¢40ÓÃ»§×é',
-   actorid              varchar(50) comment '½ÇÉ«±àºÅ',
-   primary key (faid)
-);
-
-alter table ff_apaas_es_f_actors comment 'Á÷³ÌÆô¶¯ÈËÔ±±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_f_specactor                               */
-/*==============================================================*/
-create table ff_apaas_es_f_specactor
-(
-   fspeid               varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   actorseq             int not null default 1 comment '½ÇÉ«ĞòºÅ',
-   spectype             int not null default 0 comment 'ÌØÊâÈ¨ÏŞÀà±ğ 10´«ÔÄ¡¢20ÖÕÖ¹¡¢30É¾³ı¡¢40´ß°ì¡¢50µ÷¶È¡¢60ÔİÍ£¡¢70¶½°ì',
-   actortype            int not null default 10 comment '½ÇÉ«Àà±ğ 10²¿ÃÅ¡¢20ÓÃ»§¡¢40ÓÃ»§×é',
-   actorid              varchar(50) comment '½ÇÉ«±àºÅ',
-   primary key (fspeid)
-);
-
-alter table ff_apaas_es_f_specactor comment 'Á÷³ÌÌØÊâÈ¨ÏŞÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_fields                                    */
-/*==============================================================*/
-create table ff_apaas_es_fields
-(
-   fieldid              varchar(50) not null comment '×Ö¶Î±àºÅ',
-   appid                varchar(50) not null comment '¹ØÁªÓ¦ÓÃ±àºÅ',
-   fieldname            varchar(200) comment '×Ö¶ÎÃû³Æ',
-   fieldname_alias      varchar(200) comment '×Ö¶ÎÃû³Æ±ğÃû',
-   cname                varchar(200) comment 'ÖĞÎÄÃû³Æ',
-   dtype                varchar(100) comment '×Ö¶Î¸ñÊ½',
-   dtypelength          int comment '¸ñÊ½³¤¶È',
-   dtypepre             int comment 'Ğ¡ÊıÎ»',
-   fieldtype            int not null default -1 comment 'Ò»¼¶·ÖÀà',
-   isset                int not null default 0 comment 'ÉèÖÃÀàĞÍ 0ÆÕÍ¨ -1Ìõ¼şÂ·¾¶ -2ÏÔÊ¾¿ØÖÆ',
-   refid                int not null default 0 comment '¶ş¼¶·ÖÀà',
-   refremote            int not null default 0 comment '¹ØÁª·¶Î§ÀàĞÍ 1×Ô¶¨Òå·¶Î§ 2Êı¾İ¹ØÁª',
-   refvalue             longtext comment '¹ØÁªÅäÖÃÖµ',
-   iskey                int not null comment 'ÅÅĞòÖµ',
-   ref_formid           varchar(50) comment '¹ØÁª±íµ¥ID',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   primary key (fieldid)
-);
-
-alter table ff_apaas_es_fields comment 'Ó¦ÓÃĞÅÏ¢Ïî';
-
-/*==============================================================*/
-/* Index: index_es_fields_appid                                 */
-/*==============================================================*/
-create index index_es_fields_appid on ff_apaas_es_fields
-(
-   appid,
-   deleted
-);
-
-/*==============================================================*/
-/* Index: index_es_fields_formid                                */
-/*==============================================================*/
-create index index_es_fields_formid on ff_apaas_es_fields
-(
-   ref_formid,
-   deleted
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_es_fields_special                            */
-/*==============================================================*/
-create table ff_apaas_es_fields_special
-(
-   fieldid              varchar(50) not null comment '×Ö¶Î±àºÅ',
-   appid                varchar(50) not null comment '¹ØÁªÓ¦ÓÃ±àºÅ',
-   fieldname            varchar(200) comment '×Ö¶ÎÃû³Æ',
-   cname                varchar(200) comment 'ÖĞÎÄÃû³Æ',
-   fieldtype            int not null default -1 comment 'Ò»¼¶·ÖÀà',
-   refid                int not null default 0 comment '¶ş¼¶·ÖÀà',
-   refvalue             longtext comment '¹ØÁªÅäÖÃÖµ',
-   iskey                int not null comment 'ÅÅĞòÖµ',
-   primary key (fieldid)
-);
-
-alter table ff_apaas_es_fields_special comment 'ÌØÊâÓ¦ÓÃĞÅÏ¢Ïî';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_flow                                      */
-/*==============================================================*/
-create table ff_apaas_es_flow
-(
-   flowid               varchar(50) not null comment 'Á÷³Ì±àºÅ',
-   flowmodelid          varchar(50) comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   appid                varchar(50) comment 'Ó¦ÓÃ±àºÅ',
-   subject              varchar(500) comment 'Ö÷Ìâ',
-   premessageid         varchar(50) comment 'Ç°ÖÃÏûÏ¢±àºÅ',
-   preflowid            varchar(50) comment 'Ç°ÖÃÁ÷³Ì±àºÅ',
-   jointype             int not null default 10 comment 'ÏÎ½ÓÀà±ğ 10ÆÕÍ¨¡¢20ÏÎ½Ó¡¢30Ç¶Ì×',
-   starttime            datetime comment 'Æô¶¯Ê±¼ä',
-   endtime              datetime comment '½áÊøÊ±¼ä',
-   starterid            varchar(50) comment 'Æô¶¯ÈËÔ±±àºÅ',
-   expectendtime        datetime comment 'Ô¤¼Æ½áÊøÊ±¼ä',
-   status               int not null default 0 comment 'Á÷³Ì×´Ì¬',
-   attachment           int not null default 0 comment 'ÊÇ·ñ´æÔÚ¸½¼ş',
-   flowno               varchar(100) comment 'Á÷³Ìµ¥ºÅ',
-   deleted              int not null comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   business_status      varchar(500) comment '¶ÔÓ¦ÒµÎñ×´Ì¬',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   current_handerid     varchar(1000) comment 'µ±Ç°´¦ÀíÈËID',
-   current_hander       varchar(1000) comment 'µ±Ç°´¦ÀíÈËÃû³Æ',
-   current_nodeid       varchar(1000) comment 'µ±Ç°´¦Àí»·½ÚID',
-   current_nodename     varchar(1000) comment 'µ±Ç°´¦Àí»·½ÚÃû³Æ',
-   primary key (flowid)
-);
-
-alter table ff_apaas_es_flow comment 'Á÷³ÌÊµÀı±í';
-
-/*==============================================================*/
-/* Index: es_flow_premessageid                                  */
-/*==============================================================*/
-create index es_flow_premessageid on ff_apaas_es_flow
-(
-   premessageid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_es_flowdelelog                               */
-/*==============================================================*/
-create table ff_apaas_es_flowdelelog
-(
-   flowid               varchar(50) not null comment 'Á÷³Ì±àºÅ',
-   appid                varchar(50) comment 'Ó¦ÓÃ±àºÅ',
-   subject              varchar(500) comment 'Á÷³ÌÖ÷Ìâ',
-   remark               varchar(2000) comment 'É¾³ıÔ­Òò',
-   deletedtime          datetime comment 'É¾³ıÊ±¼ä',
-   douserid             varchar(50) comment 'É¾³ıÈË±àºÅ',
-   primary key (flowid)
-);
-
-alter table ff_apaas_es_flowdelelog comment 'Á÷³ÌÊµÀıÉ¾³ıÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_flowfromto                                */
-/*==============================================================*/
-create table ff_apaas_es_flowfromto
-(
-   ftid                 varchar(50) not null comment '±àºÅ',
-   fflowid              varchar(50) comment '¿ªÊ¼Á÷³Ì±àºÅ',
-   tflowid              varchar(50) comment '½áÎ²Á÷³Ì±àºÅ',
-   premessageid         varchar(50) comment 'Ç°ÖÃÏûÏ¢±àºÅ',
-   linkmessageid        varchar(50) comment 'Á¬½ÓÏûÏ¢±àºÅ',
-   jointype             int not null default 10 comment 'ÏÎ½ÓÀà±ğ 10ÆÕÍ¨¡¢20ÏÎ½Ó¡¢30Ç¶Ì×',
-   primary key (ftid)
-);
-
-alter table ff_apaas_es_flowfromto comment 'Á÷³ÌÊµÀıË³Ğò±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_flowmodel                                 */
-/*==============================================================*/
-create table ff_apaas_es_flowmodel
-(
-   flowmodelid          varchar(50) not null comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   flowname             varchar(200) comment 'Á÷³ÌÄ£ĞÍÃû³Æ',
-   appid                varchar(50) comment '¹ØÁªÓ¦ÓÃ±àºÅ',
-   preflowmodelid       varchar(50) comment 'Ç°ÖÃÁ÷³ÌÄ£ĞÍ±àºÅ',
-   oflowmodelid         varchar(50) comment 'Ô­Ê¼Á÷³ÌÄ£ĞÍ±àºÅ',
-   status               int not null default 0 comment 'Á÷³Ì×´Ì¬ 0Î´Æô¶¯ 1Æô¶¯',
-   remark               varchar(500) comment 'ÃèÊö',
-   unit_config          longtext comment 'Ê±ÏŞÅäÖÃJSON´®',
-   totalhours           int not null default 0 comment '×ÜÊ±ÏŞ',
-   timeunit             int not null default 0 comment 'Ê±ÏŞµ¥Î»',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı',
-   flowchart            longtext comment 'Á÷³ÌÍ¼×Ö·û´®',
-   flowbusid            varchar(50) comment 'ÒµÎñÁ÷³Ì±àºÅ',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            varchar(50) comment '×îºó¸üĞÂÈËID',
-   update_name          varchar(200) comment '×îºó¸üĞÂÈËÃû³Æ',
-   update_time          datetime comment '×îºó¸üĞÂÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   publish_id           varchar(50) comment '·¢²¼ÈËID',
-   publish_name         varchar(200) comment '·¢²¼ÈË',
-   publish_time         datetime comment '·¢²¼Ê±¼ä',
-   is_publish           int default 0 comment 'ÊÇ·ñ·¢²¼¹ı',
-   specactordata        longtext comment 'È«¾ÖÌØÊâÈ¨ÏŞÈËÔ±ÅäÖÃ¼¯ºÏ ÓÃÓÚÇ°¶ËÒ³ÃæÕ¹Ê¾',
-   primary key (flowmodelid)
-);
-
-alter table ff_apaas_es_flowmodel comment 'Á÷³ÌÄ£ĞÍ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_flowmodel_notice_config                   */
-/*==============================================================*/
-create table ff_apaas_es_flowmodel_notice_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   flowmodelid          varchar(50) not null comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   configtype           int not null default 0 comment 'ÅäÖÃ¶ÔÏó 0È«¾Ö 1»·½Ú',
-   noticetype           int not null default 0 comment 'Í¨Öª·½Ê½ 0´ı°ìÍ¨Öª',
-   operattype           text comment '²Ù×÷Àà±ğ ´æ´¢JSON×Ö·û´®[{value:10,name:''Ìá½»''}],ºóÌ¨ÔÚÊ¹ÓÃÊ±½øĞĞ½âÎö',
-   noticemethod         text comment 'Í¨Öª·½Ê½´æ´¢JSON×Ö·û´®[{value:0,name:''¶ÌĞÅ''}],ºóÌ¨ÔÚÊ¹ÓÃÊ±½øĞĞ½âÎö',
-   noticeobject         text comment 'Í¨Öª¶ÔÏó´æ´¢JSON×Ö·û´®[{value:0,name:''·¢ÆğÈË''}],ºóÌ¨ÔÚÊ¹ÓÃÊ±½øĞĞ½âÎö
-            Èç¹ûÅäÖÃÁËÍ¨Öª¶ÔÏóÎªÆäËû£¬Ôò»á´æÔÚÇ¶Ì××Ó¼¶¶ÔÏó¼¯ºÏµÄÇé¿ö',
-   noticeobject_other   text comment 'Í¨ÖªµÄÆäËû¶ÔÏóÖµ',
-   form_appoint         varchar(1000) comment '±íµ¥Ö¸¶¨ ´æ´¢¸ñÊ½{"type":200,"list:":[''±íµ¥ÈËÔ±×Ö¶Î±àÂë'']} type:200 ±íÊ¾ÈËÔ± 210±íÊ¾²¿ÃÅ 220±íÊ¾½ÇÉ«',
-   noticecontent        text comment 'Í¨ÖªÄÚÈİ',
-   sortid               int not null default 0 comment 'ÅÅĞòÖµ',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_flowmodel_notice_config comment 'Á÷³Ì´ı°ìÍ¨ÖªÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_flowmodel_visit_config                    */
-/*==============================================================*/
-create table ff_apaas_es_flowmodel_visit_config
-(
-   flowmodelid          varchar(50) not null comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   islimitcount         int not null default 0 comment 'ÊÇ·ñÏŞÖÆÌá½»×ÜÁ¿ 0·ñ 1ÊÇ',
-   limitcount           int not null default 0 comment 'ÏŞÖÆÌá½»×ÜÁ¿',
-   islimitmonthcount    int not null default 0 comment 'ÊÇ·ñÏŞÖÆÃ¿ÔÂÌá½»ÉÏÏŞ 0·ñ 1ÊÇ',
-   limitmonthcount      int not null default 0 comment 'ÏŞÖÆÃ¿ÔÂÌá½»×ÜÁ¿',
-   islimitpersoncount   int not null default 0 comment 'ÏŞÖÆµ¥ÈËÌá½»×Ü´ÎÊı 0·ñ 1ÊÇ',
-   limitpersoncount     int not null default 0 comment 'ÏŞÖÆµ¥ÈËÌá½»×ÜÁ¿',
-   islimitaddway        int not null default 0 comment 'ÊÇ·ñ¿ØÖÆÉêÇëÍ¨µÀ',
-   limitbegintime       datetime comment '¿ªÆô¿ªÊ¼Ê±¼ä',
-   limitendtime         datetime comment '¿ªÆô½áÊøÊ±¼ä',
-   isallowfree          int not null default 0 comment 'ÊÇ·ñÔÊĞíÃâÃÜµÇÂ¼',
-   allowfree_url        varchar(500) comment 'ÃâÃÜ·ÃÎÊµØÖ·',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (flowmodelid)
-);
-
-alter table ff_apaas_es_flowmodel_visit_config comment 'Á÷³Ì·ÃÎÊ»úÖÆÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_flowpauselog                              */
-/*==============================================================*/
-create table ff_apaas_es_flowpauselog
-(
-   id                   varchar(50) not null comment '±àºÅ',
-   flowid               varchar(50) comment 'Á÷³Ì±àºÅ',
-   pauserreason         varchar(500) comment 'ÔİÍ£Ô­Òò',
-   pausetime            datetime comment 'ÔİÍ£Ê±¼ä',
-   douserid             varchar(50) comment 'ÔİÍ£ÈË±àºÅ',
-   continuetime         datetime comment '¼ÌĞøÊ±¼ä',
-   contuserid           varchar(50) comment '¼ÌĞøÈË±àºÅ',
-   status               int not null default 0 comment '×´Ì¬',
-   primary key (id)
-);
-
-alter table ff_apaas_es_flowpauselog comment 'Á÷³ÌÊµÀıÔİÍ£ÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_influx_result                             */
-/*==============================================================*/
-create table ff_apaas_es_influx_result
-(
-   messageid            varchar(50) not null comment 'ÏûÏ¢±àºÅ',
-   flowid               varchar(50) comment 'Á÷³Ì±àºÅ',
-   nodeid               varchar(50) comment '»·½Ú±àºÅ',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍID',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍID',
-   actionid             int not null default 1 comment '´¦Àí¶¯×÷±àºÅ 1Í¬Òâ 0²»Í¬Òâ',
-   userid               varchar(50) comment '´¦ÀíÈËID',
-   primary key (messageid)
-);
-
-alter table ff_apaas_es_influx_result comment '»áÇ©½á¹û¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_message                                   */
-/*==============================================================*/
-create table ff_apaas_es_message
-(
-   messageid            varchar(50) not null comment 'ÏûÏ¢±àºÅ',
-   flowid               varchar(50) comment 'Á÷³Ì±àºÅ',
-   nodeid               varchar(50) comment '»·½Ú±àºÅ',
-   messagetype          int not null default 0 comment 'ÏûÏ¢Àà±ğ',
-   receiverid           varchar(50) comment 'µ±Ç°´¦ÀíÈË',
-   recdeptid            varchar(50) comment 'µ±Ç°´¦Àí²¿ÃÅ',
-   recorgid             varchar(50) comment 'µ±Ç°´¦Àí»ú¹¹',
-   originid             varchar(50) comment 'Ô­´¦ÀíÈË',
-   senderid             varchar(50) comment 'Ç°´¦ÀíÈË',
-   senderdeptid         varchar(50) comment 'Ç°´¦Àí²¿ÃÅ',
-   senderorgid          varchar(50) comment 'Ç°´¦Àí»ú¹¹',
-   sendtime             datetime comment 'ËÍ´ïÊ±¼ä',
-   receivetime          datetime comment '½ÓÊÕÊ±¼ä',
-   readtime             datetime comment 'ÒÑÔÄÊ±¼ä',
-   receivetype          int comment '½ÓÊÕÀà±ğ',
-   expected             datetime comment 'Ô¤¼Æ½áÊøÊ±¼ä',
-   warntime             datetime comment 'ÏìÓ¦½áÊøÊ±¼ä',
-   recentprocesstime    datetime comment '×î½ü´¦ÀíÊ±¼ä',
-   factors              varchar(100) comment 'À´Ô´ÈËÔ±ÁĞ±í',
-   tactors              varchar(1000) comment '·¢ËÍÈËÔ±ÁĞ±í',
-   actortype            int not null default 0 comment '½ÇÉ«Àà±ğ',
-   actionid             int not null default 0 comment '´¦Àí¶¯×÷±àºÅ',
-   receivertype         int not null default 0 comment '»ú¹¹»·½ÚÊ±½ÓÊÕÕßÀà±ğ',
-   orgrecid             varchar(50) comment '»ú¹¹»·½ÚÊ±½ÓÊÕµ¥Î»ID',
-   orgrecname           varchar(300) comment '»ú¹¹»·½ÚÊ±½ÓÊÕµ¥Î»Ãû³Æ',
-   opinion              varchar(1000) comment '°ìÀíÒâ¼û',
-   isread               int not null default 0 comment 'ÊÇ·ñÒÑÔÄ',
-   important            int not null default 1 comment 'ÏûÏ¢¼¶±ğ 0½ÏµÍ¡¢1Ò»°ã¡¢2ÖØÒª',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı',
-   status               int not null default 0 comment 'ÏûÏ¢×´Ì¬',
-   prepausestatus       int not null default 0 comment 'ÔİÍ£Ç°×´Ì¬',
-   timeout_before       int not null default 0 comment '³¬Ê±Ç°±êÖ¾(0:·Ç¼´½«³¬Ê±, 1: ¼´½«³¬Ê±))',
-   timeout_after        int not null default 0 comment '³¬Ê±ºó±êÖ¾(0:·Ç¼´½«³¬Ê±, 1: ¼´½«³¬Ê±))',
-   update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment 'ĞŞ¸ÄÊ±¼ä',
-   shelve               int not null default 0 comment 'ÊÇ·ñ¸éÖÃ',
-   primary key (messageid)
-);
-
-alter table ff_apaas_es_message comment 'Á÷³ÌÏûÏ¢¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Index: index_message_flowid                                  */
-/*==============================================================*/
-create index index_message_flowid on ff_apaas_es_message
-(
-   flowid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_es_messagefromto                             */
-/*==============================================================*/
-create table ff_apaas_es_messagefromto
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   fmessageid           varchar(50) comment '¿ªÊ¼ÏûÏ¢±àºÅ',
-   tmessageid           varchar(50) comment '½áÎ²ÏûÏ¢±àºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_messagefromto comment 'Á÷³ÌÏûÏ¢Ë³Ğò±í';
-
-/*==============================================================*/
-/* Index: messagefromto_fmessageid                              */
-/*==============================================================*/
-create index messagefromto_fmessageid on ff_apaas_es_messagefromto
-(
-   fmessageid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_es_messageopinion                            */
-/*==============================================================*/
-create table ff_apaas_es_messageopinion
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   messageid            varchar(50) comment 'ÏûÏ¢±àºÅ',
-   mpcontent            text comment 'ÄÚÈİ',
-   updatetime           datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_messageopinion comment 'À©Õ¹Òâ¼û±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_msgprocess                                */
-/*==============================================================*/
-create table ff_apaas_es_msgprocess
-(
-   mpid                 varchar(50) not null comment 'Ö÷¼ü',
-   flowid               varchar(50) comment 'Á÷³Ì±àºÅ',
-   userid               varchar(50) comment 'ÓÃ»§±àºÅ',
-   username             varchar(200) comment 'ÓÃ»§Ãû³Æ',
-   msgtype              int not null comment '²¹³äÒâ¼ûÀàĞÍ 0²¹³äÒâ¼û 1ÔİÍ£Á÷³Ì 2»Ö¸´Á÷³Ì 3ÖÕÖ¹Á÷³Ì 50È¡ÏûÑûÇë 60ÑûÇë´«ÔÄ 70ÑûÇëĞ­°ì 80ÑûÇë¹µÍ¨',
-   mpcontent            text comment '²¹³äÒâ¼û',
-   mptime               datetime comment '²¹³äÊ±¼ä',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍ±àºÅ',
-   messageid            varchar(50) comment 'ÏûÏ¢±àºÅ',
-   primary key (mpid)
-);
-
-alter table ff_apaas_es_msgprocess comment '²¹³äÒâ¼û±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_msgsupervise                              */
-/*==============================================================*/
-create table ff_apaas_es_msgsupervise
-(
-   mpid                 varchar(50) not null comment 'Ö÷¼ü',
-   flowid               varchar(50) comment 'Á÷³Ì±àºÅ',
-   userid               varchar(50) comment 'ÓÃ»§±àºÅ',
-   username             varchar(200) comment 'ÓÃ»§Ãû³Æ',
-   mpcontent            text comment '¶½°ìÒâ¼û',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (mpid)
-);
-
-alter table ff_apaas_es_msgsupervise comment '¶½°ìÒâ¼û±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_msgurg_log                                */
-/*==============================================================*/
-create table ff_apaas_es_msgurg_log
-(
-   mpid                 varchar(50) not null comment 'Ö÷¼ü',
-   flowid               varchar(50) comment 'Á÷³Ì±àºÅ',
-   userid               varchar(50) comment 'ÓÃ»§±àºÅ',
-   username             varchar(200) comment 'ÓÃ»§Ãû³Æ',
-   receiverid           varchar(50) comment '±»Í¨ÖªÈËID',
-   receivername         varchar(200) comment '±»Í¨ÖªÈËÃû³Æ',
-   mpcontent            text comment '´ß°ìÄÚÈİ',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (mpid)
-);
-
-alter table ff_apaas_es_msgurg_log comment '´ß°ìÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_action                                */
-/*==============================================================*/
-create table ff_apaas_es_n_m_action
-(
-   nmactionid           varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   actionid             int not null default 1 comment '¶¯×÷ID',
-   actionname           varchar(50) comment '¶¯×÷Ãû³Æ',
-   isdefault            int not null default 0 comment 'ÊÇ·ñÈ±Ê¡',
-   sync_exec            int not null default 0 comment 'ÊÇ·ñÍ¬²½Ö´ĞĞ 0·ñ 1ÊÇ',
-   busactionid          varchar(50) comment '°ó¶¨ÒµÎñ¶¯×÷±àºÅ',
-   primary key (nmactionid)
-);
-
-alter table ff_apaas_es_n_m_action comment 'Á÷³Ì»·½Ú¶¯×÷±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_action_bind                           */
-/*==============================================================*/
-create table ff_apaas_es_n_m_action_bind
-(
-   nmactionid           varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   actionid             int not null default 1 comment '¶¯×÷ID',
-   bind_type            int not null default 0 comment '°ó¶¨ÀàĞÍ 0Êı¾İĞÂÔö 1Êı¾İĞŞ¸Ä 2×Ô¶¨Òå 3µç×ÓÇ©Ô¼',
-   bind_appid           varchar(200) comment '°ó¶¨Ó¦ÓÃID ¸ñÊ½Îª[ÏîÄ¿id,Ó¦ÓÃid]',
-   bind_oflowmodelid    varchar(50) comment '°ó¶¨Á÷³ÌÄ£ĞÍID',
-   bind_actionid        int default 0 comment '°ó¶¨Æğ²İ»·½Ú°´Å¥',
-   trigger_rule         longtext comment '´¥·¢¹æÔò',
-   cond_rule            longtext comment 'Ìõ¼ş¹æÔò',
-   value_rule           longtext comment '¸³Öµ¹æÔò',
-   custom_identy        varchar(100) comment '×Ô¶¨Òå±êÊ¶',
-   bind_title           varchar(100) comment '°ó¶¨±êÌâ',
-   sortid               int not null comment 'ÅÅĞòÖµ',
-   primary key (nmactionid)
-);
-
-alter table ff_apaas_es_n_m_action_bind comment 'Á÷³Ì»·½Ú¶¯×÷°ó¶¨¹ØÁª×Ó±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_action_influxactor                    */
-/*==============================================================*/
-create table ff_apaas_es_n_m_action_influxactor
-(
-   nmactionid           varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   actionid             int not null default 1 comment '¶¯×÷ID',
-   actionname           varchar(50) comment '¶¯×÷Ãû³Æ',
-   primary key (nmactionid)
-);
-
-alter table ff_apaas_es_n_m_action_influxactor comment 'Á÷³Ì»áÇ©»·½Ú¶¯×÷±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_actor                                 */
-/*==============================================================*/
-create table ff_apaas_es_n_m_actor
-(
-   nmactorid            varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   actorseq             int not null default 1 comment '½ÇÉ«ĞòºÅ',
-   actorclass           int not null default 0 comment 'ÈËÔ±´¦ÀíÀà±ğ 0Ö÷°ì¡¢1ÔÄÖª/Ğ­°ì',
-   actortype            int not null default 10 comment '½ÇÉ«Àà±ğ 10²¿ÃÅ¡¢20ÓÃ»§¡¢30Ìõ¼şÈËÔ±¡¢40ÓÃ»§×é',
-   actorid              varchar(50) comment '½ÇÉ«±àºÅ',
-   primary key (nmactorid)
-);
-
-alter table ff_apaas_es_n_m_actor comment 'Á÷³Ì»·½ÚÈËÔ±±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_att_config                            */
-/*==============================================================*/
-create table ff_apaas_es_n_m_att_config
-(
-   iidd                 varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   condrule             longtext comment 'Ìõ¼ş¹æÔò',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd),
-   unique key AK_key_flowmodel_nodemodel (flowmodelid, nodemodelid)
-);
-
-alter table ff_apaas_es_n_m_att_config comment 'Á÷³Ì»·½Ú¸½¼ş±ØÌîÅäÖÃ';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_field                                 */
-/*==============================================================*/
-create table ff_apaas_es_n_m_field
-(
-   nmfieldid            varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   fieldid              varchar(50) comment '¹ØÁªĞÅÏ¢Ïî±àºÅ',
-   fieldname            varchar(200) comment '×Ö¶ÎÃû³Æ',
-   cname                varchar(200) comment 'ÖĞÎÄÃû³Æ',
-   isvisible            int not null default 1 comment 'ÊÇ·ñ¿É¼û',
-   isedit               int not null default 1 comment 'ÊÇ·ñ¿É±à¼­',
-   isrequired           int not null default 1 comment 'ÊÇ·ñ±ØÌî',
-   iskey                int not null default 0 comment 'ÅÅĞòÖµ',
-   subtable_config      longtext comment '×Ó±íÌØÊâÅäÖÃ',
-   primary key (nmfieldid)
-);
-
-alter table ff_apaas_es_n_m_field comment 'Á÷³Ì»·½ÚĞÅÏ¢Ïî±í';
-
-/*==============================================================*/
-/* Index: index_n_m_field_flowmodelid                           */
-/*==============================================================*/
-create index index_n_m_field_flowmodelid on ff_apaas_es_n_m_field
-(
-   flowmodelid,
-   nodemodelid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_flow                                  */
-/*==============================================================*/
-create table ff_apaas_es_n_m_flow
-(
-   nmflowid             varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   flowseq              int not null default 1 comment 'Ë³ĞòºÅ',
-   linkflowmodelid      varchar(50) comment 'Á¬½ÓµÄÁ÷³ÌÄ£ĞÍ±àºÅ',
-   ismaster             int not null default 1 comment 'Ö÷°ì',
-   isreader             int not null default 0 comment 'ÔÄÖª',
-   isassist             int not null default 0 comment 'Ğ­°ì',
-   trackrange           int not null default 0 comment '×ÓÁ÷³Ì¸ú×ÙÈ¨ÏŞ',
-   islink               int not null default 0 comment 'Á¬½ÓÀàĞÍ 0Ç¶Ì× 1ÏÎ½Ó',
-   nmflow_config        longtext comment '¸ß¼¶ÅäÖÃ ¼ÇÂ¼·¢Æğ×ÓÁ÷³ÌÊ±£¬×Ö¶ÎÓ³Éä¹ØÏµ£¬Ö÷ÒªÓÃÓÚ³õÊ¼»¯¸³Öµ',
-   primary key (nmflowid)
-);
-
-alter table ff_apaas_es_n_m_flow comment 'Á÷³Ì»·½Ú×ÓÁ÷³ÌÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_link                                  */
-/*==============================================================*/
-create table ff_apaas_es_n_m_link
-(
-   linkid               varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodela           varchar(50) not null comment '»·½ÚA',
-   nodemodelb           varchar(50) not null comment '»·½ÚB',
-   actionid             int not null default 0 comment '¶¯×÷ID',
-   linkname             varchar(200) comment 'Á¬½ÓÃû³Æ',
-   linkrule             text comment 'Ìõ¼ş¹æÔò',
-   remark               varchar(2000) comment '±¸×¢',
-   counter              int not null default 0 comment 'Á¬½ÓÏß¼ÆÊıÆ÷',
-   tipsname             varchar(200) comment 'ÌáÊ¾Ãû³Æ',
-   primary key (linkid, flowmodelid)
-);
-
-alter table ff_apaas_es_n_m_link comment 'Á÷³Ì»·½ÚÁ¬½Ó±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_n_m_specactor                             */
-/*==============================================================*/
-create table ff_apaas_es_n_m_specactor
-(
-   nmspeid              varchar(50) not null comment '±àºÅ',
-   flowmodelid          varchar(50) not null comment '¹ØÁªÁ÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '¹ØÁª»·½ÚÄ£ĞÍ',
-   actorseq             int not null default 1 comment 'Ë³ĞòºÅ',
-   spectype             int not null default 0 comment 'ÌØÊâÈ¨ÏŞÀà±ğ',
-   actortype            int not null default 10 comment '½ÇÉ«Àà±ğ 10²¿ÃÅ¡¢20ÓÃ»§¡¢40ÓÃ»§×é',
-   actorid              varchar(50) comment '½ÇÉ«±àºÅ',
-   primary key (nmspeid)
-);
-
-alter table ff_apaas_es_n_m_specactor comment 'Á÷³Ì»·½ÚÌØÊâÈ¨ÏŞÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_node                                      */
-/*==============================================================*/
-create table ff_apaas_es_node
-(
-   nodeid               varchar(50) not null comment '»·½Ú±àºÅ',
-   flowid               varchar(50) comment 'Á÷³Ì±àºÅ',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment '»·½ÚÄ£ĞÍ±àºÅ',
-   nodemodeltype        int not null default 0 comment '»·½ÚÄ£ĞÍÀà±ğ',
-   worktype             int not null default 0 comment '»·½Ú¹¤×÷Àà±ğ',
-   starttime            datetime comment 'Æô¶¯Ê±¼ä',
-   actionid             int not null default 0 comment '»·½Ú³ö¿Ú×´Ì¬',
-   expectnumber         int not null default 1 comment '»·½ÚÓ¦´ïÈËÊı(ºÏÁ÷)',
-   arrivednumber        int not null default 1 comment 'Êµ¼ÊÒÑ´ïÈËÊı',
-   status               int not null default 0 comment '»·½Ú×´Ì¬',
-   prepausestatus       int not null default 0 comment 'ÔİÍ£Ç°×´Ì¬±£´æ',
-   statustime           datetime comment '×î½ü×´Ì¬±ä¸üÊ±¼ä',
-   primary key (nodeid)
-);
-
-alter table ff_apaas_es_node comment 'Á÷³Ì»·½ÚÊµÀı±í';
-
-/*==============================================================*/
-/* Index: index_es_node_flowid                                  */
-/*==============================================================*/
-create index index_es_node_flowid on ff_apaas_es_node
-(
-   flowid
-);
-
-/*==============================================================*/
-/* Index: index_es_node_flowmodelid                             */
-/*==============================================================*/
-create index index_es_node_flowmodelid on ff_apaas_es_node
-(
-   flowmodelid,
-   nodemodelid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_es_node_temp                                 */
-/*==============================================================*/
-create table ff_apaas_es_node_temp
-(
-   nodeid               varchar(50) not null comment 'Ö÷¼ü',
-   actionsave           int comment '¶¯×÷ID',
-   receiversave         varchar(2000) comment '½ÓÊÕÈËXML´®',
-   primary key (nodeid)
-);
-
-alter table ff_apaas_es_node_temp comment 'Á÷³Ì»·½ÚÁÙÊ±±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_nodefromto                                */
-/*==============================================================*/
-create table ff_apaas_es_nodefromto
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   fnodeid              varchar(50) comment '¿ªÊ¼»·½Ú±àºÅ',
-   tnodeid              varchar(50) comment '½áÎ²»·½Ú±àºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_nodefromto comment 'Á÷³Ì»·½ÚË³Ğò±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_nodemodel                                 */
-/*==============================================================*/
-create table ff_apaas_es_nodemodel
-(
-   flowmodelid          varchar(50) not null comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) not null comment 'Á÷³Ì»·½Ú±àºÅ',
-   nodebusid            varchar(50) comment '°ó¶¨µÄÒµÎñ»·½Ú±àºÅ',
-   nodename             varchar(200) comment '»·½ÚÃû³Æ',
-   opid                 varchar(50) comment '²Ù×÷ÊÓÍ¼±àºÅ',
-   type                 int not null comment '»·½ÚÀà±ğ',
-   pathid               int comment '»·½ÚÂ·¾¶',
-   counter              int not null default 1 comment 'µ½´ïµÄ»·½ÚÊı',
-   masternode           varchar(50) comment 'Ö÷ËÍ»·½ÚÄ£ĞÍ',
-   masterpath           int comment 'Ö÷ËÍÂ·¾¶',
-   remark               varchar(500) comment 'ÃèÊö',
-   respond_unit_config  longtext comment 'ÏìÓ¦Ê±ÏŞÅäÖÃJSON´®',
-   respondhours         int not null default 0 comment 'ÏìÓ¦Ê±ÏŞ',
-   respond_timeunit     int not null default 0 comment 'ÏìÓ¦Ê±ÏŞµ¥Î»',
-   unit_config          longtext comment '´¦ÀíÊ±ÏŞÅäÖÃJSON´®',
-   totalhours           int not null default 0 comment '´¦ÀíÊ±ÏŞ',
-   timeunit             int not null default 0 comment '´¦ÀíÊ±ÏŞµ¥Î»',
-   viewattach           varchar(50) not null default '0' comment '¸½¼şÈ¨ÏŞ',
-   warninghours         numeric(18,2) default 0 comment 'Ô¤¾¯Ê±ÏŞ',
-   canautopass          int not null default 0 comment 'ÄÜ·ñ×Ô¶¯Í¨¹ı',
-   cancustlimit         int not null default 0 comment 'ÄÜ·ñÖ¸¶¨Ê±ÏŞ',
-   takeover             int not null default 0 comment 'ÊÇ·ñÔÊĞí½»½Ó',
-   stopflow             int not null default 0 comment 'ÊÇ·ñÔÊĞíÖÕÖ¹',
-   canjump              int not null default 0 comment 'ÊÇ·ñÔÊĞíÌø×ª',
-   canback              int not null default 0 comment 'ÊÇ·ñÔÊĞíÍË»Ø',
-   cantakeback          int not null default 0 comment 'ÊÇ·ñÔÊĞí»ØÊÕ',
-   canattemper          int not null default 0 comment 'ÊÇ·ñÔÊĞíµ÷¶È',
-   cantransmit          int not null default 0 comment 'ÊÇ·ñÔÊĞí´«ÔÄ',
-   cancommunic          int not null default 0 comment 'ÊÇ·ñÔÊĞí¹µÍ¨',
-   canbackhasdone       int not null default 0 comment 'ÊÇ·ñÔÊĞí²µ»Ø',
-   canassist            int not null default 0 comment 'ÊÇ·ñÔÊĞíĞ­°ì',
-   canfreetakeover      int not null default 0 comment 'ÊÇ·ñÔÊĞí×ÔÓÉ½»½Ó',
-   canshowprocess       int not null default 1 comment 'ÊÇ·ñÏÔÊ¾´¦Àí¹ı³Ì',
-   requiredopinion      int not null default 1 comment 'ÊÇ·ñ±ØÌî°ìÀíÒâ¼û',
-   actordata            longtext comment '»·½ÚÈËÔ±ÅäÖÃ¼¯ºÏ ÓÃÓÚÇ°¶ËÒ³ÃæÕ¹Ê¾',
-   specactordata        longtext comment '»·½ÚÌØÊâÈ¨ÏŞÈËÔ±ÅäÖÃ¼¯ºÏ ÓÃÓÚÇ°¶ËÒ³ÃæÕ¹Ê¾',
-   business_status      varchar(200) comment '¶ÔÓ¦ÒµÎñ×´Ì¬',
-   check_for_all        int default 1 comment 'ÊÇ·ñĞèÒªËùÓĞÈË»áÇ©',
-   check_by_back        int default 0 comment 'ÊÇ·ñÍ¨¹ıºóÌ¨¼ÆËã»áÇ©',
-   chooseperson         int default 1 comment 'ÊÇ·ñĞèÒª·¢ÆğÈËÑ¡Ôñ»áÇ©ÈËÔ±',
-   relation_app         longtext comment '¹ØÁª¹¤µ¥Ó¦ÓÃ·¶Î§ ´æ´¢¸ñÊ½[{"name":"Ó¦ÓÃÃû³Æ","value":"Ó¦ÓÃid"}]',
-   relation_app_tip     varchar(500) comment '¹ØÁª¹¤µ¥Í¼±êÃèÊö',
-   allow_close_relation_app int not null default 1 comment 'ÊÇ·ñÔÊĞí¹Ø±Õ¹ØÁª¹¤µ¥ 1ÔÊĞí 0²»ÔÊĞí',
-   not_find_node_tip    varchar(400) comment 'ÕÒ²»µ½ÏÂÒ»¸ö»·½ÚÂ·¾¶ÌáÊ¾Óï',
-   auto_send            int default 0 comment '·ÖÁ÷»·½ÚÊÇ·ñ×Ô¶¯·¢ËÍ 0·ñ 1ÊÇ',
-   primary key (flowmodelid, nodemodelid)
-);
-
-alter table ff_apaas_es_nodemodel comment 'Á÷³Ì»·½ÚÄ£ĞÍ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_notice_log                                */
-/*==============================================================*/
-create table ff_apaas_es_notice_log
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   noticetype_one       int not null comment 'Í¨Öª´óÀà ´ı°ì¡¢´ß°ì¡¢³¬Ê±ÌáĞÑ',
-   noticetype_two       int default -1 comment 'Í¨ÖªĞ¡Àà ¸ù¾İ²»Í¬Í¨Öª´óÀàÌî³äÏà¹ØÍ¨ÖªĞ¡ÀàĞÅÏ¢',
-   noticemethod         int not null default 0 comment 'Í¨Öª·½Ê½',
-   noticeobject         varchar(500) comment 'Í¨Öª¶ÔÏó±êÊ¶ ¸ù¾İ²»Í¬Í¨Öª·½Ê½¼ÇÂ¼Ïà¹ØµÄ¶ÔÏó±êÊ¶ Èç¶ÌĞÅ¶ÔÓ¦ÊÖ»úºÅÂë',
-   noticecontent        text comment 'Í¨ÖªÄÚÈİ',
-   noticeurl            varchar(500) comment 'Í¨Öª¹ØÁªurl',
-   receiverid           varchar(50) comment '±»Í¨ÖªÈËID',
-   receivername         varchar(200) comment '±»Í¨ÖªÈËÃû³Æ',
-   noticetime           datetime comment 'Í¨ÖªÊ±¼ä',
-   ref_flowid           varchar(50) comment '¹ØÁªÁ÷³ÌID',
-   ref_messageid        varchar(50) comment '¹ØÁªÏûÏ¢ID',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   ref_overtime_iidd    varchar(50) comment '¹ØÁª³¬Ê±Í¨ÖªÅäÖÃ±íIIDD',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_notice_log comment 'Í¨ÖªÏûÏ¢ÈÕÖ¾¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_overtime_notice_config                    */
-/*==============================================================*/
-create table ff_apaas_es_overtime_notice_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   configtype           int not null default 0 comment 'ÅäÖÃ¶ÔÏó 0È«Á÷³Ì 1Ä³¸ö»·½Ú',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍ±àºÅ',
-   noticetype           int not null default 0 comment 'Í¨Öª·½Ê½ 0ÏìÓ¦ 1´¦Àí',
-   operattype           int not null default 0 comment '²Ù×÷Àà±ğ 0³¬Ê±Ç° 1³¬Ê±ºó',
-   overtime             int not null default 0 comment '³¬Ê±Öµ',
-   timeunit             int not null comment '³¬Ê±ÖµÀà±ğ ·ÖÖÓ¡¢Ğ¡Ê±¡¢Ìì',
-   noticemethod         text comment 'Í¨Öª·½Ê½´æ´¢JSON×Ö·û´®[{value:0,name:''¶ÌĞÅ''}],ºóÌ¨ÔÚÊ¹ÓÃÊ±½øĞĞ½âÎö',
-   noticeobject         text comment 'Í¨Öª¶ÔÏó´æ´¢JSON×Ö·û´®[{value:0,name:''·¢ÆğÈË''}],ºóÌ¨ÔÚÊ¹ÓÃÊ±½øĞĞ½âÎö
-            Èç¹ûÅäÖÃÁËÍ¨Öª¶ÔÏóÎªÆäËû£¬Ôò»á´æÔÚÇ¶Ì××Ó¼¶¶ÔÏó¼¯ºÏµÄÇé¿ö',
-   noticeobject_other   text comment 'Í¨ÖªµÄÆäËû¶ÔÏóÖµ',
-   form_appoint         varchar(1000) comment '±íµ¥Ö¸¶¨ ´æ´¢¸ñÊ½{"type":200,"list:":[''±íµ¥ÈËÔ±×Ö¶Î±àÂë'']} type:200 ±íÊ¾ÈËÔ± 210±íÊ¾²¿ÃÅ 220±íÊ¾½ÇÉ«',
-   noticecontent        text comment 'Í¨ÖªÄÚÈİ',
-   sortid               int not null default 0 comment 'ÅÅĞòÖµ',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_overtime_notice_config comment '³¬Ê±Í¨ÖªÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_receivelist                               */
-/*==============================================================*/
-create table ff_apaas_es_receivelist
-(
-   id                   varchar(50) not null comment 'Ö÷¼ü',
-   messageid            varchar(50) comment 'ÏûÏ¢±àºÅ',
-   receiveid            varchar(50) comment '½ÓÊÕÈË±àºÅ',
-   originid             varchar(50) comment 'Ô­½ÓÊÕÈË±àºÅ',
-   status               int not null default 0 comment '×´Ì¬',
-   primary key (id)
-);
-
-alter table ff_apaas_es_receivelist comment '´ı½ÓÊÕÈËÔ±±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_es_site_news                                 */
-/*==============================================================*/
-create table ff_apaas_es_site_news
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   noticetype_one       int not null comment 'Í¨Öª´óÀà 0ÏûÏ¢ÌáĞÑ¡¢1Ê±Ğ§ÌáĞÑµÈ',
-   noticetype_two       int default -1 comment 'Í¨ÖªĞ¡Àà ¸ù¾İ²»Í¬Í¨Öª´óÀàÌî³äÏà¹ØÍ¨ÖªĞ¡ÀàĞÅÏ¢',
-   noticecontent        text comment 'Í¨ÖªÄÚÈİ',
-   notice_flowid        varchar(50) comment 'Í¨Öª¹ØÁªÁ÷³ÌID',
-   notice_messageid     varchar(50) comment 'Í¨Öª¹ØÁªÏûÏ¢ID',
-   receiverid           varchar(50) comment '±»Í¨ÖªÈËID',
-   receivername         varchar(200) comment '±»Í¨ÖªÈËÃû³Æ',
-   noticetime           datetime comment 'Í¨ÖªÊ±¼ä',
-   isread               int not null default 0 comment 'ÊÇ·ñÒÑÔÄ 0·ñ 1ÊÇ',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   ref_overtime_iidd    varchar(50) comment '¹ØÁª³¬Ê±Í¨ÖªÅäÖÃ±íIIDD',
-   primary key (iidd)
-);
-
-alter table ff_apaas_es_site_news comment 'Õ¾ÄÚÏûÏ¢¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_open_api                                     */
-/*==============================================================*/
-create table ff_apaas_open_api
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   name                 varchar(250) not null comment '½Ó¿ÚÃû³Æ',
-   group_id             varchar(50) not null comment '·Ö×é±àºÅ',
-   group_name           varchar(255) not null comment '·Ö×éÃû³Æ',
-   url                  varchar(500) not null comment 'ÇëÇóµØÖ·ºó×º(/user/login)',
-   method               int not null comment 'ÇëÇó·½·¨(1:GET,2:POST)',
-   context_type         int not null comment 'ÄÚÈİÀàĞÍ:(0: none, 1:application/x-www-form-urlencoded, 2: multipart/form-data, 3: application/json, 4: application/octet-stream)',
-   body                 text comment 'ÇëÇó²ÎÊı',
-   response             text not null comment 'ÏìÓ¦²ÎÊı',
-   success_examples     text not null comment 'ÏìÓ¦³É¹¦Ê¾Àı',
-   fail_examples        text not null comment 'Ê§°ÜÊ¾Àı',
-   sort_id              int not null default 0 comment 'ÅÅĞòÖµ',
-   update_time          datetime not null comment '¸üĞÂÊ±¼ä',
-   create_person        varchar(250) not null comment '¸ºÔğÈË',
-   primary key (iidd)
-)
-COMMENT 'open api ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_sys_config                                   */
-/*==============================================================*/
-create table ff_apaas_sys_config
-(
-   config_id            varchar(50) not null comment 'Ö÷¼ü',
-   config_name          varchar(100) comment '²ÎÊıÃû³Æ',
-   config_key           varchar(100) comment '²ÎÊı¼üÃû',
-   config_value         varchar(500) comment '²ÎÊı¼üÖµ',
-   config_type          varchar(1) comment 'ÏµÍ³ÄÚÖÃ(YÊÇ N·ñ)',
-   create_by            varchar(50) comment '´´½¨Õß',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_by            varchar(50) comment '¸üĞÂÈË',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
-   remark               varchar(1000) comment '±¸×¢',
-   group_name           varchar(200) comment '·Ö×éÃû³Æ',
-   ref_dept_id          VARCHAR(50) comment '¹«Ë¾±àºÅ',
-   ref_projectid        varchar(50) comment 'ÏîÄ¿±àºÅ',
-   types                int not null default 1 comment '¶¨Ê±ÈÎÎñÀàĞÍ(0:Íâ²¿,1:ÄÚ²¿)',
-   primary key (config_id)
-);
-
-alter table ff_apaas_sys_config comment '²ÎÊıÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_sys_job                                      */
-/*==============================================================*/
-create table ff_apaas_sys_job
-(
-   job_id               varchar(50) not null comment 'ÈÎÎñÖ÷¼ü',
-   job_name             varchar(200) not null comment 'ÈÎÎñÃû³Æ',
-   job_group            varchar(200) not null comment 'ÈÎÎñ×éÃû',
-   invoke_target        varchar(500) not null comment 'µ÷ÓÃÄ¿±ê×Ö·û´®',
-   cron_expression      varchar(255) comment 'cronÖ´ĞĞ±í´ïÊ½',
-   misfire_policy       int not null default 3 comment '¼Æ»®Ö´ĞĞ´íÎó²ßÂÔ£¨1Á¢¼´Ö´ĞĞ 2Ö´ĞĞÒ»´Î 3·ÅÆúÖ´ĞĞ£©',
-   concurrent           int not null default 1 comment 'ÊÇ·ñ²¢·¢Ö´ĞĞ(0ÔÊĞí 1½ûÖ¹)',
-   status               int not null default 0 comment '×´Ì¬£¨0Õı³£ 1ÔİÍ££©',
-   create_by            varchar(200) comment '´´½¨Õß',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_by            varchar(200) comment '¸üĞÂÕß',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
-   remark               varchar(500) comment '±¸×¢ĞÅÏ¢',
-   ref_deptid           varchar(50) comment '¹«Ë¾±àºÅ',
-   primary key (job_id)
-);
-
-alter table ff_apaas_sys_job comment '¶¨Ê±ÈÎÎñµ÷¶È±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_sys_job_log                                  */
-/*==============================================================*/
-create table ff_apaas_sys_job_log
-(
-   job_log_id           varchar(50) not null comment 'Ö÷¼ü',
-   job_name             varchar(200) not null comment 'ÈÎÎñÃû³Æ',
-   job_group            varchar(200) not null comment 'ÈÎÎñ×éÃû',
-   invoke_target        varchar(500) not null comment 'µ÷ÓÃÄ¿±ê×Ö·û´®',
-   job_message          varchar(500) comment 'ÈÕÖ¾ĞÅÏ¢',
-   status               int not null default 0 comment '×´Ì¬(0Õı³£ 1Ê§°Ü)',
-   exception_info       text comment 'Òì³£ĞÅÏ¢',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   ref_deptid           varchar(50) comment '¹«Ë¾±àºÅ',
-   primary key (job_log_id)
-);
-
-alter table ff_apaas_sys_job_log comment '¶¨Ê±ÈÎÎñµ÷¶ÈÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_sys_logininfor                               */
-/*==============================================================*/
-create table ff_apaas_sys_logininfor
-(
-   info_id              varchar(50) not null comment '·ÃÎÊID',
-   user_name            varchar(50) default '' comment 'ÓÃ»§ÕËºÅ',
-   name                 varchar(100) default '' comment 'µÇÂ½ÈËÃû³Æ',
-   ipaddr               varchar(128) default '' comment 'µÇÂ¼IPµØÖ·',
-   login_location       varchar(255) default '' comment 'µÇÂ¼µØµã',
-   browser              varchar(50) default '' comment 'ä¯ÀÀÆ÷ÀàĞÍ',
-   os                   varchar(50) default '' comment '²Ù×÷ÏµÍ³',
-   status               char(1) default '0' comment 'µÇÂ¼×´Ì¬£¨0³É¹¦ 1Ê§°Ü£©',
-   msg                  varchar(255) default '' comment 'ÌáÊ¾ÏûÏ¢',
-   login_time           timestamp comment '·ÃÎÊÊ±¼ä',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   primary key (info_id)
-);
-
-alter table ff_apaas_sys_logininfor comment 'ÏµÍ³µÇÂ¼ÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_sys_oper_log                                 */
-/*==============================================================*/
-create table ff_apaas_sys_oper_log
-(
-   oper_id              varchar(50) not null comment 'ÈÕÖ¾Ö÷¼ü',
-   title                varchar(50) default '' comment 'Ä£¿é±êÌâ',
-   business_type        int(2) default 0 comment 'ÒµÎñÀàĞÍ£¨0ÆäËü 1ĞÂÔö 2ĞŞ¸Ä 3É¾³ı£©',
-   method_desc          varchar(200) comment '·½·¨ÃèÊö',
-   method               varchar(100) default '' comment '·½·¨Ãû³Æ',
-   request_method       varchar(10) default '' comment 'ÇëÇó·½Ê½',
-   operator_type        int(1)  default '0' comment '²Ù×÷Àà±ğ£¨0ÆäËü 1ºóÌ¨ÓÃ»§ 2ÊÖ»ú¶ËÓÃ»§£©',
-   oper_name            varchar(50) default '' comment '²Ù×÷ÈËÔ±',
-   dept_name             varchar(50) default '' comment '²¿ÃÅÃû³Æ',
-   oper_url             varchar(255) default '' comment 'ÇëÇóURL',
-   oper_ip              varchar(128) default '' comment 'Ö÷»úµØÖ·',
-   oper_location        varchar(255) default '' comment '²Ù×÷µØµã',
-   oper_param           varchar(2000) default '' comment 'ÇëÇó²ÎÊı',
-   json_result          longtext comment '·µ»Ø²ÎÊı',
-   status               int(1)  default '0' comment '²Ù×÷×´Ì¬£¨0Õı³£ 1Òì³££©',
-   error_msg            varchar(2000) default '' comment '´íÎóÏûÏ¢',
-   oper_time            datetime comment '²Ù×÷Ê±¼ä',
-   primary key (oper_id)
-);
-
-alter table ff_apaas_sys_oper_log comment '²Ù×÷ÈÕÖ¾¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_api_authorization                          */
-/*==============================================================*/
-create table ff_apaas_t_api_authorization
-(
-   app_key              nvarchar(8) not null comment 'Ó¦ÓÃÎ¨Ò»±àºÅ',
-   company_id           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   company_name         varchar(200) not null comment '¹«Ë¾Ãû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   deleted              tinyint not null default '0' comment 'ÊÇ·ñÉ¾³ı',
-   primary key (app_key)
-)
-ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
-alter table ff_apaas_t_api_authorization comment '¹«Ë¾ÈÏÖ¤±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_api_authorization_terminal                 */
-/*==============================================================*/
-create table ff_apaas_t_api_authorization_terminal
-(
-   iidd                 varchar(32) not null comment 'Î¨Ò»±àºÅ',
-   app_key              varchar(32) not null comment 'ÈÏÖ¤Î¨Ò»±àºÅ',
-   app_secret           varchar(40) not null comment '²ÎÊıÇ©ÃûÃÜÔ¿',
-   company_id           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   company_name         varchar(200) not null comment '¹«Ë¾Ãû³Æ',
-   terminal_name        varchar(200) not null comment 'ÖÕ¶ËÃû³Æ',
-   termination_time     datetime comment 'ÊÚÈ¨½ØÖÁÈÕÆÚ: null±íÊ¾ÓÀ¾Ã',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   create_user_id       varchar(50) not null comment '´´½¨ÈË±àºÅ',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '¸üĞÂÊ±¼ä',
-   update_user_id       varchar(50) not null comment '¸üĞÂÈË±àºÅ',
-   update_user_name     varchar(50) not null comment '¸üĞÂÈËÃû³Æ',
-   deleted              tinyint not null default '0' comment 'ÊÇ·ñÉ¾³ı: 0:Î´É¾³ı,1:ÒÑÉ¾³ı',
-   primary key (iidd)
-)
-ENGINE InnoDB
-  DEFAULT CHARSET = UTF8;
-
-alter table ff_apaas_t_api_authorization_terminal comment '¹«Ë¾ÈÏÖ¤Æ½Ì¨±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_batch_operate_log                          */
-/*==============================================================*/
-create table ff_apaas_t_batch_operate_log
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üid',
-   operate_type         int not null default 0 comment '²Ù×÷ÀàĞÍ 0É¾³ı 1ĞŞ¸Ä 2½»½Ó',
-   app_type             int not null default 1 comment 'Ó¦ÓÃÀàĞÍ 0»ù´¡×ÊÁÏ 1Á÷³ÌÓ¦ÓÃ',
-   operate_content      text comment '²Ù×÷ÄÚÈİ ¶ÔÏó¼¯ºÏµÄJSON´®',
-   delete_reason        text comment 'É¾³ıÔ­Òò',
-   create_id            varchar(50) comment '´´½¨ÈËID',
-   create_name          varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃ±àºÅ',
-   ref_projectid        varchar(50) comment '¹ØÁªÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_batch_operate_log comment 'ÅúÁ¿²Ù×÷ÈÕÖ¾';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_bookmark                                   */
-/*==============================================================*/
-create table ff_apaas_t_bookmark
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   mark_type            int default 0 comment 'ÊÕ²ØÀàĞÍ',
-   mark_name            varchar(200) comment 'ÊÕ²ØÃû³Æ',
-   catalog_id           varchar(50) comment '¹éÊô·ÖÀàID',
-   catalog_name         varchar(200) comment '¹éÊô·ÖÀàÃû³Æ',
-   mark_url             varchar(1000) comment 'Â·ÓÉµØÖ·',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_bookmark comment 'ÊÕ²Ø¼Ğ´æ´¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_bookmark_catalog                           */
-/*==============================================================*/
-create table ff_apaas_t_bookmark_catalog
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   catalog_name         varchar(200) comment '·ÖÀàÃû³Æ',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   sortid               int not null default 0 comment 'ÅÅĞòÖµ',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_bookmark_catalog comment 'ÊÕ²Ø¼Ğ·ÖÀà±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_business_operation_log                     */
-/*==============================================================*/
-create table ff_apaas_t_business_operation_log
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   operator_user_id     varchar(50) not null comment '²Ù×÷ÈË±àºÅ',
-   operator_username    varchar(200) not null comment '²Ù×÷ÈËÃû³Æ',
-   operator_time        datetime not null comment '²Ù×÷Ê±¼ä',
-   operator_item        int(8) not null comment '²Ù×÷Ïî,10:ÓÃ»§£¬20:²¿ÃÅ£¬30:½ÇÉ«,40:ÏîÄ¿£¬41£ºÏîÄ¿¹ÜÀíÔ±£¬50£ºÓ¦ÓÃ£¬51£ºÓ¦ÓÃ¹ÜÀíÔ±',
-   operator_item_desc   varchar(200) not null comment '²Ù×÷ÏîÃèÊö',
-   operator_action      int(8) not null comment '²Ù×÷¶¯×÷£¬2:Ìí¼Ó, 3:ĞŞ¸Ä,4:É¾³ı,5:È¨ÏŞ±ä¸ü,6Í£ÓÃ,7:ÆôÓÃ',
-   operator_action_desc varchar(200) not null comment '²Ù×÷¶¯×÷ÃèÊö',
-   operator_object_id   varchar(50) not null comment '²Ù×÷¶ÔÏó±àºÅ',
-   operator_content_value varchar(200) not null comment '²Ù×÷ÄÚÈİ',
-   status               int(2) not null comment '²Ù×÷×´Ì¬ 0£ºÊ§°Ü£¬1£º³É¹¦',
-   ref_dept             varchar(50) not null comment 'ËùÊô¹«Ë¾',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_business_operation_log comment 'ÒµÎñÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_business_right                             */
-/*==============================================================*/
-create table ff_apaas_t_business_right
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   business_code        varchar(50) not null comment 'ÒµÎñ±êÖ¾',
-   right_type_code      int(1) not null comment 'È¨ÏŞÀàĞÍ£¨0-¹ÜÀíÈ¨ÏŞ,1-·ÃÎÊÈ¨ÏŞ£©',
-   right_type_name      varchar(50) comment 'È¨ÏŞÀàĞÍÃû³Æ',
-   allot_object_type    int(1) not null comment 'ÊÚÈ¨¶ÔÏóÀàĞÍ(0-±íÊ¾ÓÃ»§,1-±íÊ¾ÓÃ»§×é,2-±íÊ¾²¿ÃÅ)',
-   allot_object_id      varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±àºÅ(ÓÃ»§±àºÅ,ÓÃ»§×é±àºÅ,²¿ÃÅ±àºÅ)',
-   right_item_id        varchar(50) not null comment 'µ¥¸öÈ¨ÏŞÏî±àºÅ',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   right_source         int not null comment 'È¨ÏŞÀ´Ô´ 0ÎÄµµ¹ÜÀí 1ÖªÊ¶ 2ÅäÖÃ¹ÜÀí',
-   update_time          timestamp not null default CURRENT_TIMESTAMP comment '¸üĞÂÊ±¼ä',
-   update_userid        varchar(50) not null comment '¸üĞÂÓÃ»§±àºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_business_right comment 'ÒµÎñÈ¨ÏŞ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_business_right_item                        */
-/*==============================================================*/
-create table ff_apaas_t_business_right_item
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   business_code        varchar(50) not null comment 'ÒµÎñ±êÊ¶',
-   right_type_code      int(1) not null comment 'È¨ÏŞÀàĞÍ£¨0-¹ÜÀíÈ¨ÏŞ,1-·ÃÎÊÈ¨ÏŞ£©',
-   right_item_code      varchar(50) not null comment 'È¨ÏŞÏî±êÊ¶',
-   right_item_name      varchar(50) not null comment 'È¨ÏŞÏî±êÊ¶Ãû³Æ',
-   sordid               int(8) not null default 1 comment 'ÅÅĞòÖµ',
-   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '¸üĞÂÊ±¼ä',
-   update_userid        varchar(50) not null comment '¸üĞÂÓÃ»§±àºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_business_right_item comment 'ÒµÎñÈ¨ÏŞÏî±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_business_right_whitelist                   */
-/*==============================================================*/
-create table ff_apaas_t_business_right_whitelist
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   business_code        varchar(50) not null comment 'ÒµÎñ±êÊ¶',
-   grant_object_id      varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±êÊ¶',
-   ip_address           varchar(15) not null comment 'IPµØÖ·',
-   creater_userid       varchar(50) not null comment '´´½¨ÈË±àºÅ',
-   creater_time         timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_business_right_whitelist comment 'ÒµÎñÈ¨ÏŞ°×Ãûµ¥±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_coderule                                   */
-/*==============================================================*/
-create table ff_apaas_t_coderule
-(
-   iidd                 varchar(50) not null comment '±êÊ¶ID',
-   rulename             varchar(200) comment '¹æÔòÃû³Æ',
-   reset_typeid         int not null default 0 comment 'ÖØÖÃÀàĞÍ 0 ÓÀ²»ÖØÖÃ 1°´ÈÕÖØÖÃ 2°´ÔÂÖØÖÃ 3°´ÄêÖØÖÃ',
-   rule_length          int not null default 3 comment '¹æÔòºÅ³¤¶È',
-   step                 int not null default 1 comment '²½½øÖµ',
-   appid                varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_coderule comment 'µ¥ºÅÉú³É¹æÔò±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_codevalue                                  */
-/*==============================================================*/
-create table ff_apaas_t_codevalue
-(
-   ruleid               varchar(50) not null comment '¹æÔòID',
-   currbh               int not null default 1 comment '±àºÅµ±Ç°ÊıÖµ',
-   last_date            date comment '×îºóÒ»´ÎÉú³ÉÈÕÆÚ',
-   primary key (ruleid)
-);
-
-alter table ff_apaas_t_codevalue comment 'µ¥ºÅÉú³É¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_custom_door                                */
-/*==============================================================*/
-create table ff_apaas_t_custom_door
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   door_name            varchar(200) comment 'ÃÅ»§Ãû³Æ',
-   door_remark          varchar(500) comment 'ÃÅ»§ÃèÊö',
-   source_type          int not null default 0 comment 'ÃÅ»§À´Ô´ 0Æ½Ì¨ ÃÅ»§ 1ÏîÄ¿ÃÅ»§',
-   icon                 varchar(300) comment 'ÃÅ»§Í¼±ê',
-   configjson           longtext comment 'ÅäÖÃJSON×Ö·û´®',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            varchar(50) comment '×îºó¸üĞÂÈËID',
-   update_name          varchar(200) comment '×îºó¸üĞÂÈËÃû³Æ',
-   update_time          datetime comment '×îºó¸üĞÂÊ±¼ä',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   status               int not null default 1 comment '×´Ì¬ 0Í£ÓÃ 1ÆôÓÃ',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_custom_door comment '×Ô¶¨ÒåÃÅ»§';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_custom_door_right                          */
-/*==============================================================*/
-create table ff_apaas_t_custom_door_right
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) comment '¹ÜÀíÔ±ID',
-   username             varchar(200) comment '¹ÜÀíÔ±Ãû³Æ',
-   ref_doorid           varchar(50) not null comment '¹ØÁªÃÅ»§±àºÅ',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_custom_door_right comment 'ÃÅ»§¹ÜÀíÔ±È¨ÏŞĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_custom_flowinfo                            */
-/*==============================================================*/
-create table ff_apaas_t_custom_flowinfo
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   flowid               varchar(50) comment 'Á÷³ÌID',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍID',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍID',
-   flowno               varchar(200) comment 'Á÷³Ìµ¥ºÅ',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_orgname       varchar(200) comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment 'ĞŞ¸ÄÊ±¼ä',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   ref_formid           varchar(50) comment '¹ØÁª±íµ¥ID',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   ref_projectid        varchar(50) comment '¹ØÁªÏîÄ¿ID',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   contentjson          longtext comment '±íµ¥ÄÚÈİ',
-   contentfield         longtext comment '±íµ¥×Ö¶Î',
-   current_nodename     varchar(1000) comment 'µ±Ç°´¦Àí»·½Ú',
-   current_hander       varchar(1000) comment 'µ±Ç°´¦ÀíÈË',
-   business_status      varchar(500) comment 'ÒµÎñ×´Ì¬',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_custom_flowinfo comment '×Ô¶¨ÒåÓ¦ÓÃ¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Index: index_custom_flowid                                   */
-/*==============================================================*/
-create index index_custom_flowid on ff_apaas_t_custom_flowinfo
-(
-   flowid
-);
-
-/*==============================================================*/
-/* Index: index_custom_deleted_refappid                         */
-/*==============================================================*/
-create index index_custom_deleted_refappid on ff_apaas_t_custom_flowinfo
-(
-   deleted,
-   ref_appid,
-   ref_deptid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_t_custom_form                                */
-/*==============================================================*/
-create table ff_apaas_t_custom_form
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   formjson             longtext comment '±íµ¥ÅäÖÃ£¬±íµ¥Éè¼Æ´æ´¢JSON×Ö·û´®',
-   oformid              varchar(50) comment 'Ô­Ê¼±íµ¥ID',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_custom_form comment '×Ô¶¨Òå±íµ¥¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_display_column                             */
-/*==============================================================*/
-create table ff_apaas_t_display_column
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   fieldname            varchar(200) comment '×Ö¶ÎÃû³Æ',
-   cname                varchar(200) comment 'ÖĞÎÄÃû³Æ',
-   isshow               int not null default 0 comment 'ÊÇ·ñÕ¹Ê¾ 0·ñ 1ÊÇ',
-   sortid               int comment 'ÅÅĞòÖµ',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   appid                varchar(50) comment 'ËùÊôÓ¦ÓÃID',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_display_column comment 'Êı¾İÁĞ±íÕ¹Ê¾ÁĞ´æ´¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_exception_record                           */
-/*==============================================================*/
-create table ff_apaas_t_exception_record
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   exid                 varchar(50) not null comment 'ÀıÍâ¼ÇÂ¼Î¨Ò»±àÂë',
-   task_config_id       varchar(50) not null comment '¶¨ÖÆÈÎÎñÅäÖÃ±àºÅ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_exception_record comment '¶¨Ê±ÈÎÎñÀıÍâ¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_fastopinion                                */
-/*==============================================================*/
-create table ff_apaas_t_fastopinion
-(
-   iidd                 varchar(50) not null,
-   opinion              varchar(50),
-   createrid            varchar(50),
-   creater              varchar(50),
-   addtime              datetime,
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_fastopinion comment '¿ìËÙÒâ¼û¹ÜÀí±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_flowlink_info                              */
-/*==============================================================*/
-create table ff_apaas_t_flowlink_info
-(
-   iidd                 varchar(50) not null comment 'Êı¾İ±àºÅ',
-   flowid               varchar(50) comment 'Ö÷Á÷³Ì±àºÅ',
-   flowno               varchar(50) comment 'Ö÷Á÷³Ìµ¥ºÅ',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍ±àºÅ',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍ±àºÅ',
-   link_flowid          varchar(50) comment '¹ØÁªÁ÷³Ì±àºÅ',
-   link_flowno          varchar(50) comment '¹ØÁªÁ÷³Ìµ¥ºÅ',
-   link_type            int comment '¹ØÁªÀàĞÍ (0£¬¹ØÁª£¬1-×ÓÁ÷³Ì´®ĞĞ£¬2×ÓÁ÷³Ì²¢ĞĞ)',
-   close_mode           int comment 'Á¬½ÓÀàĞÍ 0Õı³£½áÊø 1Ç¿ÖÆ½áÊø',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   create_id            varchar(50) comment '´´½¨ÓÃ»§±àºÅ',
-   create_name          varchar(50) comment '´´½¨ÓÃ»§Ãû³Æ',
-   create_time          datetime comment 'Êı¾İ´´½¨Ê±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_flowlink_info comment 'Á÷³Ì¹ØÁªĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_local_method                               */
-/*==============================================================*/
-create table ff_apaas_t_local_method
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   chinese_name         varchar(200) not null comment '·½·¨¹¦ÄÜÃû×Ö',
-   method_name          varchar(200) not null comment '·½·¨Ãû',
-   sort                 int(2) not null default 1 comment 'ÅÅĞòÖµ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   ref_dept_id          varchar(50) comment '¹«Ë¾±àºÅ',
-   ref_projectid        varchar(50) comment 'ÏîÄ¿±àºÅ',
-   types                int not null default 1 comment '¶¨Ê±ÈÎÎñÀàĞÍ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_local_method comment '±¾µØ·½·¨±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_login_lock                                 */
-/*==============================================================*/
-create table ff_apaas_t_login_lock
-(
-   login_name           varchar(50) not null comment 'µÇÂ¼ÕËºÅ',
-   user_name            varchar(50) not null comment 'ÓÃ»§Ãû³Æ',
-   lock_time            datetime not null comment 'Ëø¶¨Ê±¼ä',
-   account_lock_time    decimal(18, 1) not null comment 'Ëø¶¨Ê±³¤(Ğ¡Ê±)',
-   expire_time          datetime not null comment 'Ê§Ğ§Ê±¼ä',
-   apply_unlock         tinyint(5) not null default 0 comment 'ÊÇ·ñÉêÇë½âËø(0·ñ,1:ÊÇ)',
-   primary key (login_name)
-)
-ENGINE = InnoDB
-  DEFAULT CHARACTER SET = 'utf8' COMMENT = 'ÒÑËø¶¨ÕËºÅÇåµ¥±í';
-
-alter table ff_apaas_t_login_lock comment 'ÒÑËø¶¨ÕËºÅÇåµ¥±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_manager_app_info                           */
-/*==============================================================*/
-create table ff_apaas_t_manager_app_info
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) comment '¹ÜÀíÔ±ID',
-   username             varchar(200) comment '¹ÜÀíÔ±Ãû³Æ',
-   loginname            varchar(100) comment 'µÇÂ¼ÕËºÅ',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   sortid               int not null default 0 comment 'ÅÅĞòID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_manager_app_info comment 'Ó¦ÓÃ¹ÜÀíÔ±ĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_manager_info                               */
-/*==============================================================*/
-create table ff_apaas_t_manager_info
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) comment '¹ÜÀíÔ±ID',
-   username             varchar(200) comment '¹ÜÀíÔ±Ãû³Æ',
-   loginname            varchar(100) comment 'µÇÂ¼ÕËºÅ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_manager_info comment 'ÏîÄ¿¹ÜÀíÔ±ĞÅÏ¢±í£¬Èç¹ûÔÚÕâ¸ö±í´æÔÚÔò±íÊ¾ÓÃ»§¿ÉÒÔÌí¼ÓÏîÄ¿';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_mobile_app_bind                            */
-/*==============================================================*/
-create table ff_apaas_t_mobile_app_bind
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   cid                  varchar(200) not null comment '¸öÍÆCID',
-   sys_userid           varchar(50) not null comment 'ºóÌ¨ÓÃ»§id',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) not null comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_mobile_app_bind comment '¼ÇÂ¼¸öÍÆcidÓëºóÌ¨ÓÃ»§°ó¶¨¹ØÏµ';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_mobile_terminal_bind                       */
-/*==============================================================*/
-create table ff_apaas_t_mobile_terminal_bind
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   source_type          int not null default 1 comment 'À´Ô´ÀàĞÍ 1Î¢ĞÅ¹«ÖÚºÅ 2Î¢ĞÅĞ¡³ÌĞò 3ÆóÒµÎ¢ĞÅ 4¶¤¶¤',
-   source_identy        varchar(200) not null comment 'À´Ô´±êÊ¶ ÈçÎ¢ĞÅ¹«ÖÚºÅappid£¬ÆóÒµÎ¢ĞÅÓ¦ÓÃµÄAgentId',
-   user_identy          varchar(200) not null default '10' comment 'ÓÃ»§±êÊ¶£¬ÈçÎ¢ĞÅ¹«ÖÚºÅµÄopenid£¬ÆóÒµÎ¢ĞÅµÄuserid',
-   sys_userid           varchar(50) not null comment 'ºóÌ¨ÓÃ»§id',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) not null comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_mobile_terminal_bind comment 'ÒÆ¶¯¶Ë°ó¶¨ÓÃ»§¼ÇÂ¼';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_mobile_terminal_user                       */
-/*==============================================================*/
-create table ff_apaas_t_mobile_terminal_user
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   source_type          int not null default 1 comment 'À´Ô´ÀàĞÍ 1Î¢ĞÅ¹«ÖÚºÅ 2Î¢ĞÅĞ¡³ÌĞò 3ÆóÒµÎ¢ĞÅ 4¶¤¶¤',
-   source_identy        varchar(200) not null comment 'À´Ô´±êÊ¶ ÈçÎ¢ĞÅ¹«ÖÚºÅappid£¬ÆóÒµÎ¢ĞÅÓ¦ÓÃµÄAgentId',
-   user_identy          varchar(200) not null default '10' comment 'ÓÃ»§±êÊ¶£¬ÈçÎ¢ĞÅ¹«ÖÚºÅµÄopenid£¬ÆóÒµÎ¢ĞÅµÄuserid',
-   user_name            varchar(200) comment 'ÓÃ»§êÇ³Æ',
-   sex                  integer not null default 0 comment 'ÓÃ»§ĞÔ±ğ 1ÄĞ 2Å® 0Î´Öª',
-   province             varchar(200) comment 'Ê¡·İ',
-   city                 varchar(200) comment '³ÇÊĞ',
-   country              varchar(200) comment '¹ú¼Ò',
-   headimgurl           varchar(500) comment 'Í·Ïñ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_mobile_terminal_user comment 'ÒÆ¶¯¶Ë¹Ø×¢ÓÃ»§¼ÇÂ¼';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_notice_log                                 */
-/*==============================================================*/
-create table ff_apaas_t_notice_log
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   notice_type          longtext comment 'Í¨Öª·½Ê½',
-   notice_object        longtext comment 'Í¨Öª¶ÔÏó',
-   notice_content       longtext comment 'Í¨ÖªÄÚÈİ',
-   notice_source        varchar(50) comment 'Í¨ÖªÀ´Ô´(×Ô¶¨Òå±êÊ¶ÓÃÓÚ²éÑ¯)',
-   remark               longtext comment '±¸×¢ĞÅÏ¢',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_orgname       varchar(200) comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_notice_log comment 'Í¨ÖªÈÕÖ¾±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_notice_method                              */
-/*==============================================================*/
-create table ff_apaas_t_notice_method
-(
-   method_id            int not null comment 'Ö÷¼üID',
-   method_name          varchar(100) comment '·½·¨Ãû',
-   is_show              int not null default 0 comment 'ÊÇ·ñÏÔÊ¾ (1£ºÏÔÊ¾,0£º²»ÏÔÊ¾)',
-   primary key (method_id)
-);
-
-alter table ff_apaas_t_notice_method comment 'Í¨Öª·½·¨ÖÖÀà±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_notice_method_config                       */
-/*==============================================================*/
-create table ff_apaas_t_notice_method_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   method_id            int not null comment '·½·¨id',
-   method_name          varchar(100) comment '·½·¨Ãû',
-   config_value         text comment 'ÅäÖÃJSON¶ÔÏó',
-   is_platform          int not null default 0 comment 'ÊÇ·ñÎªÆ½Ì¨ÅäÖÃ 0·ñ 1ÊÇ',
-   external_enable      tinyint(1) comment 'Íâ²¿ÊÇ·ñÆôÓÃ(0:·ñ, 1: ÊÇ)',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd),
-   unique key AK_uq_method_id (method_id)
-);
-
-alter table ff_apaas_t_notice_method_config comment 'Í¨Öª·½Ê½ÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_notice_method_config_wxmp                  */
-/*==============================================================*/
-create table ff_apaas_t_notice_method_config_wxmp
-(
-   template_id          varchar(100) not null comment 'Ä£°åID',
-   template_title       varchar(300) comment 'Ä£°å±êÌâ',
-   content_rule         text comment 'Ä£°åÄÚÈİ¸ñÊ½',
-   content_format       text comment 'Ä£°åÄÚÈİÅäÖÃ JSON×Ö·û´®{"aaa":"#XXX#","bbb":"#µ¥ºÅ#"}',
-   template_scene       text comment 'Ä£°åÊÊÓÃ³¡¾°[{"name": "ÏûÏ¢ÌáĞÑ>´ı°ìÏûÏ¢","value": "0>0"}, {"name": "Ê±Ğ§ÌáĞÑ>ÏìÓ¦³¬Ê±Ç°","value":"1>0"}]',
-   primary key (template_id)
-);
-
-alter table ff_apaas_t_notice_method_config_wxmp comment 'Î¢ĞÅÄ£°åÏûÏ¢ÅäÖÃ¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_notice_method_enable                       */
-/*==============================================================*/
-create table ff_apaas_t_notice_method_enable
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   method_id            int comment '·½·¨id',
-   method_name          varchar(100) comment '·½·¨Ãû',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_notice_method_enable comment 'Í¨Öª·½Ê½ÆôÓÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_online_users                               */
-/*==============================================================*/
-create table ff_apaas_t_online_users
-(
-   token                varchar(50) not null comment 'token±àºÅ',
-   userid               varchar(50) not null comment 'ÓÃ»§Î¨Ò»±àºÅ',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   login_time           datetime not null comment 'ÓÃ»§µÇÂ¼Ê±¼ä',
-   expire_time          datetime not null comment 'Ê§Ğ§Ê±¼ä',
-   primary key (token)
-);
-
-alter table ff_apaas_t_online_users comment 'ÔÚÏßÓÃ»§';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_outer_link                                 */
-/*==============================================================*/
-create table ff_apaas_t_outer_link
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   link_type            int not null default 0 comment 'ÍâÁ´ÀàĞÍ 0Êı¾İ·ÖÏí 1Êı¾İ²¹Â¼ 2Êı¾İĞÂÔö 3Êı¾İ²éÑ¯',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   order_id             varchar(50) comment '¹¤µ¥Ö÷¼üID µ±Ó¦ÓÃÀàĞÍÎª»ù´¡×ÊÁÏÊ±£¬´Ë×Ö¶Î²»Îª¿Õ£¬ÖµÎªÒµÎñ±í¼ÇÂ¼Ö÷¼üIDÖµ',
-   messageid            varchar(50) comment '¹¤µ¥messageid µ±Ó¦ÓÃÀàĞÍÎªÁ÷³ÌÓ¦ÓÃ£¬Êı¾İ·ÖÏíÓëÊı¾İ²¹Â¼Ê±´Ë×Ö¶Î²»Îª¿Õ£¬È¡¶ÔÓ¦Á÷³Ì¹¤µ¥µÄÏûÏ¢IDÖµ',
-   flowid               varchar(50) comment '¹¤µ¥flowid',
-   flowmodelid          varchar(50) comment '¹¤µ¥flowmodelid µ±Ó¦ÓÃÀàĞÍÎªÁ÷³ÌÓ¦ÓÃ£¬Êı¾İĞÂÔöÊ±´Ë×Ö¶Î²»Îª¿Õ£¬È¡¶ÔÓ¦Á÷³ÌÄ£ĞÍidÖµ',
-   begin_time           datetime comment 'Á´½Ó·ÃÎÊ¿ªÊ¼Ê±¼ä µ±ÎªÊı¾İ²¹Â¼Ê±£¬Á´½Ó·ÃÎÊ¿ªÊ¼Ê±¼ä¡¢½áÊøÊ±¼ä¡¢·ÃÎÊÃÜÂë×Ö¶Î¶¼²»ÄÜÎª¿Õ',
-   end_time             datetime comment 'Á´½Ó·ÃÎÊ½áÊøÊ±¼ä',
-   visit_pwd            varchar(50) comment 'Á´½Ó·ÃÎÊÃÜÂë',
-   outer_link_url       varchar(500) comment 'ÍâÁ´Á´½ÓµØÖ·',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_outer_link comment 'Ó¦ÓÃÊı¾İÍâÁ´¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Index: index_outer_link                                      */
-/*==============================================================*/
-create index index_outer_link on ff_apaas_t_outer_link
-(
-   link_type,
-   ref_appid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_t_outer_link_config                          */
-/*==============================================================*/
-create table ff_apaas_t_outer_link_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   link_type            int not null default 0 comment 'ÍâÁ´ÀàĞÍ 0Êı¾İ·ÖÏí 1Êı¾İ²¹Â¼ 2Êı¾İĞÂÔö 3Êı¾İ²éÑ¯',
-   enabled              int not null default 0 comment 'ÊÇ·ñÆôÓÃ 0·ñ 1ÊÇ',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   link_rule_json       longtext comment 'ÍâÁ´ÅäÖÃ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_outer_link_config comment 'Ó¦ÓÃÊı¾İÍâÁ´ÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_password_history_tracker                   */
-/*==============================================================*/
-create table ff_apaas_t_password_history_tracker
-(
-   iidd                 bigint(20) unsigned not null auto_increment comment 'Ö÷¼ü±àºÅ',
-   userid               varchar(50) not null comment 'ÓÃ»§±àºÅ',
-   passwd               varchar(100) not null comment 'ÀúÊ·ÃÜÂë',
-   create_time          datetime not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   primary key (iidd)
-)
-ENGINE = InnoDB
-  DEFAULT CHARACTER SET = 'utf8' COMMENT = 'ÀúÊ·ÃÜÂë¸ú×ÙÆ÷';
-
-alter table ff_apaas_t_password_history_tracker comment 'ÀúÊ·ÃÜÂë¸ú×ÙÆ÷';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_password_strength                          */
-/*==============================================================*/
-create table ff_apaas_t_password_strength
-(
-   rule_id              varchar(50) not null comment 'Ö÷¼ü±àºÅ',
-   pwd_strength_policy_switch tinyint(1) default 0 comment 'ÃÜÂëÇ¿¶È²ßÂÔ¿ª¹Ø(0:false, 1:true)',
-   password_min_length  int(18) comment 'ÃÜÂë×îĞ¡³¤¶È(Î»)',
-   password_rule        varchar(20) comment 'ÃÜÂë×é³É¹æÔò(´óĞ´,Ğ¡Ğ´,ÌØÊâ×Ö·û,Êı×Ö,0¹Ø±Õ,1:¿ªÆô, 0,1,0,0)',
-   account_lock_policy_switch tinyint(1) default 0 comment 'ÕËºÅËø¶¨²ßÂÔ¿ª¹Ø(0:false, 1:true)',
-   password_retry_count int(18) comment 'ÃÜÂëÁ¬Ğø´íÎó´ÎÊı',
-   account_lock_time    decimal(18, 1) comment 'ÕËºÅµÇÂ¼Ëø¶¨Ê±³¤(Ğ¡Ê±)',
-   pwd_use_policy_switch tinyint(1) default 0 comment 'ÃÜÂëÊ¹ÓÃ²ßÂÔ¿ª¹Ø(0:false, 1:true)',
-   allow_password_duplication tinyint(1) default 1 comment 'ÊÇ·ñÔÊĞíÊ¹ÓÃÀúÊ·ÃÜÂë',
-   password_change_cycle int(18) comment 'ÔÊĞíÊ¹ÓÃÖÜÆÚ(Ìì)',
-   force_change_passwd_rule varchar(10) default '0,0' comment 'Ç¿ÖÆĞŞ¸ÄÃÜÂë¹æÔò(²»Âú×ãÇ¿¶È²ßÂÔ¡¢Ê¹ÓÃÖÜÆÚÏŞÖÆ,0¹Ø±Õ,1:¿ªÆô, 1,0)',
-   primary key (rule_id)
-)
-ENGINE = InnoDB
-  DEFAULT CHARACTER SET = 'utf8' COMMENT = 'ÃÜÂë²ßÂÔÉèÖÃ±í';
-
-alter table ff_apaas_t_password_strength comment 'ÃÜÂë²ßÂÔÉèÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_platform_config                            */
-/*==============================================================*/
-create table ff_apaas_t_platform_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   platform_name        varchar(200) comment 'Æ½Ì¨Ãû³Æ',
-   platform_logo        text comment 'Æ½Ì¨logo ´æ´¢Í¼Æ¬base64×Ö·û´®',
-   favicon              text comment 'ÍøÕ¾Favicon ´æ´¢Í¼Æ¬base64×Ö·û´®',
-   language_version     varchar(50) comment 'ÓïÑÔ°æ±¾',
-   platform_color       varchar(300) comment 'Æ½Ì¨Ö÷É« ´æ´¢ÑÕÉ«±àÂë',
-   form_rank            int not null default 0 comment '±êÇ©¶ÔÆë·½Ê½ 0 ×ó¶ÔÆë 1 ÓÒ¶ÔÆë 2¶¥²¿¶ÔÆë',
-   form_field_width     int not null default 0 comment '±íµ¥×Ö¶Î¿í¶È',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   platform_small_icon  text comment 'Æ½Ì¨Ğ¡Í¼±ê',
-   home_page_style      int default 0 comment 'Ê×Ò³·ç¸ñ (0:ÉÏÏÂ½á¹¹ 1:×óÓÒ½á¹¹)',
-   home_page_project_style int default 0 comment 'Ê×Ò³ÏîÄ¿Õ¹Ê¾·ç¸ñ (0:ÏîÄ¿Æ½ÆÌ  1:Ó¦ÓÃÆ½ÆÌ)',
-   home_banner          longtext comment 'Ê×Ò³bannerÍ¼ÅäÖÃ',
-   primary key (iidd),
-   unique key AK_key_refdeptid (ref_deptid)
-);
-
-alter table ff_apaas_t_platform_config comment 'Æ½Ì¨ÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_project_info                               */
-/*==============================================================*/
-create table ff_apaas_t_project_info
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   project_name         varchar(300) comment 'ÏîÄ¿Ãû³Æ',
-   remark               text comment 'ÏîÄ¿ÃèÊö',
-   logo_url             varchar(300) comment 'ÏîÄ¿LOGO',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            varchar(50) comment '×îºó¸üĞÂÈËID',
-   update_name          varchar(200) comment '×îºó¸üĞÂÈËÃû³Æ',
-   update_time          datetime comment '×îºó¸üĞÂÊ±¼ä',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   project_status       int not null default 1 comment 'ÏîÄ¿×´Ì¬ 0Í£ÓÃ 1ÆôÓÃ',
-   sortid               int not null default 0 comment 'ÅÅĞòÊı×Ö',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_project_info comment 'ÏîÄ¿ĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_qiyuesuo_config                            */
-/*==============================================================*/
-create table ff_apaas_t_qiyuesuo_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   api_url              varchar(200) comment '¿ª·ÅÆ½Ì¨½Ó¿ÚµØÖ·',
-   app_token            varchar(200) comment 'AppToken',
-   app_secret           varchar(200) comment 'AppSecret',
-   app_range            longtext comment 'ÊÚÈ¨Ó¦ÓÃ·¶Î§',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_orgname       varchar(200) comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   callback_secret_key  varchar(200) comment '¼ÓÃÜ»Øµ÷ĞÅÏ¢µÄSecretKey',
-   company_name         varchar(100) comment 'ÈÏÖ¤¹«Ë¾Ãû³Æ',
-   admin_name           varchar(50) comment '¹ÜÀíÔ±ĞÕÃû',
-   admin_mobile         varchar(50) comment '¹ÜÀíÔ±ÊÖ»úºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_qiyuesuo_config comment 'ÆõÔ¼ËøÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_qiyuesuo_contract                          */
-/*==============================================================*/
-create table ff_apaas_t_qiyuesuo_contract
-(
-   iidd                 varchar(50) not null comment 'ºÏÍ¬ID',
-   subject              varchar(200) comment 'ºÏÍ¬Ö÷Ìâ',
-   sn                   varchar(200) comment 'ºÏÍ¬±àºÅ',
-   status               varchar(200) comment 'ºÏÍ¬×´Ì¬',
-   publish_time         datetime comment '·¢ÆğÊ±¼ä',
-   result_json          longtext comment '·µ»Ø½á¹û',
-   field_mapping        longtext comment '×Ö¶ÎÓ³Éä',
-   remark               longtext comment '±¸×¢ĞÅÏ¢',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_orgname       varchar(200) comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   ref_flowid           varchar(50) comment '¹ØÁªÁ÷³ÌID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_qiyuesuo_contract comment 'ÆõÔ¼ËøºÏÍ¬¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_register_exporter                          */
-/*==============================================================*/
-create table ff_apaas_t_register_exporter
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   ref_deptid           varchar(50) not null comment '×¢²á¹«Ë¾ID',
-   create_userid        varchar(50) not null comment 'µ¼³öÖ´ĞĞÓÃ»§ID',
-   create_time          datetime not null comment 'µ¼³ö¿ªÊ¼Ê±¼ä',
-   completion_time      datetime not null comment 'µ¼³öÍê³ÉÊ±¼ä',
-   status               int not null default 0 comment 'µ¼³ö½á¹û(0³É¹¦,1Ê§°Ü)',
-   export_paths         varchar(300) not null comment 'µ¼³öÊı¾İÂ·¾¶',
-   request_param        varchar(500) not null comment 'ÇëÇó²ÎÊı',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı(0·ñ,1ÊÇ)',
-   primary key (iidd)
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_t_relation_view_config                       */
-/*==============================================================*/
-create table ff_apaas_t_relation_view_config
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   view_name            varchar(200) comment '¹ØÁªÊÓÍ¼Ãû³Æ',
-   source_app_id        varchar(50) comment 'Ô´Ó¦ÓÃID',
-   source_app_name      varchar(200) comment 'Ô´Ó¦ÓÃÃû³Æ',
-   target_app_id        varchar(50) comment 'Ä¿±êÓ¦ÓÃID',
-   target_app_name      varchar(200) comment 'Ä¿±êÓ¦ÓÃÃû³Æ',
-   rule_json            longtext comment '¹ØÁªÊÓÍ¼¹æÔòÅäÖÃ',
-   field_map_json       longtext comment '¹ØÁªÊôĞÔÓ³ÉäÅäÖÃ',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_orgname       varchar(200) comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   ref_projectid        varchar(50) comment '¹ØÁªÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   sortid               integer comment 'ÅÅĞòºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_relation_view_config comment '¹ØÁªÊÓÍ¼ÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_right_app_lot                              */
-/*==============================================================*/
-create table ff_apaas_t_right_app_lot
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   actiontype           int not null comment 'È¨ÏŞÀà±ğ 0Êı¾İÒıÓÃ 1Ó¦ÓÃ¹ÜÀí',
-   userid               varchar(50) comment '¹ÜÀíÔ±ID',
-   username             varchar(200) comment '¹ÜÀíÔ±Ãû³Æ',
-   loginname            varchar(100) comment 'µÇÂ¼ÕËºÅ',
-   ref_appid            varchar(50) not null comment '¹ØÁªÓ¦ÓÃ±àºÅ',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_right_app_lot comment 'Ó¦ÓÃ¹ÜÀíÔ±È¨ÏŞĞÅÏ¢±í Èç¹ûÔÚÕâ¸ö±í´æÔÚÔò±íÊ¾ÓÃ»§¿ÉÒÔÑ¡Ôñ »òÕß ¹ÜÀíÄ³¸öÓ¦ÓÃ';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_right_lot                                  */
-/*==============================================================*/
-create table ff_apaas_t_right_lot
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) comment '¹ÜÀíÔ±ID',
-   username             varchar(200) comment '¹ÜÀíÔ±Ãû³Æ',
-   loginname            varchar(100) comment 'µÇÂ¼ÕËºÅ',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_right_lot comment 'ÏîÄ¿¹ÜÀíÔ±È¨ÏŞĞÅÏ¢±í Èç¹ûÔÚÕâ±í´æÔÚÔò±íÊ¾ÓÃ»§¶ÔÓÚÄ³¸öÏîÄ¿ĞÅÏ¢¿ÉÒÔÎ¬»¤';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_searchcond                                 */
-/*==============================================================*/
-create table ff_apaas_t_searchcond
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   condname             varchar(200) comment 'Ìõ¼şÃû³Æ',
-   cname                text comment 'Ìõ¼ş¹æÔò ´æ´¢Ìõ¼şµÄJSON×Ö·û´®',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   appid                varchar(50) comment 'ËùÊôÓ¦ÓÃID',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ 1ÊÇ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_searchcond comment 'ËÑË÷Ìõ¼ş´æ´¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_serial_number_coderule                     */
-/*==============================================================*/
-create table ff_apaas_t_serial_number_coderule
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   currbh               int not null default 1 comment '±àºÅµ±Ç°ÊıÖµ',
-   last_date            date comment '×îºóÒ»´ÎÉú³ÉÈÕÆÚ',
-   fieldname            varchar(50) not null comment '×Ö¶ÎÃû³Æ',
-   appid                varchar(50) not null comment 'ËùÊôÓ¦ÓÃID',
-   projectid            varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_serial_number_coderule comment 'Á÷Ë®ºÅÉú³É¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_synch_field_mapping                        */
-/*==============================================================*/
-create table ff_apaas_t_synch_field_mapping
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   ref_synch_id         varchar(50) comment '¹ØÁªÍ¬²½¹æÔòÅäÖÃ±íÖ÷¼ü',
-   source_field_name    varchar(200) comment 'Ô­Ê¼×Ö¶ÎÃû³Æ',
-   source_field_code    varchar(200) comment 'Ô­Ê¼×Ö¶Î±àÂë',
-   is_primary_key       int not null default 0 comment 'ÊÇ·ñÖ÷¼ü',
-   apaas_field_name     varchar(200) comment '°¢·²´îÓ¦ÓÃ×Ö¶ÎÃû³Æ',
-   apaas_field_code     varchar(200) comment '°¢·²´îÓ¦ÓÃ×Ö¶Î±àÂë',
-   is_update            int not null default 0 comment 'ÊÇ·ñ¸üĞÂ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_synch_field_mapping comment 'Í¬²½×Ö¶ÎÓ³Éä±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_synch_log                                  */
-/*==============================================================*/
-create table ff_apaas_t_synch_log
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   ref_synch_id         varchar(50) comment '¹ØÁªÍ¬²½¹æÔòÅäÖÃ±íÖ÷¼ü',
-   success_msg          varchar(500) comment 'Í¬²½³É¹¦ÈÕÖ¾',
-   error_json           longtext comment 'Í¬²½Ê§°ÜÈÕÖ¾',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_synch_log comment 'Í¬²½ÈÕÖ¾¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_synch_rule                                 */
-/*==============================================================*/
-create table ff_apaas_t_synch_rule
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   synch_type           int not null default 0 comment 'Í¬²½·½Ê½ 0Ö±Á¬Êı¾İ¿â 1¶ÁÈ¡ÎÄ¼ş 2ÇëÇó½Ó¿Ú 3ADÓò',
-   synch_config         longtext comment '¶ÔÓ¦Í¬²½·½Ê½ÅäÖÃ',
-   synch_appid          varchar(50) comment 'Í¬²½µÄÓ¦ÓÃID',
-   synch_flowmodel_id   varchar(50) comment 'Í¬²½µÄÁ÷³ÌÄ£ĞÍID',
-   synch_action_id      integer comment 'Í¬²½Á÷³ÌÄ£ĞÍÆğ²İ»·½Ú°´Å¥ID',
-   synch_userid         varchar(50) comment 'Í¬²½ÓÃ»§ID',
-   remark               varchar(500) comment '±¸×¢',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_synch_rule comment 'Í¬²½¹æÔòÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_template_config                            */
-/*==============================================================*/
-create table ff_apaas_t_template_config
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   template_type        int(2) not null comment 'ÀàĞÍ£º1:·¢ÆğÁ÷³ÌÈÎÎñ,2:Ó¦ÓÃ¸üĞÂ,3:Ó¦ÓÃÊı¾İÍÆËÍ',
-   template             text not null comment 'Ä£°åjson',
-   placeholder          varchar(2000) not null comment 'Ä£°åÖµjson',
-   ref_deptid           varchar(50) not null comment '¹«Ë¾±àºÅ',
-   create_id            varchar(50) not null comment '´´½¨ÈË±àºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_template_config comment '¶¨Ê±ÈÎÎñÄ£°å±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_time_process                               */
-/*==============================================================*/
-create table ff_apaas_t_time_process
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àÂë',
-   task_type            int(2) not null comment '1:¶¨Ê±·¢ÆğÈÎÎñ2£º¶¨Ê±¸üĞÂÊı¾İ 3£º¶¨Ê±ÍÆËÍÊı¾İ  4£º¶¨Ê±ÈÎÎñ',
-   task_name            varchar(200) not null comment 'ÈÎÎñÃû³Æ',
-   execute_type         int(2) not null comment '1:°´Á÷³Ì·¢Æğ£¬2:´ÓÏµÍ³Ñ¡ÔñÒ»¸öÈÎÎñ·¢Æğ£¬3£º°´Ó¦ÓÃ¸üĞÂ£¬4£º´ÓÏµÍ³Ñ¡ÔñÒ»¸ö·½·¨¸üĞÂ£¬5£º°´Ó¦ÓÃÍÆËÍÊı¾İ£¬6£º´ÓÏµÍ³Ñ¡ÔñÒ»¸ö·½·¨ÍÆËÍÊı¾İ',
-   target_flow_model_id varchar(50) comment 'Ä¿±êÁ÷³Ì±àºÅ',
-   appid                varchar(50) comment 'Ó¦ÓÃ±àºÅ',
-   invoke_target        varchar(200) not null comment 'fftaskµÄ·½·¨Ãû',
-   allottype            int(2) comment 'ÀàĞÍ 0±íÊ¾ÓÃ»§ 1±íÊ¾ÓÃ»§×é 2±íÊ¾²¿ÃÅ',
-   allotobjectid        varchar(2000) comment 'ÈÎÎñÔğÈÎÈËID',
-   data_template_config varchar(50) comment 'Ä£°å±àºÅ',
-   remark               varchar(500) comment '±¸×¢',
-   create_id            varchar(50) comment '´´½¨ÈË,ÓÃÓÚ·¢ÆğÁ÷³Ì',
-   create_name          varchar(100) comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime not null comment '´´½¨Ê±¼ä',
-   ref_dept_id          varchar(50) comment '¹«Ë¾±àºÅ',
-   job_id               varchar(50) not null comment 'sys_job±í±àºÅ',
-   ref_projectid        varchar(50) comment 'ÏîÄ¿±àºÅ',
-   types                int not null default 1 comment '¶¨Ê±ÈÎÎñÀàĞÍ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_time_process comment '¶¨Ê±ÈÎÎñÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_timing_task                                */
-/*==============================================================*/
-create table ff_apaas_t_timing_task
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àÂë',
-   task_type            int not null comment '1£º¶¨Ê±ÈÎÎñ 2£º¶¨Ê±ÍÆËÍ 3£º¶şÎ¬ÂëÅäÖÃ 4£º²Ù×÷ÁĞÅäÖÃ',
-   task_name            varchar(200) not null comment 'ÈÎÎñÃû³Æ',
-   execute_type         int not null comment '1£ºÕı³£·¢Æğ 2£º°´±íµ¥×Ö¶Î¹æÔò·¢Æğ 3£º´ÓÏµÍ³Ñ¡ÔñÒ»¸öÈÎÎñÖ´ĞĞ 4£ºÊı¾İĞÂÔö 5£ºÊı¾İÌá½» 6£ºÊı¾İ¸üĞÂ',
-   form_field_rule      longtext comment '±íµ¥×Ö¶Î¹æÔò',
-   invoke_target        varchar(2000) comment 'fftaskµÄ·½·¨Ãû',
-   tartget_projectid    varchar(50) comment 'Ä¿±êÏîÄ¿±àºÅ',
-   tartget_appid        varchar(50) comment 'Ä¿±êÓ¦ÓÃ±àºÅ',
-   target_flow_model_id varchar(200) comment 'Ä¿±êÁ÷³Ì±àºÅ',
-   target_flow_action_id int comment 'Á÷³Ì¶¯×÷±àºÅ',
-   default_value_rule   longtext comment 'Ä¬ÈÏÖµ¹æÔò',
-   receiver_rule        longtext comment '½ÓÊÕÈË¹æÔò',
-   is_repeat            int comment 'ÊÇ·ñ¿ÉÖØ¸´Éú³É 0·ñ 1ÊÇ',
-   job_id               varchar(50) not null comment 'sys_job±í±àºÅ',
-   create_id            varchar(50) not null comment '´´½¨ÈË',
-   create_name          varchar(100) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          datetime not null comment '´´½¨Ê±¼ä',
-   ref_appid            varchar(50) not null comment 'Ó¦ÓÃ±àºÅ',
-   ref_projectid        varchar(50) not null comment 'ÏîÄ¿±àºÅ',
-   ref_dept_id          varchar(50) not null comment '¹«Ë¾±àºÅ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_timing_task comment 'ĞÂ¶¨Ê±ÈÎÎñÅäÖÃ±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_t_user_regist                                */
-/*==============================================================*/
-create table ff_apaas_t_user_regist
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   account_type         int default 1 comment '×¢²áÓÃÍ¾ 0ÆóÒµ×ÔÓÃ 1¶ÔÍâ·şÎñ',
-   user_name            varchar(200) comment 'ĞÕÃû',
-   email                varchar(300) comment 'ÓÊÏäµØÖ·',
-   mobile               varchar(30) comment 'ÊÖ»úºÅÂë',
-   company_name         varchar(300) comment 'ÆóÒµÃû³Æ',
-   job_name             varchar(100) comment 'Ö°Î»',
-   belong_trade_one     varchar(100) comment 'ËùÊôÒ»¼¶ĞĞÒµ',
-   belong_trade_two     varchar(100) comment 'ËùÊô¶ş¼¶ĞĞÒµ',
-   company_scale        varchar(100) comment 'ÆóÒµ¹æÄ£',
-   is_active            int default 0 comment 'ÊÇ·ñ¼¤»î 0·ñ 1ÊÇ',
-   deleted              int default 0 comment 'ÊÇ·ñÉ¾³ı',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   ref_userid           varchar(50) comment '¹ØÁªÓÃ»§ID',
-   inviter_info         text comment 'ÑûÇëÈËĞÅÏ¢ ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_t_user_regist comment 'ÓÃ»§×¢²áĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_actormembers                              */
-/*==============================================================*/
-create table ff_apaas_ts_actormembers
-(
-   id                   varchar(50) not null comment 'Ö÷¼ü',
-   actorid              varchar(50) not null comment 'ÓÃ»§×é±àºÅ',
-   actortype            int not null comment '³ÉÔ±Àà±ğ',
-   objectid             varchar(50) not null comment '³ÉÔ±±àºÅ',
-   primary key (id)
-);
-
-alter table ff_apaas_ts_actormembers comment 'ÓÃ»§×é³ÉÔ±±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_actors                                    */
-/*==============================================================*/
-create table ff_apaas_ts_actors
-(
-   actorid              varchar(50) not null comment 'ÓÃ»§×é±àºÅ',
-   actorname            varchar(200) comment 'ÓÃ»§×éÃû³Æ',
-   actordesc            text comment 'ÃèÊö',
-   manager_id           text comment '¹ÜÀíÔ±±àºÅ',
-   manager_name         text comment '¹ÜÀíÔ±Ãû³Æ',
-   use_area             int default 0 comment 'Ê¹ÓÃ·¶Î§ 0ÏîÄ¿ÄÚ 1È«¾Ö',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   creater_id           varchar(50) comment '´´½¨ÈËID',
-   creater_name         varchar(200) comment '´´½¨ÈËÃû³Æ',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (actorid)
-);
-
-alter table ff_apaas_ts_actors comment 'ÓÃ»§×éĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_business_api_group                        */
-/*==============================================================*/
-create table ff_apaas_ts_business_api_group
-(
-   iidd                 varchar(50) not null comment '·Ö×éID',
-   group_name           varchar(255) not null comment '·Ö×éÃû³Æ',
-   parent_id            varchar(50) comment '¸¸¼¶±àºÅ',
-   sort_id              int not null default 0 comment 'ÅÅĞòÖµ',
-   class_layer          int not null default 1 comment 'ËùÊô²ã¼¶',
-   class_list           varchar(500) not null comment '²ã¼¶×Ö·û×é',
-   create_time          datetime not null comment '´´½¨Ê±¼ä',
-   create_id            varchar(50) not null comment '´´½¨ÈËID',
-   create_person        varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   update_time          datetime not null comment '¸üĞÂÊ±¼ä',
-   update_id            varchar(50) not null comment '¸üĞÂÈËID',
-   update_person        varchar(50) not null comment '¸üĞÂÈËÃû³Æ',
-   ref_project_id       varchar(50) not null comment 'ÏîÄ¿±àºÅ',
-   ref_dept_id          varchar(50) not null comment '¹«Ë¾±àºÅ',
-   primary key (iidd)
-)
-COMMENT 'ÒµÎñAPI·Ö×é¹ÜÀí';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_cross_project_right                       */
-/*==============================================================*/
-create table ff_apaas_ts_cross_project_right
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) not null comment 'ÊÚÈ¨ÓÃ»§ID',
-   username             varchar(200) not null comment 'ÊÚÈ¨ÓÃ»§Ãû³Æ',
-   project_id           varchar(50) not null comment 'ÏîÄ¿ID',
-   project_name         varchar(300) comment 'ÏîÄ¿Ãû³Æ',
-   app_value            text comment 'Ó¦ÓÃ¼¯ºÏ ´æ´¢¸ñÊ½Îª[{value:''Ó¦ÓÃid'',name:''Ó¦ÓÃÃû³Æ''}]',
-   sortid               int not null comment 'ÅÅĞòÖµ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) not null comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_cross_project_right comment '¿çÏîÄ¿µ÷ÓÃÊÚÈ¨¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_dept                                      */
-/*==============================================================*/
-create table ff_apaas_ts_dept
-(
-   deptid               varchar(50) not null comment '²¿ÃÅ±àºÅ',
-   fullid               varchar(1000) comment '²¿ÃÅÈ«±àºÅ×Ö·û´®',
-   orgid                varchar(50) comment 'ËùÔÚ»ú¹¹±àºÅ',
-   deptkind             int not null default 0 comment '²¿ÃÅĞÔÖÊ',
-   parentid             varchar(50) comment 'ÉÏ¼¶²¿ÃÅ±àÂë',
-   deptname             varchar(200) comment '²¿ÃÅÃû³Æ',
-   sortid               int not null default 0 comment 'ÅÅĞòÖµ',
-   managerid            text comment '²¿ÃÅ¹ÜÀíÔ±±àºÅ',
-   leaderid             text comment '²¿ÃÅÁìµ¼±àºÅ',
-   description          varchar(1000) comment '²¿ÃÅÃèÊö',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ¡¢1ÊÇ',
-   createid             varchar(50) comment '´´½¨ÈË±àºÅ',
-   createdate           datetime comment '´´½¨Ê±¼ä',
-   updateid             varchar(50) comment 'ĞŞ¸ÄÈË±àºÅ',
-   updatedate           datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   deptcode             varchar(100) comment '²¿ÃÅ±àÂë ´Ë×Ö¶ÎÖ÷ÒªÓÃÓÚÍ¬²½µÚÈı·½²¿ÃÅÊ± ´æ´¢µÚÈı·½²¿ÃÅÎ¨Ò»±êÊ¶',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (deptid)
-);
-
-alter table ff_apaas_ts_dept comment '²¿ÃÅĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_menu                                      */
-/*==============================================================*/
-create table ff_apaas_ts_menu
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   menuname             varchar(200) not null comment '²Ëµ¥Ãû³Æ',
-   menucode             varchar(50) not null comment '²Ëµ¥±àÂë',
-   menuurl              varchar(200) comment '²Ëµ¥URL',
-   parentiidd           varchar(50) comment '¸¸²Ëµ¥ID',
-   classlist            varchar(500) not null comment '²Ëµ¥¸¸ID×é',
-   classlayer           int not null default 1 comment '²Ëµ¥²ã¼¶',
-   sortid               int not null default 0 comment 'ÅÅĞòÊı×Ö',
-   menutype             int not null default 0 comment '²Ëµ¥ÀàĞÍ 0·Ö×é 1²Ëµ¥ 2È¨ÏŞ',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı(1ÊÇ 0·ñ)',
-   icon                 varchar(300) comment '²Ëµ¥Í¼±ê',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃID',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   addtime              datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_menu comment '²Ëµ¥±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_menu_mobile                               */
-/*==============================================================*/
-create table ff_apaas_ts_menu_mobile
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üid',
-   menucode             varchar(50) comment '²Ëµ¥±àÂë',
-   menuname             varchar(200) comment '²Ëµ¥Ãû³Æ',
-   create_id            varchar(50) comment '´´½¨ÈËID',
-   create_name          varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   ref_projectid        varchar(50) comment '¹ØÁªÏîÄ¿ID',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_menu_mobile comment 'ÒÆ¶¯¶Ë²»¿ÉÕ¹Ê¾µÄ²Ëµ¥';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_open_api_group                            */
-/*==============================================================*/
-create table ff_apaas_ts_open_api_group
-(
-   iidd                 varchar(50) not null comment '·Ö×éID',
-   group_name           varchar(255) not null comment '·Ö×éÃû³Æ',
-   parent_id            varchar(50) comment '¸¸¼¶±àºÅ',
-   sort_id              int not null default 0 comment 'ÅÅĞòÖµ',
-   class_layer          int not null default 1 comment 'ËùÊô²ã¼¶',
-   class_list           varchar(500) not null comment '²ã¼¶×Ö·û×é',
-   update_time          datetime not null comment '¸üĞÂÊ±¼ä',
-   create_person        varchar(50) not null comment '´´½¨ÈË',
-   primary key (iidd)
-)
-COMMENT 'openApi·Ö×é¹ÜÀí';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_oprateallot                               */
-/*==============================================================*/
-create table ff_apaas_ts_oprateallot
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   allottype            int not null default 0 comment 'ÊÚÈ¨ÀàĞÍ 0±íÊ¾ÓÃ»§ 1±íÊ¾ÓÃ»§×é 2±íÊ¾²¿ÃÅ',
-   allotobjectid        varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±àºÅ',
-   menuid               varchar(50) not null comment '²Ëµ¥ID',
-   menucode             varchar(50) not null comment '²Ëµ¥±àÂë',
-   actiontype           varchar(200) not null comment 'È¨ÏŞÀà±ğ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   ref_projectid        varchar(50) not null comment '¹éÊôÏîÄ¿ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_oprateallot comment 'È¨ÏŞ·ÖÅä¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_oprateallot_field                         */
-/*==============================================================*/
-create table ff_apaas_ts_oprateallot_field
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   allottype            int not null default 0 comment 'ÊÚÈ¨ÀàĞÍ 0±íÊ¾ÓÃ»§ 1±íÊ¾ÓÃ»§×é 2±íÊ¾²¿ÃÅ',
-   allotobjectid        varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±àºÅ',
-   menuid               varchar(50) not null comment '²Ëµ¥ID',
-   righttype            int not null default 0 comment 'È¨ÏŞÀàĞÍ 0ĞÂÔö¡¢1±à¼­¡¢2²é¿´¡¢3ÁĞ±íÕ¹Ê¾',
-   fieldname            varchar(200) not null comment '×Ö¶ÎÃû³Æ',
-   isvisible            int not null default 1 comment 'ÊÇ·ñ¿É¼û',
-   isedit               int not null default 1 comment 'ÊÇ·ñ¿É±à¼­',
-   isrequired           int not null default 1 comment 'ÊÇ·ñ±ØÌî',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   ref_projectid        varchar(50) not null comment '¹éÊôÏîÄ¿ID',
-   subtable_config      text comment '×Ó±íÌØÊâÅäÖÃ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_oprateallot_field comment '×Ö¶ÎÈ¨ÏŞ·ÖÅä¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_oprateallot_field_user                    */
-/*==============================================================*/
-create table ff_apaas_ts_oprateallot_field_user
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   allotobjectid        varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±àºÅ',
-   menuid               varchar(50) not null comment '²Ëµ¥ID',
-   righttype            int not null default 0 comment 'È¨ÏŞÀàĞÍ 0ĞÂÔö¡¢1±à¼­¡¢2²é¿´¡¢3ÁĞ±íÕ¹Ê¾',
-   fieldname            varchar(200) not null comment '×Ö¶ÎÃû³Æ',
-   isvisible            int not null default 1 comment 'ÊÇ·ñ¿É¼û',
-   isedit               int not null default 1 comment 'ÊÇ·ñ¿É±à¼­',
-   isrequired           int not null default 1 comment 'ÊÇ·ñ±ØÌî',
-   source_type          int not null default 0 comment 'À´Ô´ÀàĞÍ 0±íÊ¾ÓÃ»§ 1±íÊ¾ÓÃ»§×é 2±íÊ¾²¿ÃÅ',
-   source_id            varchar(50) comment 'À´Ô´¶ÔÏó±àºÅ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   ref_projectid        varchar(50) not null comment '¹éÊôÏîÄ¿ID',
-   subtable_config      text comment '×Ó±íÌØÊâÅäÖÃ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_oprateallot_field_user comment '¼ÆËãºóµÄÓÃ»§×Ö¶ÎÈ¨ÏŞ·ÖÅä¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Index: index_oprateallot_field_objectid                      */
-/*==============================================================*/
-create index index_oprateallot_field_objectid on ff_apaas_ts_oprateallot_field_user
-(
-   allotobjectid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_oprateallot_rightrange                    */
-/*==============================================================*/
-create table ff_apaas_ts_oprateallot_rightrange
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   allottype            int not null default 0 comment 'ÊÚÈ¨ÀàĞÍ 0±íÊ¾ÓÃ»§ 1±íÊ¾ÓÃ»§×é 2±íÊ¾²¿ÃÅ',
-   allotobjectid        varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±àºÅ',
-   menuid               varchar(50) not null comment '²Ëµ¥ID',
-   menucode             varchar(50) not null comment '²Ëµ¥±àÂë',
-   rightrange           int not null comment 'È¨ÏŞ·¶Î§ 0È«¾Ö 1±¾ÈË·¢Æğ 2±¾²¿ÃÅ 3ÏÂ¼¶²¿ÃÅ 4±¾»ú¹¹ 5ÏÂ¼¶»ú¹¹  6×Ô¶¨Òå ',
-   rule_name            varchar(200) comment '¹æÔòÃû³Æ',
-   rule_config          text comment '¹æÔòÅäÖÃ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   ref_projectid        varchar(50) not null comment '¹éÊôÏîÄ¿ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_oprateallot_rightrange comment 'È¨ÏŞ²éÑ¯·¶Î§·ÖÅä¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_platform_manager                          */
-/*==============================================================*/
-create table ff_apaas_ts_platform_manager
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) not null comment 'ÊÚÈ¨ÓÃ»§ID',
-   username             varchar(200) not null comment 'ÊÚÈ¨ÓÃ»§Ãû³Æ',
-   sortid               int not null comment 'ÅÅĞòÖµ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) not null comment '¹éÊô¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_platform_manager comment 'Æ½Ì¨ÃÅ»§¹ÜÀíÔ±';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_user                                      */
-/*==============================================================*/
-create table ff_apaas_ts_user
-(
-   userid               varchar(50) not null comment 'ÓÃ»§±àºÅ',
-   loginname            varchar(100) comment 'µÇÂ¼ÕËºÅ',
-   password             varchar(100) comment 'µÇÂ¼ÃÜÂë',
-   name                 varchar(200) comment 'ÓÃ»§Ãû³Æ',
-   sex                  varchar(10) comment 'ĞÔ±ğ',
-   jobid                varchar(200) comment 'Ö°Î»±àºÅ',
-   job                  varchar(200) comment 'Ö°Î»Ãû³Æ',
-   edulevelid           varchar(200) comment 'Ñ§Àú±àºÅ',
-   edulevel             varchar(200) comment 'Ñ§Àú',
-   telno                varchar(50) comment 'µç»°',
-   mobile               varchar(50) comment 'ÊÖ»úºÅÂë',
-   email                varchar(200) comment 'ÓÊÏä',
-   head_img             varchar(300) comment 'Í·Ïñ',
-   deleted              int not null default 0 comment 'ÊÇ·ñÉ¾³ı 0·ñ¡¢1ÊÇ',
-   agentstatus          int not null default 0 comment '´úÀí×´Ì¬',
-   createid             varchar(50) comment '´´½¨ÈË±àºÅ',
-   createdate           datetime comment '´´½¨Ê±¼ä',
-   updateid             varchar(50) comment 'ĞŞ¸ÄÈË±àºÅ',
-   updatedate           datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   lockstatus           int not null default 0 comment 'ÊÇ·ñËø¶¨ 0·ñ¡¢1ÊÇ',
-   isactive             int not null default 0 comment 'ÊÇ·ñ¼¤»î 0·ñ¡¢1ÊÇ',
-   usersalt             varchar(50) comment 'ÓÃ»§ÃÜÂë¼ÓÃÜËæ»ú´®',
-   sortid               int not null default 0 comment 'ÅÅĞòÖµ',
-   deptid               varchar(50) comment 'ËùÔÚ²¿ÃÅ±àºÅ',
-   account_level        int not null default 0 comment 'ÕËºÅ¼¶±ğ 0 ÆÕÍ¨ÓÃ»§ 1³¬¼¶¹ÜÀíÔ±',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   is_register_user     int default 0 comment 'ÊÇ·ñ×¢²áÓÃ»§',
-   user_code            varchar(100) comment 'Ô±¹¤±àºÅ ´Ë×Ö¶ÎÖ÷ÒªÓÃÓÚÍ¬²½µÚÈı·½ÕËºÅÊ± ´æ´¢µÚÈı·½ÓÃ»§Î¨Ò»±êÊ¶',
-   primary key (userid)
-);
-
-alter table ff_apaas_ts_user comment 'ÓÃ»§ĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_user_expand                               */
-/*==============================================================*/
-create table ff_apaas_ts_user_expand
-(
-   userid               varchar(50) not null comment 'ÓÃ»§±àºÅ',
-   loginname            varchar(100) comment 'µÇÂ¼ÕËºÅ',
-   signature            longtext comment 'ÊÖĞ´Ç©Ãû',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   create_app_is_notice int default 0 comment '´´½¨Ó¦ÓÃºóÊÇ·ñÌáÊ¾(0,ĞèÒªÌáÊ¾£¬1£¬²»ĞèÒªÌáÊ¾)',
-   primary key (userid)
-);
-
-alter table ff_apaas_ts_user_expand comment 'ÓÃ»§ÍØÕ¹±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_user_launch_new_top                       */
-/*==============================================================*/
-create table ff_apaas_ts_user_launch_new_top
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   userid               varchar(50) not null comment 'ÓÃ»§ID',
-   oflowmodelid         varchar(50) not null comment 'Ô­Ê¼Á÷³Ì±àºÅ',
-   toptime              datetime not null comment 'ÖÃ¶¥Ê±¼ä',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_user_launch_new_top comment 'Ê×Ò³ÓÃ»§·¢ÆğĞÂµÄÖÃ¶¥±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_user_oprateallot                          */
-/*==============================================================*/
-create table ff_apaas_ts_user_oprateallot
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   allotobjectid        varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±àºÅ',
-   menuid               varchar(50) not null comment '²Ëµ¥ID',
-   menucode             varchar(50) not null comment '²Ëµ¥±àÂë',
-   actiontype           varchar(200) not null comment 'È¨ÏŞÀà±ğ',
-   source_type          int not null default 0 comment 'À´Ô´ÀàĞÍ 0±íÊ¾ÓÃ»§ 1±íÊ¾ÓÃ»§×é 2±íÊ¾²¿ÃÅ',
-   source_id            varchar(50) comment 'À´Ô´¶ÔÏó±àºÅ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   ref_projectid        varchar(50) not null comment '¹éÊôÏîÄ¿ID',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_user_oprateallot comment '¼ÆËãºóµÄÓÃ»§È¨ÏŞ·ÖÅä¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Index: index_oprateallot_objectid                            */
-/*==============================================================*/
-create index index_oprateallot_objectid on ff_apaas_ts_user_oprateallot
-(
-   allotobjectid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_user_oprateallot_rightrange               */
-/*==============================================================*/
-create table ff_apaas_ts_user_oprateallot_rightrange
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   allotobjectid        varchar(50) not null comment 'ÊÚÈ¨¶ÔÏó±àºÅ',
-   menuid               varchar(50) not null comment '²Ëµ¥ID',
-   menucode             varchar(50) not null comment '²Ëµ¥±àÂë',
-   rightrange           int not null comment 'È¨ÏŞ·¶Î§ 0È«¾Ö 1±¾ÈË·¢Æğ 2±¾²¿ÃÅ 3ÏÂ¼¶²¿ÃÅ 4±¾»ú¹¹ 5ÏÂ¼¶»ú¹¹  6×Ô¶¨Òå ',
-   rule_name            varchar(200) comment '¹æÔòÃû³Æ',
-   rule_config          text comment '¹æÔòÅäÖÃ',
-   source_type          int not null default 0 comment 'À´Ô´ÀàĞÍ 0±íÊ¾ÓÃ»§ 1±íÊ¾ÓÃ»§×é 2±íÊ¾²¿ÃÅ',
-   source_id            varchar(50) comment 'À´Ô´¶ÔÏó±àºÅ',
-   addtime              datetime not null comment 'Ìí¼ÓÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹éÊô¹«Ë¾ID',
-   ref_projectid        varchar(50) not null comment '¹éÊôÏîÄ¿ID',
-   ref_rangeid          varchar(50) comment '¹ØÁªÈ¨ÏŞ·¶Î§·ÖÅä±íid',
-   primary key (iidd)
-);
-
-alter table ff_apaas_ts_user_oprateallot_rightrange comment '¼ÆËãºóµÄÓÃ»§È¨ÏŞ²éÑ¯·¶Î§·ÖÅä¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Index: index_oprateallot_rightrange_objectid                 */
-/*==============================================================*/
-create index index_oprateallot_rightrange_objectid on ff_apaas_ts_user_oprateallot_rightrange
-(
-   allotobjectid
-);
-
-/*==============================================================*/
-/* Table: ff_apaas_ts_user_temp                                 */
-/*==============================================================*/
-create table ff_apaas_ts_user_temp
-(
-   id                   varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) comment 'ÓÃ»§±àºÅ',
-   batch                varchar(50) comment 'Ëæ»ú´®',
-   indate               datetime comment 'Ìí¼ÓÊ±¼ä',
-   primary key (id)
-);
-
-alter table ff_apaas_ts_user_temp comment 'ÁÙÊ±ÓÃ»§±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_up_attachment                                */
-/*==============================================================*/
-create table ff_apaas_up_attachment
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   userid               varchar(50) comment 'ÓÃ»§ID',
-   filename             varchar(200) comment 'ÎÄ¼şÃû³Æ',
-   filepath             varchar(1000) comment 'ÎÄ¼şµØÖ·',
-   uptime               datetime comment 'ÉÏ´«Ê±¼ä',
-   deleted              int default 0 comment 'ÊÇ·ñÉ¾³ı(0·ñ 1ÊÇ)',
-   deletetime           datetime comment 'É¾³ıÊ±¼ä',
-   deptid               varchar(50) comment '²¿ÃÅID',
-   orgid                varchar(50) comment '»ú¹¹ID',
-   appid                varchar(200) comment '»ú¹¹ID',
-   sufname              varchar(100) comment 'ÎÄ¼şÀ©Õ¹Ãû',
-   objecttype           varchar(200) comment '¹ØÁªÀàĞÍ',
-   objectid             varchar(50) comment '¹ØÁªÖ÷¼üID',
-   username             varchar(200) comment 'ÉÏ´«ÈË',
-   deptname             varchar(200) comment 'ÉÏ´«²¿ÃÅ',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍID',
-   ref_appid            varchar(50) comment '¹ØÁªÓ¦ÓÃid',
-   primary key (iidd)
-);
-
-alter table ff_apaas_up_attachment comment '¸½¼şÉÏ´«±í';
-
-/*==============================================================*/
-/* Table: ff_apaas_up_attasecurity                              */
-/*==============================================================*/
-create table ff_apaas_up_attasecurity
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   appid                varchar(200) not null comment 'ÏµÍ³ID',
-   appsecurity          varchar(200) not null comment 'ÃØÔ¿',
-   loginname            varchar(100) comment 'µÇÂ¼Ãû³Æ',
-   primary key (iidd)
-);
-
-alter table ff_apaas_up_attasecurity comment '¸½¼şÈ¨ÏŞ±í';
-
-/*==============================================================*/
-/* Table: knowledge_t_base_info                                 */
-/*==============================================================*/
-create table knowledge_t_base_info
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼ü',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_orgname       varchar(200) comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   ref_projectid        varchar(50) comment '¹ØÁªÏîÄ¿ID',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   subject              varchar(200) comment 'Ö÷Ìâ',
-   tags                 varchar(200) comment '¹Ø¼ü×Ö',
-   content              text comment 'ÖªÊ¶ÄÚÈİ',
-   type                 text comment 'ÖªÊ¶Àà±ğID',
-   refflowid            varchar(50) comment '¹ØÁªÁ÷³ÌID',
-   is_top               int(2) default 0 comment 'ÊÇ·ñÖ¸¶¨£¨0£ºÆÕÍ¨£¬1£ºÖÃ¶¥£©',
-   top_time             timestamp default CURRENT_TIMESTAMP comment 'ÖÃ¶¥Ê±¼ä,Ä¬ÈÏÎªÖªÊ¶·¢²¼Ê±¼ä',
-   attachments          text comment 'Ïà¹Ø¸½¼ş',
-   primary key (iidd)
-)
-COMMENT 'ÖªÊ¶¹ÜÀí±í';
-
-alter table knowledge_t_base_info comment 'ÖªÊ¶ĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: knowledge_t_catalog                                   */
-/*==============================================================*/
-create table knowledge_t_catalog
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   catalogname          varchar(100) comment 'Àà±ğÃû³Æ',
-   parentid             varchar(50) comment '¸¸ÀàID',
-   classlayer           int default 1 comment 'ËùÊô²ã¼¶',
-   classlist            varchar(500) comment '²ã¼¶×Ö·û×é',
-   sortid               int(2) default 0 comment 'ÅÅĞòÖµ',
-   deleted              int(2) default 0 comment 'ÊÇ·ñÉ¾³ı',
-   ref_projectid        varchar(50) comment 'ÏîÄ¿±àºÅ',
-   ref_deptid           varchar(50) comment '¹«Ë¾±àºÅ',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   primary key (iidd)
-)
-COMMENT 'ÖªÊ¶Àà±ğ±í';
-
-alter table knowledge_t_catalog comment 'ÖªÊ¶Àà±ğ±í';
-
-/*==============================================================*/
-/* Table: knowledge_t_comment                                   */
-/*==============================================================*/
-create table knowledge_t_comment
-(
-   iidd                 varchar(50) not null comment 'ÆÀÂÛ±àºÅ',
-   content              varchar(500) comment 'ÆÀÂÛÄÚÈİ',
-   reply_id             varchar(50) comment '»Ø¸´ÆÀÂÛID»òÖªÊ¶ID',
-   ref_commentid        varchar(50) comment 'ËùÊôÆÀÂÛID',
-   ref_knowledgeid      varchar(50) comment 'ËùÊôÖªÊ¶ID',
-   user_id              varchar(50) comment 'ÆÀÂÛÈË±àºÅ',
-   ref_deptid           varchar(50) comment '¹«Ë¾±àºÅ',
-   ref_projectid        varchar(50) comment 'ÏîÄ¿±àºÅ',
-   publish_time         timestamp default CURRENT_TIMESTAMP comment 'ÆÀÂÛÊ±¼ä',
-   primary key (iidd)
-);
-
-alter table knowledge_t_comment comment 'ÖªÊ¶ÆÀÂÛ±í';
-
-/*==============================================================*/
-/* Table: knowledge_t_filed                                     */
-/*==============================================================*/
-create table knowledge_t_filed
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   project_id           varchar(50) not null comment 'ÏîÄ¿ID',
-   app_id               varchar(50) not null comment 'Ó¦ÓÃID',
-   subject              text comment 'ÖªÊ¶Ö÷Ìâ',
-   keyword              text not null comment '¹Ø¼ü´Ê',
-   attachments          text comment 'Ïà¹Ø¸½¼ş',
-   content              text comment 'ÖªÊ¶ÄÚÈİ',
-   sort                 int not null comment 'ÅÅĞòÖµ',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table knowledge_t_filed comment 'ÖªÊ¶¹éµµ¹æÔò±í';
-
-/*==============================================================*/
-/* Table: knowledge_t_flow_info                                 */
-/*==============================================================*/
-create table knowledge_t_flow_info
-(
-   flowid               varchar(50) not null comment 'Á÷³ÌID',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍID',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍID',
-   flowno               varchar(200) comment 'Á÷³Ìµ¥ºÅ',
-   create_userid        varchar(50) comment '·¢ÆğÈËID',
-   create_username      varchar(200) comment '·¢ÆğÈËÃû³Æ',
-   create_deptid        varchar(50) comment '·¢Æğ²¿ÃÅID',
-   create_deptname      varchar(200) comment '·¢Æğ²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '·¢Æğ»ú¹¹ID',
-   create_orgname       varchar(200) comment '·¢Æğ»ú¹¹Ãû³Æ',
-   create_time          datetime comment '·¢ÆğÊ±¼ä',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   ref_projectid        varchar(50) comment '¹ØÁªÏîÄ¿ID',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   current_nodename     varchar(1000) comment 'µ±Ç°´¦Àí»·½Ú',
-   current_hander       varchar(1000) comment 'µ±Ç°´¦ÀíÈË',
-   business_status      varchar(500) comment 'ÒµÎñ×´Ì¬',
-   type                 text comment 'ÖªÊ¶Àà±ğ',
-   subject              varchar(200) comment 'ÖªÊ¶Ö÷Ìâ',
-   tags                 text comment '¹Ø¼ü×Ö',
-   content              text comment 'ÖªÊ¶ÄÚÈİ',
-   attachments          text comment 'Ïà¹Ø¸½¼ş',
-   primary key (flowid)
-);
-
-alter table knowledge_t_flow_info comment 'ÖªÊ¶Á÷³ÌĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: knowledge_t_reference                                 */
-/*==============================================================*/
-create table knowledge_t_reference
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   project_id           varchar(50) not null comment 'ÏîÄ¿ID',
-   app_id               varchar(50) not null comment 'Ó¦ÓÃID',
-   keyword              text not null comment '¹Ø¼ü´Ê×Ö¶Î',
-   sort                 int not null comment 'ÅÅĞòÖµ',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   primary key (iidd)
-);
-
-alter table knowledge_t_reference comment 'ÖªÊ¶²Î¿¼¹æÔò±í';
-
-/*==============================================================*/
-/* Table: knowledge_t_related                                   */
-/*==============================================================*/
-create table knowledge_t_related
-(
-   iidd                 varchar(50) not null comment 'Î¨Ò»±àºÅ',
-   like_type            int(2) default 0 comment 'ÀàĞÍ£º1 ÔÄ¶Á£¬2 µãÔŞ 3 ÊÕ²Ø',
-   data_number          varchar(50) comment 'ÖªÊ¶±àºÅ»òÆÀÂÛ±àºÅ',
-   user_id              varchar(50) comment 'ÓÃ»§±àºÅ',
-   create_time          timestamp default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   ref_deptid           varchar(50) comment '¹«Ë¾±àºÅ',
-   ref_projectid        varchar(50) comment 'ÏîÄ¿±àºÅ',
-   primary key (iidd)
-);
-
-alter table knowledge_t_related comment 'ÖªÊ¶Ïà¹Ø²Ù×÷±í(µãÔŞ/ÊÕ²Ø/ÔÄ¶Á)';
-
-/*==============================================================*/
-/* Table: qrtz_blob_triggers                                    */
-/*==============================================================*/
-create table qrtz_blob_triggers
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   trigger_name         varchar(200) not null comment 'qrtz_triggers±ítrigger_nameµÄÍâ¼ü',
-   trigger_group        varchar(200) not null comment 'qrtz_triggers±ítrigger_groupµÄÍâ¼ü',
-   blob_data            blob comment '´æ·Å³Ö¾Ã»¯Trigger¶ÔÏó',
-   primary key (sched_name, trigger_name, trigger_group)
-)
-engine=innodb comment = 'BlobÀàĞÍµÄ´¥·¢Æ÷±í';
-
-alter table qrtz_blob_triggers comment 'BlobÀàĞÍµÄ´¥·¢Æ÷±í';
-
-/*==============================================================*/
-/* Table: qrtz_calendars                                        */
-/*==============================================================*/
-create table qrtz_calendars
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   calendar_name        varchar(200) not null comment 'ÈÕÀúÃû³Æ',
-   calendar             blob not null comment '´æ·Å³Ö¾Ã»¯calendar¶ÔÏó',
-   primary key (sched_name, calendar_name)
-)
-engine=innodb comment = 'ÈÕÀúĞÅÏ¢±í';
-
-alter table qrtz_calendars comment 'ÈÕÀúĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: qrtz_cron_triggers                                    */
-/*==============================================================*/
-create table qrtz_cron_triggers
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   trigger_name         varchar(200) not null comment 'qrtz_triggers±ítrigger_nameµÄÍâ¼ü',
-   trigger_group        varchar(200) not null comment 'qrtz_triggers±ítrigger_groupµÄÍâ¼ü',
-   cron_expression      varchar(200) not null comment 'cron±í´ïÊ½',
-   time_zone_id         varchar(80) comment 'Ê±Çø',
-   primary key (sched_name, trigger_name, trigger_group)
-)
-engine=innodb comment = 'CronÀàĞÍµÄ´¥·¢Æ÷±í';
-
-alter table qrtz_cron_triggers comment 'CronÀàĞÍµÄ´¥·¢Æ÷±í';
-
-/*==============================================================*/
-/* Table: qrtz_fired_triggers                                   */
-/*==============================================================*/
-create table qrtz_fired_triggers
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   entry_id             varchar(95) not null comment 'µ÷¶ÈÆ÷ÊµÀıid',
-   trigger_name         varchar(200) not null comment 'qrtz_triggers±ítrigger_nameµÄÍâ¼ü',
-   trigger_group        varchar(200) not null comment 'qrtz_triggers±ítrigger_groupµÄÍâ¼ü',
-   instance_name        varchar(200) not null comment 'µ÷¶ÈÆ÷ÊµÀıÃû',
-   fired_time           bigint(13) not null comment '´¥·¢µÄÊ±¼ä',
-   sched_time           bigint(13) not null comment '¶¨Ê±Æ÷ÖÆ¶¨µÄÊ±¼ä',
-   priority             integer not null comment 'ÓÅÏÈ¼¶',
-   state                varchar(16) not null comment '×´Ì¬',
-   job_name             varchar(200) comment 'ÈÎÎñÃû³Æ',
-   job_group            varchar(200) comment 'ÈÎÎñ×éÃû',
-   is_nonconcurrent     varchar(1) comment 'ÊÇ·ñ²¢·¢',
-   requests_recovery    varchar(1) comment 'ÊÇ·ñ½ÓÊÜ»Ö¸´Ö´ĞĞ',
-   primary key (sched_name, entry_id)
-)
-engine=innodb comment = 'ÒÑ´¥·¢µÄ´¥·¢Æ÷±í';
-
-alter table qrtz_fired_triggers comment 'ÒÑ´¥·¢µÄ´¥·¢Æ÷±í';
-
-/*==============================================================*/
-/* Table: qrtz_job_details                                      */
-/*==============================================================*/
-create table qrtz_job_details
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   job_name             varchar(200) not null comment 'ÈÎÎñÃû³Æ',
-   job_group            varchar(200) not null comment 'ÈÎÎñ×éÃû',
-   description          varchar(250) comment 'Ïà¹Ø½éÉÜ',
-   job_class_name       varchar(250) not null comment 'Ö´ĞĞÈÎÎñÀàÃû³Æ',
-   is_durable           varchar(1) not null comment 'ÊÇ·ñ³Ö¾Ã»¯',
-   is_nonconcurrent     varchar(1) not null comment 'ÊÇ·ñ²¢·¢',
-   is_update_data       varchar(1) not null comment 'ÊÇ·ñ¸üĞÂÊı¾İ',
-   requests_recovery    varchar(1) not null comment 'ÊÇ·ñ½ÓÊÜ»Ö¸´Ö´ĞĞ',
-   job_data             blob comment '´æ·Å³Ö¾Ã»¯job¶ÔÏó',
-   primary key (sched_name, job_name, job_group)
-)
-engine=innodb comment = 'ÈÎÎñÏêÏ¸ĞÅÏ¢±í';
-
-alter table qrtz_job_details comment 'ÈÎÎñÏêÏ¸ĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: qrtz_locks                                            */
-/*==============================================================*/
-create table qrtz_locks
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   lock_name            varchar(40) not null comment '±¯¹ÛËøÃû³Æ',
-   primary key (sched_name, lock_name)
-)
-engine=innodb comment = '´æ´¢µÄ±¯¹ÛËøĞÅÏ¢±í';
-
-alter table qrtz_locks comment '´æ´¢µÄ±¯¹ÛËøĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: qrtz_paused_trigger_grps                              */
-/*==============================================================*/
-create table qrtz_paused_trigger_grps
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   trigger_group        varchar(200) not null comment 'qrtz_triggers±ítrigger_groupµÄÍâ¼ü',
-   primary key (sched_name, trigger_group)
-)
-engine=innodb comment = 'ÔİÍ£µÄ´¥·¢Æ÷±í';
-
-alter table qrtz_paused_trigger_grps comment 'ÔİÍ£µÄ´¥·¢Æ÷±í';
-
-/*==============================================================*/
-/* Table: qrtz_scheduler_state                                  */
-/*==============================================================*/
-create table qrtz_scheduler_state
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   instance_name        varchar(200) not null comment 'ÊµÀıÃû³Æ',
-   last_checkin_time    bigint(13) not null comment 'ÉÏ´Î¼ì²éÊ±¼ä',
-   checkin_interval     bigint(13) not null comment '¼ì²é¼ä¸ôÊ±¼ä',
-   primary key (sched_name, instance_name)
-)
-engine=innodb comment = 'µ÷¶ÈÆ÷×´Ì¬±í';
-
-alter table qrtz_scheduler_state comment 'µ÷¶ÈÆ÷×´Ì¬±í';
-
-/*==============================================================*/
-/* Table: qrtz_simple_triggers                                  */
-/*==============================================================*/
-create table qrtz_simple_triggers
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   trigger_name         varchar(200) not null comment 'qrtz_triggers±ítrigger_nameµÄÍâ¼ü',
-   trigger_group        varchar(200) not null comment 'qrtz_triggers±ítrigger_groupµÄÍâ¼ü',
-   repeat_count         bigint(7) not null comment 'ÖØ¸´µÄ´ÎÊıÍ³¼Æ',
-   repeat_interval      bigint(12) not null comment 'ÖØ¸´µÄ¼ä¸ôÊ±¼ä',
-   times_triggered      bigint(10) not null comment 'ÒÑ¾­´¥·¢µÄ´ÎÊı',
-   primary key (sched_name, trigger_name, trigger_group)
-)
-engine=innodb comment = '¼òµ¥´¥·¢Æ÷µÄĞÅÏ¢±í';
-
-alter table qrtz_simple_triggers comment '¼òµ¥´¥·¢Æ÷µÄĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: qrtz_simprop_triggers                                 */
-/*==============================================================*/
-create table qrtz_simprop_triggers
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   trigger_name         varchar(200) not null comment 'qrtz_triggers±ítrigger_nameµÄÍâ¼ü',
-   trigger_group        varchar(200) not null comment 'qrtz_triggers±ítrigger_groupµÄÍâ¼ü',
-   str_prop_1           varchar(512) comment 'StringÀàĞÍµÄtriggerµÄµÚÒ»¸ö²ÎÊı',
-   str_prop_2           varchar(512) comment 'StringÀàĞÍµÄtriggerµÄµÚ¶ş¸ö²ÎÊı',
-   str_prop_3           varchar(512) comment 'StringÀàĞÍµÄtriggerµÄµÚÈı¸ö²ÎÊı',
-   int_prop_1           int comment 'intÀàĞÍµÄtriggerµÄµÚÒ»¸ö²ÎÊı',
-   int_prop_2           int comment 'intÀàĞÍµÄtriggerµÄµÚ¶ş¸ö²ÎÊı',
-   long_prop_1          bigint comment 'longÀàĞÍµÄtriggerµÄµÚÒ»¸ö²ÎÊı',
-   long_prop_2          bigint comment 'longÀàĞÍµÄtriggerµÄµÚ¶ş¸ö²ÎÊı',
-   dec_prop_1           numeric(13,4) comment 'decimalÀàĞÍµÄtriggerµÄµÚÒ»¸ö²ÎÊı',
-   dec_prop_2           numeric(13,4) comment 'decimalÀàĞÍµÄtriggerµÄµÚ¶ş¸ö²ÎÊı',
-   bool_prop_1          varchar(1) comment 'BooleanÀàĞÍµÄtriggerµÄµÚÒ»¸ö²ÎÊı',
-   bool_prop_2          varchar(1) comment 'BooleanÀàĞÍµÄtriggerµÄµÚ¶ş¸ö²ÎÊı',
-   primary key (sched_name, trigger_name, trigger_group)
-)
-engine=innodb comment = 'Í¬²½»úÖÆµÄĞĞËø±í';
-
-alter table qrtz_simprop_triggers comment 'Í¬²½»úÖÆµÄĞĞËø±í';
-
-/*==============================================================*/
-/* Table: qrtz_triggers                                         */
-/*==============================================================*/
-create table qrtz_triggers
-(
-   sched_name           varchar(120) not null comment 'µ÷¶ÈÃû³Æ',
-   trigger_name         varchar(200) not null comment '´¥·¢Æ÷µÄÃû×Ö',
-   trigger_group        varchar(200) not null comment '´¥·¢Æ÷ËùÊô×éµÄÃû×Ö',
-   job_name             varchar(200) not null comment 'qrtz_job_details±íjob_nameµÄÍâ¼ü',
-   job_group            varchar(200) not null comment 'qrtz_job_details±íjob_groupµÄÍâ¼ü',
-   description          varchar(250) comment 'Ïà¹Ø½éÉÜ',
-   next_fire_time       bigint(13) comment 'ÉÏÒ»´Î´¥·¢Ê±¼ä£¨ºÁÃë£©',
-   prev_fire_time       bigint(13) comment 'ÏÂÒ»´Î´¥·¢Ê±¼ä£¨Ä¬ÈÏÎª-1±íÊ¾²»´¥·¢£©',
-   priority             integer comment 'ÓÅÏÈ¼¶',
-   trigger_state        varchar(16) not null comment '´¥·¢Æ÷×´Ì¬',
-   trigger_type         varchar(8) not null comment '´¥·¢Æ÷µÄÀàĞÍ',
-   start_time           bigint(13) not null comment '¿ªÊ¼Ê±¼ä',
-   end_time             bigint(13) comment '½áÊøÊ±¼ä',
-   calendar_name        varchar(200) comment 'ÈÕ³Ì±íÃû³Æ',
-   misfire_instr        smallint(2) comment '²¹³¥Ö´ĞĞµÄ²ßÂÔ',
-   job_data             blob comment '´æ·Å³Ö¾Ã»¯job¶ÔÏó',
-   primary key (sched_name, trigger_name, trigger_group)
-)
-engine=innodb comment = '´¥·¢Æ÷ÏêÏ¸ĞÅÏ¢±í';
-
-alter table qrtz_triggers comment '´¥·¢Æ÷ÏêÏ¸ĞÅÏ¢±í';
-
-/*==============================================================*/
-/* Table: t_expenses_chaim                                      */
-/*==============================================================*/
-create table t_expenses_chaim
-(
-   flowid               varchar(50) not null comment 'Á÷³ÌID',
-   flowmodelid          varchar(50) comment 'Á÷³ÌÄ£ĞÍID',
-   nodemodelid          varchar(50) comment '»·½ÚÄ£ĞÍID',
-   flowno               varchar(200) comment 'Á÷³Ìµ¥ºÅ',
-   create_userid        varchar(50) comment '´´½¨ÈËID',
-   create_username      varchar(200) comment '´´½¨ÈËÃû³Æ',
-   create_deptid        varchar(50) comment '´´½¨²¿ÃÅID',
-   create_deptname      varchar(200) comment '´´½¨²¿ÃÅÃû³Æ',
-   create_orgid         varchar(50) comment '´´½¨»ú¹¹ID',
-   create_orgname       varchar(200) comment '´´½¨»ú¹¹Ãû³Æ',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_userid        varchar(50) comment 'ĞŞ¸ÄÈËID',
-   update_username      varchar(200) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          datetime comment 'ĞŞ¸ÄÊ±¼ä',
-   ref_deptid           varchar(50) comment '¹ØÁª¹«Ë¾ID',
-   ref_projectid        varchar(50) comment 'ËùÊôÏîÄ¿ID',
-   deleted              integer default 0 comment 'ÊÇ·ñÉ¾³ı',
-   current_nodename     varchar(1000) comment 'µ±Ç°´¦Àí»·½Ú',
-   current_hander       varchar(1000) comment 'µ±Ç°´¦ÀíÈË',
-   business_status      varchar(500) comment 'ÒµÎñ×´Ì¬',
-   billnum              integer comment '¸½µ¥¾İ',
-   total_amount         decimal(18,2) comment 'ºÏ¼Æ½ğ¶î',
-   borrow_money         decimal(18,2) comment 'Ô­½è¿î',
-   spare_money          decimal(18,2) comment 'Ó¦ÍËÓà¿î',
-   pay_reason           varchar(2000) comment '¸¶¿îÔ­Òò',
-   detail_reperson      text comment '±¨Ïú¹ØÁªÈË',
-   detail_department    text comment '±¨Ïú¹ØÁª²¿ÃÅ',
-   detail_classification text comment '±¨Ïú·ÖÀà',
-   detail_date          datetime comment 'µ¥¾İÌîĞ´ÈÕÆÚ',
-   detail_deamount      int comment '±¨ÏúµÖ¿Û½ğ¶î',
-   detail_description   varchar(200) comment '±¨ÏúÃèÊö',
-   cost_attribution     text comment '·ÑÓÃ¹éÊô',
-   detail_role          text comment '±¨Ïú¹ØÁª½ÇÉ«',
-   primary key (flowid)
-);
-
-alter table t_expenses_chaim comment '·ÑÓÃ±¨Ïú¼ÇÂ¼±í';
-
-/*==============================================================*/
-/* Table: t_expenses_chaim_detail                               */
-/*==============================================================*/
-create table t_expenses_chaim_detail
-(
-   iidd                 varchar(50) not null comment 'Ö÷¼üID',
-   ref_flowid           varchar(50) comment '¹ØÁª·ÑÓÃ±¨ÏúÁ÷³ÌID',
-   purpose              varchar(200) comment 'ÓÃÍ¾',
-   catalog_info         text comment 'ËùÊô¿ÆÄ¿',
-   chaim_money          decimal(18,2) comment '±¨Ïú½ğ¶î',
-   primary key (iidd)
-);
-
-alter table t_expenses_chaim_detail comment '·ÑÓÃ±¨ÏúÃ÷Ï¸±í';
-
-alter table qrtz_blob_triggers add constraint FK_reference_4 foreign key (sched_name, trigger_name, trigger_group)
-      references qrtz_triggers (sched_name, trigger_name, trigger_group);
-
-alter table qrtz_cron_triggers add constraint FK_reference_3 foreign key (sched_name, trigger_name, trigger_group)
-      references qrtz_triggers (sched_name, trigger_name, trigger_group);
-
-alter table qrtz_simple_triggers add constraint FK_reference_2 foreign key (sched_name, trigger_name, trigger_group)
-      references qrtz_triggers (sched_name, trigger_name, trigger_group);
-
-alter table qrtz_simprop_triggers add constraint FK_reference_5 foreign key (sched_name, trigger_name, trigger_group)
-      references qrtz_triggers (sched_name, trigger_name, trigger_group);
-
-alter table qrtz_triggers add constraint FK_reference_1 foreign key (sched_name, job_name, job_group)
-      references qrtz_job_details (sched_name, job_name, job_group);
-
-
-
-INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
-                                 update_by, update_time, remark, group_name,types)
-VALUES ('9E8D879AE17C40F7AC5ED3C0B5E7FAA5', 'ÖªÊ¶È«²¿Àà±ğID', 'knowledge-all-type-id', '8E3D879AE17C40F7AC5ED3C0B5E7FAA5',
-        'Y', 'F1DD5C21715A4DA7B873AD98BC5D1494', sysdate(), NULL, NULL, NULL, 'ÖªÊ¶',0);
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for doc_t_catalog_info
+-- ----------------------------
+DROP TABLE IF EXISTS `doc_t_catalog_info`;
+CREATE TABLE `doc_t_catalog_info`  (
+  `catalog_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç›®å½•ç¼–å·',
+  `catalog_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç›®å½•åç§°',
+  `parent_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT 'çˆ¶çº§ç¼–å·',
+  `full_id` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç›®å½•å¯¼èˆªç¼–å·(æ ¼å¼:parent_id +,+ catalog_id)',
+  `classyear` int(0) NOT NULL DEFAULT 1 COMMENT 'ç›®å½•å±‚çº§',
+  `sortid` int(0) NOT NULL DEFAULT 1 COMMENT 'ç›®å½•åºå·',
+  `doc_belong_type` int(0) NOT NULL DEFAULT 2 COMMENT 'ç›®å½•å½’å±åˆ†ç±»(1-ä¸ªäºº,2-éä¸ªäºº)',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ›´æ–°äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤(0-æœªåˆ é™¤,1-å·²åˆ é™¤)',
+  PRIMARY KEY (`catalog_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ–‡æ¡£ç›®å½•ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for doc_t_document_info
+-- ----------------------------
+DROP TABLE IF EXISTS `doc_t_document_info`;
+CREATE TABLE `doc_t_document_info`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–‡æ¡£ç¼–å·',
+  `doc_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–‡æ¡£åç§°',
+  `doc_size` bigint(0) NOT NULL DEFAULT 0 COMMENT 'æ–‡æ¡£å¤§å°',
+  `doc_path` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–‡ä»¶å­˜å‚¨åœ¨minioçš„è·¯å¾„',
+  `preview_path` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¢„è§ˆPDFæ–‡ä»¶è·¯å¾„',
+  `doc_suffix` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'unknown' COMMENT 'æ–‡æ¡£åç¼€(æœ‰çš„æ–‡ä»¶æ²¡æœ‰åç¼€ï¼Œåˆ™ä½¿ç”¨unknowä½œä¸ºåŒºåˆ†)',
+  `doc_catalog_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT 'æ–‡æ¡£ç›®å½•ç¼–å·ï¼ˆæ²¡æœ‰ç›®å½•çš„é»˜è®¤ä¸º0ï¼‰',
+  `doc_belong_type` int(0) NOT NULL DEFAULT 2 COMMENT 'æ–‡æ¡£å½’å±åˆ†ç±»(1-ä¸ªäººæ–‡æ¡£,2-éä¸ªäºº)',
+  `up_user_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸Šä¼ ç”¨æˆ·ç¼–å·',
+  `up_user_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸Šä¼ ç”¨æˆ·åç§°',
+  `up_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'æ–‡æ¡£ä¸Šä¼ æ—¶é—´',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT '0:æœªåˆ é™¤ï¼Œ1:å·²åˆ é™¤',
+  `deleted_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ é™¤æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ–‡æ¡£ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for doc_t_person_recycle
+-- ----------------------------
+DROP TABLE IF EXISTS `doc_t_person_recycle`;
+CREATE TABLE `doc_t_person_recycle`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `doc_type` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT 'æ–‡ä»¶æˆ–ç›®å½•, 0:ç›®å½•,1:æ–‡ä»¶',
+  `doc_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–‡æ¡£ç¼–å·æˆ–è€…ç›®å½•ç¼–å·',
+  `deleted_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ é™¤æ—¶é—´',
+  `doc_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–‡æ¡£æˆ–ç›®å½•åç§°',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for doc_t_personal_document
+-- ----------------------------
+DROP TABLE IF EXISTS `doc_t_personal_document`;
+CREATE TABLE `doc_t_personal_document`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `doc_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–‡æ¡£ç¼–å·',
+  `deleted` int(0) NOT NULL COMMENT 'æ˜¯å¦åˆ é™¤(0-æœªåˆ é™¤,1-å·²åˆ é™¤)',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸ªäººæ–‡æ¡£ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for doc_t_shared_info
+-- ----------------------------
+DROP TABLE IF EXISTS `doc_t_shared_info`;
+CREATE TABLE `doc_t_shared_info`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `doc_iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–‡æ¡£ç¼–å·',
+  `shared_type` int(0) NOT NULL COMMENT 'å…±äº«ç±»å‹(0-ç›®å½•ï¼Œ1-æ–‡ä»¶)',
+  `batch_id` bigint(0) NOT NULL COMMENT 'å…±äº«æ‰¹æ¬¡ç¼–å·',
+  `shared_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'å…±äº«æ—¶é—´',
+  `shared_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…±äº«ç”¨æˆ·ç¼–å·',
+  `shared_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…±äº«ç”¨æˆ·åç§°',
+  `shared_receive_type` int(0) NOT NULL COMMENT 'å…±äº«æ¥æ”¶å¯¹è±¡ç±»å‹(0-è¡¨ç¤ºç”¨æˆ·,1-è¡¨ç¤ºç”¨æˆ·ç»„, 2-è¡¨ç¤ºéƒ¨é—¨)',
+  `shared_receive_object_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ï¼Œç”¨æˆ·ç»„ï¼Œéƒ¨é—¨ç¼–å·',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `root_node` int(0) NOT NULL DEFAULT 0 COMMENT '0:éæ ¹ç›®å½•,1:æ˜¯æ ¹ç›®å½•',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ–‡æ¡£åˆ†äº«ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for doc_t_shared_with_me_skip
+-- ----------------------------
+DROP TABLE IF EXISTS `doc_t_shared_with_me_skip`;
+CREATE TABLE `doc_t_shared_with_me_skip`  (
+  `iidd` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `userid` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'åˆ é™¤ç”¨æˆ·ç¼–å·',
+  `shared_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'åˆ†äº«è®°å½•çš„ä¸»é”®ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'å…±äº«ç»™æˆ‘åˆ é™¤è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_app_oper_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_app_oper_log`;
+CREATE TABLE `ff_apaas_app_oper_log`  (
+  `oper_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'æ—¥å¿—ä¸»é”®',
+  `oper_account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ“ä½œè´¦å·',
+  `oper_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ“ä½œäººå‘˜(é¡µé¢æ˜¾ç¤º)',
+  `oper_time` datetime(0) NULL DEFAULT NULL COMMENT 'æ“ä½œæ—¶é—´',
+  `belong_app` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ‰€å±åº”ç”¨',
+  `business_type` int(0) NULL DEFAULT 1 COMMENT 'ä¸šåŠ¡ç±»å‹ï¼ˆ1æ–°å¢ 2ä¿®æ”¹ 3åˆ é™¤ï¼‰',
+  `oper_channel` int(0) NULL DEFAULT 1 COMMENT 'æ“ä½œæ¸ é“ï¼ˆ1WEBç«™ç‚¹ 2å¾®ä¿¡å…¬ä¼—å· 3OPENAPIï¼‰',
+  `oper_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ“ä½œäººIP',
+  `oper_desc` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `dept_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'éƒ¨é—¨åç§°',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `app_type` int(0) NULL DEFAULT 0 COMMENT 'åº”ç”¨ç±»å‹ï¼ˆ0åŸºç¡€èµ„æ–™ 1æµç¨‹åº”ç”¨ï¼‰',
+  `log_type` int(0) NULL DEFAULT 0 COMMENT 'æ—¥å¿—ç±»å‹ï¼ˆ0æ•°æ®æ—¥å¿— 1é™„ä»¶æ—¥å¿—ï¼‰',
+  `oper_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ“ä½œæ•°æ®å†…å®¹',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å­˜å‚¨å†…å®¹',
+  PRIMARY KEY (`oper_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1025 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨æ“ä½œæ—¥å¿—è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_bulletin
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_bulletin`;
+CREATE TABLE `ff_apaas_bulletin`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹id',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹id',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹id',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººid',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨id',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„id',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººid',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸id',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®id',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `bulletin_type` tinyint(0) NOT NULL COMMENT 'å…¬å‘Šç±»å‹ (0:å…¨éƒ¨ã€1:è¿è¥å•†ã€2:å…¬æœ‰äº‘æ³¨å†Œä¼ä¸šã€3:æŒ‡å®šèŒƒå›´)',
+  `title` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å‘Šä¸»é¢˜',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å‘Šå†…å®¹',
+  `fixed_deptid` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æŒ‡å®šå…¬å¸id,å¤šä¸ªè‹±æ–‡é€—å·åˆ†éš”',
+  `deadline` datetime(0) NULL DEFAULT NULL COMMENT 'é€šçŸ¥å†…å®¹æœ‰æ•ˆæˆªè‡³æ—¶é—´',
+  `message_type` tinyint(0) NOT NULL DEFAULT 0 COMMENT 'æ¶ˆæ¯ç±»å‹(0:é¡ºåºæ¶ˆæ¯,1:å»¶è¿Ÿæ¶ˆæ¯,2:å®šæ—¶æ¶ˆæ¯)',
+  `delay_time` int(0) NULL DEFAULT NULL COMMENT 'å»¶è¿Ÿå¤šå°‘ç§’',
+  `scheduled_time` datetime(0) NULL DEFAULT NULL COMMENT 'å®šæ—¶å‘é€å…·ä½“æ—¶é—´',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å‘å¸ƒå…¬å‘Šè®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_bulletin_record
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_bulletin_record`;
+CREATE TABLE `ff_apaas_bulletin_record`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®id',
+  `bulletin_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å‘Šè¡¨id',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'éœ€è¦é€šçŸ¥çš„ç”¨æˆ·id',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·å…¬å¸id',
+  `status` tinyint(0) NOT NULL DEFAULT 0 COMMENT 'æ¶ˆæ¯çŠ¶æ€ (0:æœªè¯»,1:å·²è¯»)',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å…¬å‘Šé€šçŸ¥è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_business_api
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_business_api`;
+CREATE TABLE `ff_apaas_business_api`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¥å£åç§°',
+  `group_id` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„ç¼–å·',
+  `group_name` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„åç§°',
+  `url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è¯·æ±‚åœ°å€åç¼€(/user/login)',
+  `method` int(0) NOT NULL COMMENT 'è¯·æ±‚æ–¹æ³•(1:GET,2:POST)',
+  `sign` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦éªŒè¯ç­¾å(0: å¦, 1: æ˜¯)',
+  `context_type` int(0) NOT NULL COMMENT 'å†…å®¹ç±»å‹:(0: none, 1:application/x-www-form-urlencoded, 2: multipart/form-data, 3: application/json, 4: application/octet-stream)',
+  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¯·æ±‚å‚æ•°',
+  `response` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å“åº”å‚æ•°',
+  `sort_id` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `create_time` datetime(0) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `update_time` datetime(0) NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°äººID',
+  `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°äººåç§°',
+  `ref_app_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `ref_app_name` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨åç§°',
+  `ref_project_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `ref_dept_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'open api è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_business_api_model
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_business_api_model`;
+CREATE TABLE `ff_apaas_business_api_model`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `api_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¥å£åç§°',
+  `api_mode` int(0) NOT NULL COMMENT 'æ‰§è¡Œæ–¹å¼(1:è‡ªå®šä¹‰æ¥å£,2:ç³»ç»Ÿæ–¹æ³•)',
+  `sys_method_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç³»ç»Ÿæ–¹æ³•ID',
+  `sys_method_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç³»ç»Ÿæ–¹æ³•åç§°',
+  `api_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¥å£åœ°å€',
+  `method` int(0) NULL DEFAULT NULL COMMENT 'è¯·æ±‚æ–¹æ³•(1:GET,2:POST,3:PUT,4:DELETE)',
+  `content_type` int(0) NULL DEFAULT NULL COMMENT 'å†…å®¹ç±»å‹(1:none,2:x-www-form-urlencoded,3:json)',
+  `is_sign` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦éªŒè¯ç­¾å(0: å¦, 1: æ˜¯)',
+  `sign_mode` int(0) NULL DEFAULT NULL COMMENT 'ç­¾åæ–¹å¼(1:MD5,2:SHA1,3:SHA256,4:SHA512,5:HMAC-SHA1,6:HMAC-SHA256,7:HMAC-SHA512,8:MD5WithRSA,9:SHA1WithRSA)',
+  `secure_key` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT 'å®‰å…¨å¯†é’¥',
+  `sign_sort` int(0) NULL DEFAULT NULL COMMENT 'ç­¾åæ’åº(1:æŒ‰å‚æ•°åASCIIç ä»å°åˆ°å¤§, 2: æŒ‰å‚æ•°åASCIIç ä»å¤§åˆ°å°)',
+  `sign_convert` int(0) NULL DEFAULT NULL COMMENT 'ç­¾åå€¼è½¬æ¢(1:ç­¾åå€¼å…¨éƒ¨è½¬å¤§å†™, 2: ç­¾åå€¼å…¨éƒ¨è½¬å°å†™)',
+  `sign_add_to` int(0) NULL DEFAULT NULL COMMENT 'ç­¾åæ·»åŠ åˆ°(1:RequestURL,2:RequestHeader,3:RequestBody)',
+  `auth_type` int(0) NULL DEFAULT NULL COMMENT 'æˆæƒç±»å‹(0:No Auth,1:API  Key,2:Bearer Token,3:Basic Auth)',
+  `param_source` int(0) NULL DEFAULT NULL COMMENT 'å‚æ•°å€¼æ¥æº(0:æ‰‹åŠ¨è¾“å…¥,1:å‰ç½®è¯·æ±‚)',
+  `pre_request_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®è¯·æ±‚ID',
+  `pre_request_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®è¯·æ±‚åç§°',
+  `pre_request_val_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®è¯·æ±‚å˜é‡ID',
+  `pre_request_val_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®è¯·æ±‚å˜é‡åç§°',
+  `auth_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æˆæƒKEY',
+  `auth_value` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æˆæƒVALUE',
+  `auth_value_prefix` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æˆæƒVALUEå‰ç¼€',
+  `auth_add_to` int(0) NULL DEFAULT NULL COMMENT 'APIKEYæ·»åŠ åˆ°(1:RequestURL,2:RequestHeader,3:RequestBody)',
+  `bearer_token` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»¤ç‰Œ(BearerToken)',
+  `basicauth_uname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·å(BasicAuth)',
+  `basicauth_pwd` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¯†ç (BasicAuth)',
+  `deleted` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦åˆ é™¤(0: å¦, 1: æ˜¯)',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ›´æ–°äººID',
+  `update_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ›´æ–°äººåç§°',
+  `ref_project_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `ref_dept_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡æ¥å£æ¨¡å‹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_business_api_parameter
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_business_api_parameter`;
+CREATE TABLE `ff_apaas_business_api_parameter`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `param_class` int(0) NOT NULL COMMENT 'å‚æ•°åˆ†ç±»(1:RequestURL,2:RequestHeader,3:RequestBody)',
+  `param_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å‚æ•°å',
+  `param_title` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‚æ•°è¯´æ˜',
+  `param_type` int(0) NULL DEFAULT NULL COMMENT 'å‚æ•°ç±»å‹(1:string,2:number,3:boolean,4:array,5:object,6:objectArray,7:sublist,8:null)',
+  `required` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å¿…å¡«(0:å¦, 1:æ˜¯)',
+  `is_sign_param` int(0) NOT NULL COMMENT 'æ˜¯å¦å‚ä¸ç­¾å(0:å¦, 1:æ˜¯)',
+  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
+  `parentid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çˆ¶çº§ID',
+  `sort_id` int(0) NOT NULL COMMENT 'æ’åºå·',
+  `ref_api_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸šåŠ¡æ¥å£æ¨¡å‹ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡æ¥å£å‚æ•°è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_business_ref_app_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_business_ref_app_config`;
+CREATE TABLE `ff_apaas_business_ref_app_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `business_api_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸šåŠ¡æ¥å£ID',
+  `business_api_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸šåŠ¡æ¥å£åç§°',
+  `trigger_type` tinyint(1) NOT NULL COMMENT 'è§¦å‘ç±»å‹(1: å®šæ—¶æœåŠ¡, 2: æµç¨‹)',
+  `trigger_rule` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§¦å‘è§„åˆ™(1: æ“ä½œå®Œæˆå‰,2: æ“ä½œå®Œæˆå)',
+  `trigger_server` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§¦å‘æœåŠ¡',
+  `trigger_server_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§¦å‘æœåŠ¡åç§°',
+  `node_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚ID',
+  `node_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚åç§°',
+  `action_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŠ¨ä½œID',
+  `action_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŠ¨ä½œåç§°',
+  `remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¯´æ˜',
+  `create_time` datetime(0) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `update_time` datetime(0) NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°äººåç§°',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `flowmodelname` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹åç§°',
+  `oflowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹IDåŸå§‹å€¼',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡å…³è”åº”ç”¨é…ç½®' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_actorcond
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_actorcond`;
+CREATE TABLE `ff_apaas_es_actorcond`  (
+  `condid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `condname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¡ä»¶äººå‘˜åç§°',
+  `statement` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¡ä»¶è¯­å¥',
+  `remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
+  PRIMARY KEY (`condid`, `flowmodelid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚æ¡ä»¶äººå‘˜é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_actorextdef
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_actorextdef`;
+CREATE TABLE `ff_apaas_es_actorextdef`  (
+  `actorext_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `actorext_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰©å±•äººå‘˜åç§°',
+  `actorext_desc` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰©å±•æè¿°',
+  `assemblyname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¨‹åºç±»å',
+  `actorext_type` int(0) NOT NULL COMMENT 'æ‰©å±•ç±»å‹ 0å…¨å±€ 1é¡¹ç›®å†…',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`actorext_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹æ‰©å±•äººå‘˜é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_agent
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_agent`;
+CREATE TABLE `ff_apaas_es_agent`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `agentid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»£ç†äººç¼–å·',
+  `begintime` datetime(0) NULL DEFAULT NULL COMMENT 'å¼€å§‹æ—¶é—´',
+  `endtime` datetime(0) NULL DEFAULT NULL COMMENT 'ç»“æŸæ—¶é—´',
+  `agentstatus` int(0) NOT NULL DEFAULT 0 COMMENT 'ä»£ç†çŠ¶æ€ 0 æœªå¯ç”¨ 1å¯ç”¨',
+  `createtime` datetime(0) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å‡ºå·®æˆæƒè¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_app
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_app`;
+CREATE TABLE `ff_apaas_es_app`  (
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `appname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨åç§°',
+  `app_tablename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨è¡¨',
+  `listurl` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨åˆ—è¡¨åœ°å€',
+  `formurl` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨è¯¦æƒ…åœ°å€',
+  `subject_config` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å¾…åŠä¸»é¢˜é…ç½®',
+  `remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨æè¿°',
+  `project` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®æ ‡è®°',
+  `appcode` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨ä»£å·',
+  `source_type` int(0) NOT NULL DEFAULT 0 COMMENT 'åº”ç”¨æ¥æº 0 è‡ªå®šä¹‰ 1äºŒæ¬¡å¼€å‘',
+  `app_type` int(0) NOT NULL DEFAULT 1 COMMENT 'åº”ç”¨ç±»å‹ 0åŸºç¡€èµ„æ–™ 1æµç¨‹åº”ç”¨',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°æ—¶é—´',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'åº”ç”¨çŠ¶æ€ 0åœç”¨ 1å¯ç”¨',
+  `icon` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨å›¾æ ‡',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `show_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å±•ç¤ºæ–¹å¼ å­˜å‚¨æ–¹å¼é…ç½®JSONå­—ç¬¦ä¸²',
+  PRIMARY KEY (`appid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_app_actiontype
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_app_actiontype`;
+CREATE TABLE `ff_apaas_es_app_actiontype`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `actiontype_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ“ä½œé¡¹åç§°',
+  `actiontype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ“ä½œé¡¹',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨æ“ä½œé¡¹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_app_actiontype_default
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_app_actiontype_default`;
+CREATE TABLE `ff_apaas_es_app_actiontype_default`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `app_type` int(0) NOT NULL DEFAULT 1 COMMENT 'åº”ç”¨ç±»å‹ 0åŸºç¡€èµ„æ–™ 1æµç¨‹åº”ç”¨',
+  `actiontype_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ“ä½œé¡¹åç§°',
+  `actiontype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ“ä½œé¡¹',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é»˜è®¤åº”ç”¨æ“ä½œé¡¹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_app_organization
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_app_organization`;
+CREATE TABLE `ff_apaas_es_app_organization`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `config_info` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é…ç½®ä¿¡æ¯',
+  `trigger_mode` int(0) NOT NULL COMMENT 'è§¦å‘æ–¹å¼ 1æ–°å¢ 2 ä¿®æ”¹ 3åˆ é™¤',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°æ—¶é—´',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨è”åŠ¨ç»„ç»‡æ¶æ„è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_app_special
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_app_special`;
+CREATE TABLE `ff_apaas_es_app_special`  (
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `appname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨åç§°',
+  `app_tablename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨è¡¨',
+  `app_type` int(0) NOT NULL DEFAULT 1 COMMENT 'åº”ç”¨ç±»å‹ 0å…¨å±€åº”ç”¨ 1é¡¹ç›®åº”ç”¨',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°æ—¶é—´',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  PRIMARY KEY (`appid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç‰¹æ®Šåº”ç”¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_app_submit_limit
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_app_submit_limit`;
+CREATE TABLE `ff_apaas_es_app_submit_limit`  (
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ID',
+  `is_all_limit` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦é™åˆ¶æäº¤æ€»é‡(0å¦1æ˜¯)',
+  `all_limit_total` int(0) NULL DEFAULT NULL COMMENT 'æäº¤é™åˆ¶æ€»é‡',
+  `is_month_limit` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦é™åˆ¶æœˆæäº¤æ€»é‡(0å¦1æ˜¯)',
+  `month_limit_total` int(0) NULL DEFAULT NULL COMMENT 'æœˆæäº¤é™åˆ¶æ€»é‡',
+  `is_timing_limit` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦å®šæ—¶é™åˆ¶(0å¦1æ˜¯)',
+  `begin_time` datetime(0) NULL DEFAULT NULL COMMENT 'é™åˆ¶æäº¤èµ·å§‹æ—¶é—´',
+  `end_time` datetime(0) NULL DEFAULT NULL COMMENT 'é™åˆ¶æäº¤ç»“æŸæ—¶é—´',
+  `extention` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ‰©å±•ä¿¡æ¯',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `deleted` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦åˆ é™¤(0å¦1æ˜¯)',
+  `ref_project` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±å…¬å¸',
+  PRIMARY KEY (`appid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨æ•°æ®æäº¤é™åˆ¶è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_app_submit_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_app_submit_log`;
+CREATE TABLE `ff_apaas_es_app_submit_log`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `extention` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ‰©å±•ä¿¡æ¯',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `deleted` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦åˆ é™¤(0å¦1æ˜¯)',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±åº”ç”¨',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±å…¬å¸',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨æ•°æ®æäº¤æ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_catalog
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_catalog`;
+CREATE TABLE `ff_apaas_es_catalog`  (
+  `catalogid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç±»åˆ«ç¼–å·',
+  `fullid` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'FULLç¼–å·',
+  `catalogname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç±»åˆ«åç§°',
+  `parentid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸Šçº§åˆ†ç±»',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
+  `sortid` int(0) NULL DEFAULT NULL COMMENT 'æ’åºå€¼',
+  `classlayer` int(0) NOT NULL DEFAULT 1 COMMENT 'å±‚çº§',
+  `deleted` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦åˆ é™¤',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `special_type` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦ç‰¹æ®Šç±»åˆ« 0å¦ 1æ˜¯',
+  PRIMARY KEY (`catalogid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¸¸ç”¨ç±»åˆ«è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_f_actors
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_f_actors`;
+CREATE TABLE `ff_apaas_es_f_actors`  (
+  `faid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `actorseq` int(0) NOT NULL DEFAULT 1 COMMENT 'è§’è‰²åºå·',
+  `actortype` int(0) NOT NULL DEFAULT 10 COMMENT 'è§’è‰²ç±»åˆ« 10éƒ¨é—¨ã€20ç”¨æˆ·ã€40ç”¨æˆ·ç»„',
+  `actorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§’è‰²ç¼–å·',
+  PRIMARY KEY (`faid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹å¯åŠ¨äººå‘˜è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_f_specactor
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_f_specactor`;
+CREATE TABLE `ff_apaas_es_f_specactor`  (
+  `fspeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `actorseq` int(0) NOT NULL DEFAULT 1 COMMENT 'è§’è‰²åºå·',
+  `spectype` int(0) NOT NULL DEFAULT 0 COMMENT 'ç‰¹æ®Šæƒé™ç±»åˆ« 10ä¼ é˜…ã€20ç»ˆæ­¢ã€30åˆ é™¤ã€40å‚¬åŠã€50è°ƒåº¦ã€60æš‚åœã€70ç£åŠ',
+  `actortype` int(0) NOT NULL DEFAULT 10 COMMENT 'è§’è‰²ç±»åˆ« 10éƒ¨é—¨ã€20ç”¨æˆ·ã€40ç”¨æˆ·ç»„',
+  `actorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§’è‰²ç¼–å·',
+  PRIMARY KEY (`fspeid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç‰¹æ®Šæƒé™é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_fields
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_fields`;
+CREATE TABLE `ff_apaas_es_fields`  (
+  `fieldid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å­—æ®µç¼–å·',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”åº”ç”¨ç¼–å·',
+  `fieldname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­—æ®µåç§°',
+  `cname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸­æ–‡åç§°',
+  `dtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­—æ®µæ ¼å¼',
+  `dtypelength` int(0) NULL DEFAULT NULL COMMENT 'æ ¼å¼é•¿åº¦',
+  `dtypepre` int(0) NULL DEFAULT NULL COMMENT 'å°æ•°ä½',
+  `fieldtype` int(0) NOT NULL DEFAULT -1 COMMENT 'ä¸€çº§åˆ†ç±»',
+  `isset` int(0) NOT NULL DEFAULT 0 COMMENT 'è®¾ç½®ç±»å‹ 0æ™®é€š -1æ¡ä»¶è·¯å¾„ -2æ˜¾ç¤ºæ§åˆ¶',
+  `refid` int(0) NOT NULL DEFAULT 0 COMMENT 'äºŒçº§åˆ†ç±»',
+  `refremote` int(0) NOT NULL DEFAULT 0 COMMENT 'å…³è”èŒƒå›´ç±»å‹ 1è‡ªå®šä¹‰èŒƒå›´ 2æ•°æ®å…³è”',
+  `refvalue` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å…³è”é…ç½®å€¼',
+  `iskey` int(0) NOT NULL COMMENT 'æ’åºå€¼',
+  `ref_formid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”è¡¨å•ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `fieldname_alias` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­—æ®µåç§°åˆ«å',
+  PRIMARY KEY (`fieldid`) USING BTREE,
+  INDEX `index_es_fields_appid`(`appid`, `deleted`) USING BTREE,
+  INDEX `index_es_fields_formid`(`ref_formid`, `deleted`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨ä¿¡æ¯é¡¹' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_fields_special
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_fields_special`;
+CREATE TABLE `ff_apaas_es_fields_special`  (
+  `fieldid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å­—æ®µç¼–å·',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”åº”ç”¨ç¼–å·',
+  `fieldname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­—æ®µåç§°',
+  `cname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸­æ–‡åç§°',
+  `fieldtype` int(0) NOT NULL DEFAULT -1 COMMENT 'ä¸€çº§åˆ†ç±»',
+  `refid` int(0) NOT NULL DEFAULT 0 COMMENT 'äºŒçº§åˆ†ç±»',
+  `refvalue` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å…³è”é…ç½®å€¼',
+  `iskey` int(0) NOT NULL COMMENT 'æ’åºå€¼',
+  PRIMARY KEY (`fieldid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç‰¹æ®Šåº”ç”¨ä¿¡æ¯é¡¹' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_flow
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_flow`;
+CREATE TABLE `ff_apaas_es_flow`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `subject` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸»é¢˜',
+  `premessageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®æ¶ˆæ¯ç¼–å·',
+  `preflowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®æµç¨‹ç¼–å·',
+  `jointype` int(0) NOT NULL DEFAULT 10 COMMENT 'è¡”æ¥ç±»åˆ« 10æ™®é€šã€20è¡”æ¥ã€30åµŒå¥—',
+  `starttime` datetime(0) NULL DEFAULT NULL COMMENT 'å¯åŠ¨æ—¶é—´',
+  `endtime` datetime(0) NULL DEFAULT NULL COMMENT 'ç»“æŸæ—¶é—´',
+  `starterid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¯åŠ¨äººå‘˜ç¼–å·',
+  `expectendtime` datetime(0) NULL DEFAULT NULL COMMENT 'é¢„è®¡ç»“æŸæ—¶é—´',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'æµç¨‹çŠ¶æ€',
+  `attachment` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å­˜åœ¨é™„ä»¶',
+  `flowno` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `deleted` int(0) NOT NULL COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¯¹åº”ä¸šåŠ¡çŠ¶æ€',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `current_handerid` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äººID',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äººåç§°',
+  `current_nodeid` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚ID',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚åç§°',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹å®ä¾‹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_flowdelelog
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_flowdelelog`;
+CREATE TABLE `ff_apaas_es_flowdelelog`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `subject` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ä¸»é¢˜',
+  `remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ é™¤åŸå› ',
+  `deletedtime` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ é™¤æ—¶é—´',
+  `douserid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ é™¤äººç¼–å·',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹å®ä¾‹åˆ é™¤æ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_flowfromto
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_flowfromto`;
+CREATE TABLE `ff_apaas_es_flowfromto`  (
+  `ftid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `fflowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¼€å§‹æµç¨‹ç¼–å·',
+  `tflowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»“å°¾æµç¨‹ç¼–å·',
+  `premessageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®æ¶ˆæ¯ç¼–å·',
+  `linkmessageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¿æ¥æ¶ˆæ¯ç¼–å·',
+  `jointype` int(0) NOT NULL DEFAULT 10 COMMENT 'è¡”æ¥ç±»åˆ« 10æ™®é€šã€20è¡”æ¥ã€30åµŒå¥—',
+  PRIMARY KEY (`ftid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹å®ä¾‹é¡ºåºè¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_flowmodel
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_flowmodel`;
+CREATE TABLE `ff_apaas_es_flowmodel`  (
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `flowname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹åç§°',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ç¼–å·',
+  `preflowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰ç½®æµç¨‹æ¨¡å‹ç¼–å·',
+  `oflowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŸå§‹æµç¨‹æ¨¡å‹ç¼–å·',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'æµç¨‹çŠ¶æ€ 0æœªå¯åŠ¨ 1å¯åŠ¨',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æè¿°',
+  `totalhours` int(0) NOT NULL DEFAULT 0 COMMENT 'æ€»æ—¶é™',
+  `timeunit` int(0) NOT NULL DEFAULT 0 COMMENT 'æ—¶é™å•ä½',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `flowchart` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æµç¨‹å›¾å­—ç¬¦ä¸²',
+  `flowbusid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡æµç¨‹ç¼–å·',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `publish_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘å¸ƒäººID',
+  `publish_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘å¸ƒäºº',
+  `publish_time` datetime(0) NULL DEFAULT NULL COMMENT 'å‘å¸ƒæ—¶é—´',
+  `is_publish` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦å‘å¸ƒè¿‡',
+  `specactordata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å…¨å±€ç‰¹æ®Šæƒé™äººå‘˜é…ç½®é›†åˆ ç”¨äºå‰ç«¯é¡µé¢å±•ç¤º',
+  `unit_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ—¶æ•ˆé…ç½®JSONä¸²',
+  PRIMARY KEY (`flowmodelid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹æ¨¡å‹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_flowmodel_notice_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_flowmodel_notice_config`;
+CREATE TABLE `ff_apaas_es_flowmodel_notice_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `noticetype` int(0) NOT NULL DEFAULT 0 COMMENT 'é€šçŸ¥æ–¹å¼ 0å¾…åŠé€šçŸ¥',
+  `operattype` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ“ä½œç±»åˆ« å­˜å‚¨JSONå­—ç¬¦ä¸²[{value:10,name:\'æäº¤\'}],åå°åœ¨ä½¿ç”¨æ—¶è¿›è¡Œè§£æ',
+  `noticemethod` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥æ–¹å¼å­˜å‚¨JSONå­—ç¬¦ä¸²[{value:0,name:\'çŸ­ä¿¡\'}],åå°åœ¨ä½¿ç”¨æ—¶è¿›è¡Œè§£æ',
+  `noticeobject` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å¯¹è±¡å­˜å‚¨JSONå­—ç¬¦ä¸²[{value:0,name:\'å‘èµ·äºº\'}],åå°åœ¨ä½¿ç”¨æ—¶è¿›è¡Œè§£æ\r\n            å¦‚æœé…ç½®äº†é€šçŸ¥å¯¹è±¡ä¸ºå…¶ä»–ï¼Œåˆ™ä¼šå­˜åœ¨åµŒå¥—å­çº§å¯¹è±¡é›†åˆçš„æƒ…å†µ',
+  `noticeobject_other` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥çš„å…¶ä»–å¯¹è±¡å€¼',
+  `noticecontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å†…å®¹',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `configtype` int(0) NOT NULL DEFAULT 0 COMMENT 'é…ç½®å¯¹è±¡ 0å…¨å±€ 1ç¯èŠ‚',
+  `form_appoint` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¡¨å•æŒ‡å®š å­˜å‚¨æ ¼å¼{\"type\":200,\"list:\":[\'è¡¨å•äººå‘˜å­—æ®µç¼–ç \']} type:200 è¡¨ç¤ºäººå‘˜ 210è¡¨ç¤ºéƒ¨é—¨ 220è¡¨ç¤ºè§’è‰²',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹å¾…åŠé€šçŸ¥é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_flowmodel_visit_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_flowmodel_visit_config`;
+CREATE TABLE `ff_apaas_es_flowmodel_visit_config`  (
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `islimitcount` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦é™åˆ¶æäº¤æ€»é‡ 0å¦ 1æ˜¯',
+  `limitcount` int(0) NOT NULL DEFAULT 0 COMMENT 'é™åˆ¶æäº¤æ€»é‡',
+  `islimitmonthcount` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦é™åˆ¶æ¯æœˆæäº¤ä¸Šé™ 0å¦ 1æ˜¯',
+  `limitmonthcount` int(0) NOT NULL DEFAULT 0 COMMENT 'é™åˆ¶æ¯æœˆæäº¤æ€»é‡',
+  `islimitpersoncount` int(0) NOT NULL DEFAULT 0 COMMENT 'é™åˆ¶å•äººæäº¤æ€»æ¬¡æ•° 0å¦ 1æ˜¯',
+  `limitpersoncount` int(0) NOT NULL DEFAULT 0 COMMENT 'é™åˆ¶å•äººæäº¤æ€»é‡',
+  `islimitaddway` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦æ§åˆ¶ç”³è¯·é€šé“',
+  `limitbegintime` datetime(0) NULL DEFAULT NULL COMMENT 'å¼€å¯å¼€å§‹æ—¶é—´',
+  `limitendtime` datetime(0) NULL DEFAULT NULL COMMENT 'å¼€å¯ç»“æŸæ—¶é—´',
+  `isallowfree` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸å…å¯†ç™»å½•',
+  `allowfree_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…å¯†è®¿é—®åœ°å€',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`flowmodelid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹è®¿é—®æœºåˆ¶é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_flowpauselog
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_flowpauselog`;
+CREATE TABLE `ff_apaas_es_flowpauselog`  (
+  `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `pauserreason` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æš‚åœåŸå› ',
+  `pausetime` datetime(0) NULL DEFAULT NULL COMMENT 'æš‚åœæ—¶é—´',
+  `douserid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æš‚åœäººç¼–å·',
+  `continuetime` datetime(0) NULL DEFAULT NULL COMMENT 'ç»§ç»­æ—¶é—´',
+  `contuserid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»§ç»­äººç¼–å·',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'çŠ¶æ€',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹å®ä¾‹æš‚åœæ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_influx_result
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_influx_result`;
+CREATE TABLE `ff_apaas_es_influx_result`  (
+  `messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¶ˆæ¯ç¼–å·',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `nodeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `actionid` int(0) NOT NULL DEFAULT 1 COMMENT 'å¤„ç†åŠ¨ä½œç¼–å· 1åŒæ„ 0ä¸åŒæ„',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤„ç†äººID',
+  PRIMARY KEY (`messageid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¼šç­¾ç»“æœè®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_message
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_message`;
+CREATE TABLE `ff_apaas_es_message`  (
+  `messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¶ˆæ¯ç¼–å·',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `nodeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚ç¼–å·',
+  `messagetype` int(0) NOT NULL DEFAULT 0 COMMENT 'æ¶ˆæ¯ç±»åˆ«',
+  `receiverid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `recdeptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†éƒ¨é—¨',
+  `recorgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†æœºæ„',
+  `originid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŸå¤„ç†äºº',
+  `senderid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰å¤„ç†äºº',
+  `senderdeptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰å¤„ç†éƒ¨é—¨',
+  `senderorgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰å¤„ç†æœºæ„',
+  `sendtime` datetime(0) NULL DEFAULT NULL COMMENT 'é€è¾¾æ—¶é—´',
+  `receivetime` datetime(0) NULL DEFAULT NULL COMMENT 'æ¥æ”¶æ—¶é—´',
+  `readtime` datetime(0) NULL DEFAULT NULL COMMENT 'å·²é˜…æ—¶é—´',
+  `receivetype` int(0) NULL DEFAULT NULL COMMENT 'æ¥æ”¶ç±»åˆ«',
+  `expected` datetime(0) NULL DEFAULT NULL COMMENT 'é¢„è®¡ç»“æŸæ—¶é—´',
+  `warntime` datetime(0) NULL DEFAULT NULL COMMENT 'å“åº”ç»“æŸæ—¶é—´',
+  `recentprocesstime` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€è¿‘å¤„ç†æ—¶é—´',
+  `factors` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¥æºäººå‘˜åˆ—è¡¨',
+  `tactors` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘é€äººå‘˜åˆ—è¡¨',
+  `actortype` int(0) NOT NULL DEFAULT 0 COMMENT 'è§’è‰²ç±»åˆ«',
+  `actionid` int(0) NOT NULL DEFAULT 0 COMMENT 'å¤„ç†åŠ¨ä½œç¼–å·',
+  `receivertype` int(0) NOT NULL DEFAULT 0 COMMENT 'æœºæ„ç¯èŠ‚æ—¶æ¥æ”¶è€…ç±»åˆ«',
+  `orgrecid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœºæ„ç¯èŠ‚æ—¶æ¥æ”¶å•ä½ID',
+  `orgrecname` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœºæ„ç¯èŠ‚æ—¶æ¥æ”¶å•ä½åç§°',
+  `opinion` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŠç†æ„è§',
+  `isread` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å·²é˜…',
+  `important` int(0) NOT NULL DEFAULT 1 COMMENT 'æ¶ˆæ¯çº§åˆ« 0è¾ƒä½ã€1ä¸€èˆ¬ã€2é‡è¦',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'æ¶ˆæ¯çŠ¶æ€',
+  `prepausestatus` int(0) NOT NULL DEFAULT 0 COMMENT 'æš‚åœå‰çŠ¶æ€',
+  `timeout_before` int(0) NOT NULL DEFAULT 0 COMMENT 'è¶…æ—¶å‰æ ‡å¿—(0:éå³å°†è¶…æ—¶, 1: å³å°†è¶…æ—¶)',
+  `timeout_after` int(0) NOT NULL DEFAULT 0 COMMENT 'è¶…æ—¶åæ ‡å¿—(0:éè¶…æ—¶å, 1:è¶…æ—¶å)',
+  `shelve` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦æç½®',
+  PRIMARY KEY (`messageid`) USING BTREE,
+  INDEX `index_message_flowid`(`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹æ¶ˆæ¯è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_messagefromto
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_messagefromto`;
+CREATE TABLE `ff_apaas_es_messagefromto`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `fmessageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¼€å§‹æ¶ˆæ¯ç¼–å·',
+  `tmessageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»“å°¾æ¶ˆæ¯ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹æ¶ˆæ¯é¡ºåºè¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_messageopinion
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_messageopinion`;
+CREATE TABLE `ff_apaas_es_messageopinion`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¶ˆæ¯ç¼–å·',
+  `mpcontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å†…å®¹',
+  `updatetime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ‰©å±•æ„è§è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_msgprocess
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_msgprocess`;
+CREATE TABLE `ff_apaas_es_msgprocess`  (
+  `mpid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·åç§°',
+  `msgtype` int(0) NOT NULL COMMENT 'è¡¥å……æ„è§ç±»å‹ 0è¡¥å……æ„è§ 1æš‚åœæµç¨‹ 2æ¢å¤æµç¨‹ 3ç»ˆæ­¢æµç¨‹ 50å–æ¶ˆé‚€è¯· 60é‚€è¯·ä¼ é˜… 70é‚€è¯·ååŠ 80é‚€è¯·æ²Ÿé€š',
+  `mpcontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¡¥å……æ„è§',
+  `mptime` datetime(0) NULL DEFAULT NULL COMMENT 'è¡¥å……æ—¶é—´',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ç¼–å·',
+  `messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¶ˆæ¯ç¼–å·',
+  PRIMARY KEY (`mpid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è¡¥å……æ„è§è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_msgsupervise
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_msgsupervise`;
+CREATE TABLE `ff_apaas_es_msgsupervise`  (
+  `mpid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·åç§°',
+  `mpcontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç£åŠæ„è§',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`mpid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç£åŠæ„è§è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_msgurg_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_msgurg_log`;
+CREATE TABLE `ff_apaas_es_msgurg_log`  (
+  `mpid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·åç§°',
+  `receiverid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¢«é€šçŸ¥äººID',
+  `receivername` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¢«é€šçŸ¥äººåç§°',
+  `mpcontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å‚¬åŠå†…å®¹',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`mpid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å‚¬åŠæ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_action
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_action`;
+CREATE TABLE `ff_apaas_es_n_m_action`  (
+  `nmactionid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `actionid` int(0) NOT NULL DEFAULT 1 COMMENT 'åŠ¨ä½œID',
+  `actionname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŠ¨ä½œåç§°',
+  `isdefault` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦ç¼ºçœ',
+  `busactionid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»‘å®šä¸šåŠ¡åŠ¨ä½œç¼–å·',
+  `sync_exec` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åŒæ­¥æ‰§è¡Œ 0å¦ 1æ˜¯',
+  PRIMARY KEY (`nmactionid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚åŠ¨ä½œè¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_action_bind
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_action_bind`;
+CREATE TABLE `ff_apaas_es_n_m_action_bind`  (
+  `nmactionid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `actionid` int(0) NOT NULL DEFAULT 1 COMMENT 'åŠ¨ä½œID',
+  `bind_type` int(0) NOT NULL DEFAULT 0 COMMENT 'ç»‘å®šç±»å‹ 0æ•°æ®æ–°å¢ 1æ•°æ®ä¿®æ”¹ 2è‡ªå®šä¹‰',
+  `bind_appid` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»‘å®šåº”ç”¨ID æ ¼å¼ä¸º[é¡¹ç›®id,åº”ç”¨id]',
+  `bind_oflowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»‘å®šæµç¨‹æ¨¡å‹ID',
+  `bind_actionid` int(0) NULL DEFAULT 0 COMMENT 'ç»‘å®šèµ·è‰ç¯èŠ‚æŒ‰é’®',
+  `cond_rule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¡ä»¶è§„åˆ™',
+  `value_rule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'èµ‹å€¼è§„åˆ™',
+  `custom_identy` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è‡ªå®šä¹‰æ ‡è¯†',
+  `bind_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»‘å®šæ ‡é¢˜',
+  `sortid` int(0) NOT NULL COMMENT 'æ’åºå€¼',
+  `trigger_rule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è§¦å‘è§„åˆ™',
+  PRIMARY KEY (`nmactionid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚åŠ¨ä½œç»‘å®šå…³è”å­è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_action_influxactor
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_action_influxactor`;
+CREATE TABLE `ff_apaas_es_n_m_action_influxactor`  (
+  `nmactionid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `actionid` int(0) NOT NULL DEFAULT 1 COMMENT 'åŠ¨ä½œID',
+  `actionname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŠ¨ä½œåç§°',
+  PRIMARY KEY (`nmactionid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ä¼šç­¾ç¯èŠ‚åŠ¨ä½œè¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_actor
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_actor`;
+CREATE TABLE `ff_apaas_es_n_m_actor`  (
+  `nmactorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `actorseq` int(0) NOT NULL DEFAULT 1 COMMENT 'è§’è‰²åºå·',
+  `actorclass` int(0) NOT NULL DEFAULT 0 COMMENT 'äººå‘˜å¤„ç†ç±»åˆ« 0ä¸»åŠã€1é˜…çŸ¥/ååŠ',
+  `actortype` int(0) NOT NULL DEFAULT 10 COMMENT 'è§’è‰²ç±»åˆ« 10éƒ¨é—¨ã€20ç”¨æˆ·ã€30æ¡ä»¶äººå‘˜ã€40ç”¨æˆ·ç»„',
+  `actorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§’è‰²ç¼–å·',
+  PRIMARY KEY (`nmactorid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚äººå‘˜è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_att_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_att_config`;
+CREATE TABLE `ff_apaas_es_n_m_att_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `condrule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE,
+  UNIQUE INDEX `AK_key_flowmodel_nodemodel`(`flowmodelid`, `nodemodelid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚é™„ä»¶å¿…å¡«é…ç½®' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_field
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_field`;
+CREATE TABLE `ff_apaas_es_n_m_field`  (
+  `nmfieldid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `fieldid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”ä¿¡æ¯é¡¹ç¼–å·',
+  `fieldname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­—æ®µåç§°',
+  `cname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸­æ–‡åç§°',
+  `isvisible` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¯è§',
+  `isedit` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¯ç¼–è¾‘',
+  `isrequired` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¿…å¡«',
+  `iskey` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `subtable_config` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å­è¡¨ç‰¹æ®Šé…ç½®',
+  PRIMARY KEY (`nmfieldid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚ä¿¡æ¯é¡¹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_flow
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_flow`;
+CREATE TABLE `ff_apaas_es_n_m_flow`  (
+  `nmflowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `flowseq` int(0) NOT NULL DEFAULT 1 COMMENT 'é¡ºåºå·',
+  `linkflowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¿æ¥çš„æµç¨‹æ¨¡å‹ç¼–å·',
+  `ismaster` int(0) NOT NULL DEFAULT 1 COMMENT 'ä¸»åŠ',
+  `isreader` int(0) NOT NULL DEFAULT 0 COMMENT 'é˜…çŸ¥',
+  `isassist` int(0) NOT NULL DEFAULT 0 COMMENT 'ååŠ',
+  `trackrange` int(0) NOT NULL DEFAULT 0 COMMENT 'å­æµç¨‹è·Ÿè¸ªæƒé™',
+  `islink` int(0) NOT NULL DEFAULT 0 COMMENT 'è¿æ¥ç±»å‹ 0åµŒå¥— 1è¡”æ¥',
+  `nmflow_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é«˜çº§é…ç½® è®°å½•å‘èµ·å­æµç¨‹æ—¶ï¼Œå­—æ®µæ˜ å°„å…³ç³»ï¼Œä¸»è¦ç”¨äºåˆå§‹åŒ–èµ‹å€¼',
+  PRIMARY KEY (`nmflowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚å­æµç¨‹é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_link
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_link`;
+CREATE TABLE `ff_apaas_es_n_m_link`  (
+  `linkid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodela` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¯èŠ‚A',
+  `nodemodelb` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¯èŠ‚B',
+  `actionid` int(0) NOT NULL DEFAULT 0 COMMENT 'åŠ¨ä½œID',
+  `linkname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¿æ¥åç§°',
+  `linkrule` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¡ä»¶è§„åˆ™',
+  `remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
+  `counter` int(0) NOT NULL DEFAULT 0 COMMENT 'è¿æ¥çº¿è®¡æ•°å™¨',
+  `tipsname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æç¤ºåç§°',
+  PRIMARY KEY (`linkid`, `flowmodelid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚è¿æ¥è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_n_m_specactor
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_n_m_specactor`;
+CREATE TABLE `ff_apaas_es_n_m_specactor`  (
+  `nmspeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”ç¯èŠ‚æ¨¡å‹',
+  `actorseq` int(0) NOT NULL DEFAULT 1 COMMENT 'é¡ºåºå·',
+  `spectype` int(0) NOT NULL DEFAULT 0 COMMENT 'ç‰¹æ®Šæƒé™ç±»åˆ«',
+  `actortype` int(0) NOT NULL DEFAULT 10 COMMENT 'è§’è‰²ç±»åˆ« 10éƒ¨é—¨ã€20ç”¨æˆ·ã€40ç”¨æˆ·ç»„',
+  `actorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§’è‰²ç¼–å·',
+  PRIMARY KEY (`nmspeid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚ç‰¹æ®Šæƒé™é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_node
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_node`;
+CREATE TABLE `ff_apaas_es_node`  (
+  `nodeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¯èŠ‚ç¼–å·',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ç¼–å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ç¼–å·',
+  `nodemodeltype` int(0) NOT NULL DEFAULT 0 COMMENT 'ç¯èŠ‚æ¨¡å‹ç±»åˆ«',
+  `worktype` int(0) NOT NULL DEFAULT 0 COMMENT 'ç¯èŠ‚å·¥ä½œç±»åˆ«',
+  `starttime` datetime(0) NULL DEFAULT NULL COMMENT 'å¯åŠ¨æ—¶é—´',
+  `actionid` int(0) NOT NULL DEFAULT 0 COMMENT 'ç¯èŠ‚å‡ºå£çŠ¶æ€',
+  `expectnumber` int(0) NOT NULL DEFAULT 1 COMMENT 'ç¯èŠ‚åº”è¾¾äººæ•°(åˆæµ)',
+  `arrivednumber` int(0) NOT NULL DEFAULT 1 COMMENT 'å®é™…å·²è¾¾äººæ•°',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'ç¯èŠ‚çŠ¶æ€',
+  `prepausestatus` int(0) NOT NULL DEFAULT 0 COMMENT 'æš‚åœå‰çŠ¶æ€ä¿å­˜',
+  `statustime` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€è¿‘çŠ¶æ€å˜æ›´æ—¶é—´',
+  PRIMARY KEY (`nodeid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚å®ä¾‹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_node_temp
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_node_temp`;
+CREATE TABLE `ff_apaas_es_node_temp`  (
+  `nodeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `actionsave` int(0) NULL DEFAULT NULL COMMENT 'åŠ¨ä½œID',
+  `receiversave` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¥æ”¶äººXMLä¸²',
+  PRIMARY KEY (`nodeid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚ä¸´æ—¶è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_nodefromto
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_nodefromto`;
+CREATE TABLE `ff_apaas_es_nodefromto`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `fnodeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¼€å§‹ç¯èŠ‚ç¼–å·',
+  `tnodeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»“å°¾ç¯èŠ‚ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚é¡ºåºè¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_nodemodel
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_nodemodel`;
+CREATE TABLE `ff_apaas_es_nodemodel`  (
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ç¯èŠ‚ç¼–å·',
+  `nodebusid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç»‘å®šçš„ä¸šåŠ¡ç¯èŠ‚ç¼–å·',
+  `nodename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚åç§°',
+  `opid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ“ä½œè§†å›¾ç¼–å·',
+  `type` int(0) NOT NULL COMMENT 'ç¯èŠ‚ç±»åˆ«',
+  `pathid` int(0) NULL DEFAULT NULL COMMENT 'ç¯èŠ‚è·¯å¾„',
+  `counter` int(0) NOT NULL DEFAULT 1 COMMENT 'åˆ°è¾¾çš„ç¯èŠ‚æ•°',
+  `masternode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸»é€ç¯èŠ‚æ¨¡å‹',
+  `masterpath` int(0) NULL DEFAULT NULL COMMENT 'ä¸»é€è·¯å¾„',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æè¿°',
+  `respondhours` int(0) NOT NULL DEFAULT 0 COMMENT 'å“åº”æ—¶é™',
+  `respond_timeunit` int(0) NOT NULL DEFAULT 0 COMMENT 'å“åº”æ—¶é™å•ä½',
+  `totalhours` int(0) NOT NULL DEFAULT 0 COMMENT 'å¤„ç†æ—¶é™',
+  `timeunit` int(0) NOT NULL DEFAULT 0 COMMENT 'å¤„ç†æ—¶é™å•ä½',
+  `viewattach` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT 'é™„ä»¶æƒé™',
+  `warninghours` decimal(18, 2) NULL DEFAULT 0.00 COMMENT 'é¢„è­¦æ—¶é™',
+  `canautopass` int(0) NOT NULL DEFAULT 0 COMMENT 'èƒ½å¦è‡ªåŠ¨é€šè¿‡',
+  `cancustlimit` int(0) NOT NULL DEFAULT 0 COMMENT 'èƒ½å¦æŒ‡å®šæ—¶é™',
+  `takeover` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸äº¤æ¥',
+  `stopflow` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸ç»ˆæ­¢',
+  `canjump` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸è·³è½¬',
+  `canback` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸é€€å›',
+  `cantakeback` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸å›æ”¶',
+  `canattemper` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸è°ƒåº¦',
+  `cantransmit` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸ä¼ é˜…',
+  `cancommunic` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸æ²Ÿé€š',
+  `canbackhasdone` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸é©³å›',
+  `canassist` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸ååŠ',
+  `canfreetakeover` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å…è®¸è‡ªç”±äº¤æ¥',
+  `canshowprocess` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦æ˜¾ç¤ºå¤„ç†è¿‡ç¨‹',
+  `requiredopinion` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¿…å¡«åŠç†æ„è§',
+  `actordata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `specactordata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `business_status` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¯¹åº”ä¸šåŠ¡çŠ¶æ€',
+  `check_for_all` int(0) NULL DEFAULT 1 COMMENT 'æ˜¯å¦éœ€è¦æ‰€æœ‰äººä¼šç­¾',
+  `check_by_back` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦é€šè¿‡åå°è®¡ç®—ä¼šç­¾',
+  `chooseperson` int(0) NULL DEFAULT 1 COMMENT 'æ˜¯å¦éœ€è¦å‘èµ·äººé€‰æ‹©ä¼šç­¾äººå‘˜',
+  `relation_app` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å…³è”å·¥å•åº”ç”¨èŒƒå›´ å­˜å‚¨æ ¼å¼[{\"name\":\"åº”ç”¨åç§°\",\"value\":\"åº”ç”¨id\"}]',
+  `not_find_node_tip` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰¾ä¸åˆ°ä¸‹ä¸€ä¸ªç¯èŠ‚è·¯å¾„æç¤ºè¯­',
+  `allow_close_relation_app` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å…è®¸å…³é—­å…³è”å·¥å• 1å…è®¸ 0ä¸å…è®¸',
+  `relation_app_tip` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å·¥å•å›¾æ ‡æè¿°',
+  `auto_send` int(0) NULL DEFAULT 0 COMMENT 'åˆ†æµç¯èŠ‚æ˜¯å¦è‡ªåŠ¨å‘é€ 0å¦ 1æ˜¯',
+  `unit_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ—¶æ•ˆé…ç½®JSONä¸²',
+  `respond_unit_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å“åº”æ—¶é™é…ç½®JSONä¸²',
+  PRIMARY KEY (`flowmodelid`, `nodemodelid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹ç¯èŠ‚æ¨¡å‹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_notice_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_notice_log`;
+CREATE TABLE `ff_apaas_es_notice_log`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `noticetype_one` int(0) NOT NULL COMMENT 'é€šçŸ¥å¤§ç±» å¾…åŠã€å‚¬åŠã€è¶…æ—¶æé†’',
+  `noticetype_two` int(0) NULL DEFAULT -1 COMMENT 'é€šçŸ¥å°ç±» æ ¹æ®ä¸åŒé€šçŸ¥å¤§ç±»å¡«å……ç›¸å…³é€šçŸ¥å°ç±»ä¿¡æ¯',
+  `noticemethod` int(0) NOT NULL DEFAULT 0 COMMENT 'é€šçŸ¥æ–¹å¼',
+  `noticeobject` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é€šçŸ¥å¯¹è±¡æ ‡è¯† æ ¹æ®ä¸åŒé€šçŸ¥æ–¹å¼è®°å½•ç›¸å…³çš„å¯¹è±¡æ ‡è¯† å¦‚çŸ­ä¿¡å¯¹åº”æ‰‹æœºå·ç ',
+  `noticecontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å†…å®¹',
+  `noticeurl` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é€šçŸ¥å…³è”url',
+  `receiverid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¢«é€šçŸ¥äººID',
+  `receivername` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¢«é€šçŸ¥äººåç§°',
+  `noticetime` datetime(0) NULL DEFAULT NULL COMMENT 'é€šçŸ¥æ—¶é—´',
+  `ref_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æµç¨‹ID',
+  `ref_messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æ¶ˆæ¯ID',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  `ref_overtime_iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”è¶…æ—¶é€šçŸ¥é…ç½®è¡¨IIDD',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é€šçŸ¥æ¶ˆæ¯æ—¥å¿—è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_overtime_notice_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_overtime_notice_config`;
+CREATE TABLE `ff_apaas_es_overtime_notice_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `configtype` int(0) NOT NULL DEFAULT 0 COMMENT 'é…ç½®å¯¹è±¡ 0å…¨æµç¨‹ 1æŸä¸ªç¯èŠ‚',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ç¼–å·',
+  `noticetype` int(0) NOT NULL DEFAULT 0 COMMENT 'é€šçŸ¥æ–¹å¼ 0å“åº” 1å¤„ç†',
+  `operattype` int(0) NOT NULL DEFAULT 0 COMMENT 'æ“ä½œç±»åˆ« 0è¶…æ—¶å‰ 1è¶…æ—¶å',
+  `overtime` int(0) NOT NULL DEFAULT 0 COMMENT 'è¶…æ—¶å€¼',
+  `timeunit` int(0) NOT NULL COMMENT 'è¶…æ—¶å€¼ç±»åˆ« åˆ†é’Ÿã€å°æ—¶ã€å¤©',
+  `noticemethod` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥æ–¹å¼å­˜å‚¨JSONå­—ç¬¦ä¸²[{value:0,name:\'çŸ­ä¿¡\'}],åå°åœ¨ä½¿ç”¨æ—¶è¿›è¡Œè§£æ',
+  `noticeobject` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å¯¹è±¡å­˜å‚¨JSONå­—ç¬¦ä¸²[{value:0,name:\'å‘èµ·äºº\'}],åå°åœ¨ä½¿ç”¨æ—¶è¿›è¡Œè§£æ\r\n            å¦‚æœé…ç½®äº†é€šçŸ¥å¯¹è±¡ä¸ºå…¶ä»–ï¼Œåˆ™ä¼šå­˜åœ¨åµŒå¥—å­çº§å¯¹è±¡é›†åˆçš„æƒ…å†µ',
+  `noticeobject_other` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥çš„å…¶ä»–å¯¹è±¡å€¼',
+  `noticecontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å†…å®¹',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `form_appoint` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¡¨å•æŒ‡å®š å­˜å‚¨æ ¼å¼{\"type\":200,\"list:\":[\'è¡¨å•äººå‘˜å­—æ®µç¼–ç \']} type:200 è¡¨ç¤ºäººå‘˜ 210è¡¨ç¤ºéƒ¨é—¨ 220è¡¨ç¤ºè§’è‰²',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è¶…æ—¶é€šçŸ¥é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_receivelist
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_receivelist`;
+CREATE TABLE `ff_apaas_es_receivelist`  (
+  `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¶ˆæ¯ç¼–å·',
+  `receiveid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¥æ”¶äººç¼–å·',
+  `originid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŸæ¥æ”¶äººç¼–å·',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'çŠ¶æ€',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¾…æ¥æ”¶äººå‘˜è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_es_site_news
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_es_site_news`;
+CREATE TABLE `ff_apaas_es_site_news`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `noticetype_one` int(0) NOT NULL COMMENT 'é€šçŸ¥å¤§ç±» 0æ¶ˆæ¯æé†’ã€1æ—¶æ•ˆæé†’ç­‰',
+  `noticetype_two` int(0) NULL DEFAULT -1 COMMENT 'é€šçŸ¥å°ç±» æ ¹æ®ä¸åŒé€šçŸ¥å¤§ç±»å¡«å……ç›¸å…³é€šçŸ¥å°ç±»ä¿¡æ¯',
+  `noticecontent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å†…å®¹',
+  `notice_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é€šçŸ¥å…³è”æµç¨‹ID',
+  `notice_messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é€šçŸ¥å…³è”æ¶ˆæ¯ID',
+  `receiverid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¢«é€šçŸ¥äººID',
+  `receivername` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¢«é€šçŸ¥äººåç§°',
+  `noticetime` datetime(0) NULL DEFAULT NULL COMMENT 'é€šçŸ¥æ—¶é—´',
+  `isread` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å·²é˜… 0å¦ 1æ˜¯',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  `ref_overtime_iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`iidd`) USING BTREE,
+  INDEX `receiverid_deptid_projectid_isread_noticetype_one_noticetype_two`(`receiverid`, `ref_deptid`, `projectid`, `isread`, `noticetype_one`, `noticetype_two`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç«™å†…æ¶ˆæ¯è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_open_api
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_open_api`;
+CREATE TABLE `ff_apaas_open_api`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¥å£åç§°',
+  `group_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„ç¼–å·',
+  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„åç§°',
+  `url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è¯·æ±‚åœ°å€åç¼€(/user/login)',
+  `method` int(0) NOT NULL COMMENT 'è¯·æ±‚æ–¹æ³•(1:GET,2:POST)',
+  `context_type` int(0) NOT NULL COMMENT 'å†…å®¹ç±»å‹:(0: none, 1:application/x-www-form-urlencoded, 2: multipart/form-data, 3: application/json, 4: application/octet-stream)',
+  `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¯·æ±‚å‚æ•°',
+  `response` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å“åº”å‚æ•°',
+  `success_examples` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å“åº”æˆåŠŸç¤ºä¾‹',
+  `fail_examples` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å¤±è´¥ç¤ºä¾‹',
+  `sort_id` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `update_time` datetime(0) NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `create_person` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è´Ÿè´£äºº',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'open api è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_sys_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_sys_config`;
+CREATE TABLE `ff_apaas_sys_config`  (
+  `config_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `config_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‚æ•°åç§°',
+  `config_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‚æ•°é”®å',
+  `config_value` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‚æ•°é”®å€¼',
+  `config_type` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç³»ç»Ÿå†…ç½®(Yæ˜¯ Nå¦)',
+  `create_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºè€…',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ›´æ–°äºº',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
+  `group_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ†ç»„åç§°',
+  `ref_dept_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `types` int(0) NULL DEFAULT 1 COMMENT 'å®šæ—¶ä»»åŠ¡ç±»å‹(0:å¤–éƒ¨,1:å†…éƒ¨)',
+  PRIMARY KEY (`config_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å‚æ•°é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_sys_job
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_sys_job`;
+CREATE TABLE `ff_apaas_sys_job`  (
+  `job_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡ä¸»é”®',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡åç§°',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡ç»„å',
+  `invoke_target` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒç”¨ç›®æ ‡å­—ç¬¦ä¸²',
+  `cron_expression` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'cronæ‰§è¡Œè¡¨è¾¾å¼',
+  `misfire_policy` int(0) NOT NULL DEFAULT 3 COMMENT 'è®¡åˆ’æ‰§è¡Œé”™è¯¯ç­–ç•¥ï¼ˆ1ç«‹å³æ‰§è¡Œ 2æ‰§è¡Œä¸€æ¬¡ 3æ”¾å¼ƒæ‰§è¡Œï¼‰',
+  `concurrent` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¹¶å‘æ‰§è¡Œ(0å…è®¸ 1ç¦æ­¢)',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'çŠ¶æ€ï¼ˆ0æ­£å¸¸ 1æš‚åœï¼‰',
+  `create_by` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºè€…',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_by` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ›´æ–°è€…',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨ä¿¡æ¯',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`job_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å®šæ—¶ä»»åŠ¡è°ƒåº¦è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_sys_job_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_sys_job_log`;
+CREATE TABLE `ff_apaas_sys_job_log`  (
+  `job_log_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡åç§°',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡ç»„å',
+  `invoke_target` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒç”¨ç›®æ ‡å­—ç¬¦ä¸²',
+  `job_message` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ—¥å¿—ä¿¡æ¯',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'çŠ¶æ€(0æ­£å¸¸ 1å¤±è´¥)',
+  `exception_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å¼‚å¸¸ä¿¡æ¯',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`job_log_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å®šæ—¶ä»»åŠ¡è°ƒåº¦æ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_sys_logininfor
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_sys_logininfor`;
+CREATE TABLE `ff_apaas_sys_logininfor`  (
+  `info_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è®¿é—®ID',
+  `user_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'ç”¨æˆ·è´¦å·',
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'ç™»é™†äººåç§°',
+  `ipaddr` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'ç™»å½•IPåœ°å€',
+  `login_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'ç™»å½•åœ°ç‚¹',
+  `browser` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æµè§ˆå™¨ç±»å‹',
+  `os` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ“ä½œç³»ç»Ÿ',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT 'ç™»å½•çŠ¶æ€ï¼ˆ0æˆåŠŸ 1å¤±è´¥ï¼‰',
+  `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æç¤ºæ¶ˆæ¯',
+  `login_time` timestamp(0) NULL DEFAULT NULL COMMENT 'è®¿é—®æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`info_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç³»ç»Ÿç™»å½•æ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_sys_oper_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_sys_oper_log`;
+CREATE TABLE `ff_apaas_sys_oper_log`  (
+  `oper_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ—¥å¿—ä¸»é”®',
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ¨¡å—æ ‡é¢˜',
+  `business_type` int(0) NULL DEFAULT 0 COMMENT 'ä¸šåŠ¡ç±»å‹ï¼ˆ0å…¶å®ƒ 1æ–°å¢ 2ä¿®æ”¹ 3åˆ é™¤ï¼‰',
+  `method` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ–¹æ³•åç§°',
+  `request_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'è¯·æ±‚æ–¹å¼',
+  `operator_type` int(0) NULL DEFAULT 0 COMMENT 'æ“ä½œç±»åˆ«ï¼ˆ0å…¶å®ƒ 1åå°ç”¨æˆ· 2æ‰‹æœºç«¯ç”¨æˆ·ï¼‰',
+  `oper_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ“ä½œäººå‘˜',
+  `dept_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'éƒ¨é—¨åç§°',
+  `oper_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'è¯·æ±‚URL',
+  `oper_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'ä¸»æœºåœ°å€',
+  `oper_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'æ“ä½œåœ°ç‚¹',
+  `oper_param` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'è¯·æ±‚å‚æ•°',
+  `json_result` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¿”å›å‚æ•°',
+  `status` int(0) NULL DEFAULT 0 COMMENT 'æ“ä½œçŠ¶æ€ï¼ˆ0æ­£å¸¸ 1å¼‚å¸¸ï¼‰',
+  `error_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT 'é”™è¯¯æ¶ˆæ¯',
+  `oper_time` datetime(0) NULL DEFAULT NULL COMMENT 'æ“ä½œæ—¶é—´',
+  `method_desc` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ–¹æ³•æè¿°',
+  PRIMARY KEY (`oper_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ“ä½œæ—¥å¿—è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_api_authorization
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_api_authorization`;
+CREATE TABLE `ff_apaas_t_api_authorization`  (
+  `app_key` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'åº”ç”¨å”¯ä¸€ç¼–å·',
+  `company_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `company_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å…¬å¸åç§°',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ›å»ºæ—¶é—´',
+  `deleted` tinyint(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  PRIMARY KEY (`app_key`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'å…¬å¸è®¤è¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_api_authorization_terminal
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_api_authorization_terminal`;
+CREATE TABLE `ff_apaas_t_api_authorization_terminal`  (
+  `iidd` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `app_key` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'è®¤è¯å”¯ä¸€ç¼–å·',
+  `app_secret` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å‚æ•°ç­¾åå¯†é’¥',
+  `company_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `company_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å…¬å¸åç§°',
+  `terminal_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ç»ˆç«¯åç§°',
+  `termination_time` datetime(0) NULL DEFAULT NULL COMMENT 'æˆæƒæˆªè‡³æ—¥æœŸ: nullè¡¨ç¤ºæ°¸ä¹…',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ›å»ºæ—¶é—´',
+  `create_user_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'åˆ›å»ºäººç¼–å·',
+  `create_user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'æ›´æ–°æ—¶é—´',
+  `update_user_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'æ›´æ–°äººç¼–å·',
+  `update_user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'æ›´æ–°äººåç§°',
+  `deleted` tinyint(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤: 0:æœªåˆ é™¤,1:å·²åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'å…¬å¸è®¤è¯å¹³å°è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_batch_operate_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_batch_operate_log`;
+CREATE TABLE `ff_apaas_t_batch_operate_log`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®id',
+  `operate_type` int(0) NOT NULL DEFAULT 0 COMMENT 'æ“ä½œç±»å‹ 0åˆ é™¤ 1ä¿®æ”¹ 2äº¤æ¥',
+  `app_type` int(0) NOT NULL DEFAULT 1 COMMENT 'åº”ç”¨ç±»å‹ 0åŸºç¡€èµ„æ–™ 1æµç¨‹åº”ç”¨',
+  `operate_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ“ä½œå†…å®¹ å¯¹è±¡é›†åˆçš„JSONä¸²',
+  `delete_reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'åˆ é™¤åŸå› ',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ‰¹é‡æ“ä½œæ—¥å¿—' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_bookmark
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_bookmark`;
+CREATE TABLE `ff_apaas_t_bookmark`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `mark_type` int(0) NULL DEFAULT 0 COMMENT 'æ”¶è—ç±»å‹',
+  `mark_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ”¶è—åç§°',
+  `catalog_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±åˆ†ç±»ID',
+  `catalog_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±åˆ†ç±»åç§°',
+  `mark_url` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è·¯ç”±åœ°å€',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ”¶è—å¤¹å­˜å‚¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_bookmark_catalog
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_bookmark_catalog`;
+CREATE TABLE `ff_apaas_t_bookmark_catalog`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `catalog_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ†ç±»åç§°',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ”¶è—å¤¹åˆ†ç±»è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_business_operation_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_business_operation_log`;
+CREATE TABLE `ff_apaas_t_business_operation_log`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `operator_user_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ“ä½œäººç¼–å·',
+  `operator_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ“ä½œäººåç§°',
+  `operator_time` datetime(0) NOT NULL COMMENT 'æ“ä½œæ—¶é—´',
+  `operator_item` int(0) NOT NULL COMMENT 'æ“ä½œé¡¹,10:ç”¨æˆ·ï¼Œ20:éƒ¨é—¨ï¼Œ30:è§’è‰²,40:é¡¹ç›®ï¼Œ41ï¼šé¡¹ç›®ç®¡ç†å‘˜ï¼Œ50ï¼šåº”ç”¨ï¼Œ51ï¼šåº”ç”¨ç®¡ç†å‘˜',
+  `operator_item_desc` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ“ä½œé¡¹æè¿°',
+  `operator_action` int(0) NOT NULL COMMENT 'æ“ä½œåŠ¨ä½œï¼Œ2:æ·»åŠ , 3:ä¿®æ”¹,4:åˆ é™¤,5:æƒé™å˜æ›´,6åœç”¨,7:å¯ç”¨',
+  `operator_action_desc` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ“ä½œåŠ¨ä½œæè¿°',
+  `operator_object_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ“ä½œå¯¹è±¡ç¼–å·',
+  `operator_content_value` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ“ä½œå†…å®¹',
+  `status` int(0) NOT NULL COMMENT 'æ“ä½œçŠ¶æ€ 0ï¼šå¤±è´¥ï¼Œ1ï¼šæˆåŠŸ',
+  `ref_dept` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ‰€å±å…¬å¸',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡æ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_business_right
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_business_right`;
+CREATE TABLE `ff_apaas_t_business_right`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `business_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸šåŠ¡æ ‡å¿—',
+  `right_type_code` int(0) NOT NULL COMMENT 'æƒé™ç±»å‹ï¼ˆ0-ç®¡ç†æƒé™,1-è®¿é—®æƒé™ï¼‰',
+  `right_type_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æƒé™ç±»å‹åç§°',
+  `allot_object_type` int(0) NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç±»å‹(0-è¡¨ç¤ºç”¨æˆ·,1-è¡¨ç¤ºç”¨æˆ·ç»„,2-è¡¨ç¤ºéƒ¨é—¨)',
+  `allot_object_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç¼–å·(ç”¨æˆ·ç¼–å·,ç”¨æˆ·ç»„ç¼–å·,éƒ¨é—¨ç¼–å·)',
+  `right_item_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å•ä¸ªæƒé™é¡¹ç¼–å·',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `right_source` int(0) NOT NULL COMMENT 'æƒé™æ¥æº 0æ–‡æ¡£ç®¡ç† 1çŸ¥è¯† 2é…ç½®ç®¡ç†',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'æ›´æ–°æ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°ç”¨æˆ·ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡æƒé™è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_business_right_item
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_business_right_item`;
+CREATE TABLE `ff_apaas_t_business_right_item`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `business_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸šåŠ¡æ ‡è¯†',
+  `right_type_code` int(0) NOT NULL COMMENT 'æƒé™ç±»å‹ï¼ˆ0-ç®¡ç†æƒé™,1-è®¿é—®æƒé™ï¼‰',
+  `right_item_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æƒé™é¡¹æ ‡è¯†',
+  `right_item_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æƒé™é¡¹æ ‡è¯†åç§°',
+  `sordid` int(0) NOT NULL DEFAULT 1 COMMENT 'æ’åºå€¼',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'æ›´æ–°æ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°ç”¨æˆ·ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡æƒé™é¡¹è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_business_right_whitelist
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_business_right_whitelist`;
+CREATE TABLE `ff_apaas_t_business_right_whitelist`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `business_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸šåŠ¡æ ‡è¯†',
+  `grant_object_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡æ ‡è¯†',
+  `ip_address` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'IPåœ°å€',
+  `creater_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººç¼–å·',
+  `creater_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡æƒé™ç™½åå•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_coderule
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_coderule`;
+CREATE TABLE `ff_apaas_t_coderule`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ ‡è¯†ID',
+  `rulename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§„åˆ™åç§°',
+  `reset_typeid` int(0) NOT NULL DEFAULT 0 COMMENT 'é‡ç½®ç±»å‹ 0 æ°¸ä¸é‡ç½® 1æŒ‰æ—¥é‡ç½® 2æŒ‰æœˆé‡ç½® 3æŒ‰å¹´é‡ç½®',
+  `rule_length` int(0) NOT NULL DEFAULT 3 COMMENT 'è§„åˆ™å·é•¿åº¦',
+  `step` int(0) NOT NULL DEFAULT 1 COMMENT 'æ­¥è¿›å€¼',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å•å·ç”Ÿæˆè§„åˆ™è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_codevalue
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_codevalue`;
+CREATE TABLE `ff_apaas_t_codevalue`  (
+  `ruleid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è§„åˆ™ID',
+  `currbh` int(0) NOT NULL DEFAULT 1 COMMENT 'ç¼–å·å½“å‰æ•°å€¼',
+  `last_date` date NULL DEFAULT NULL COMMENT 'æœ€åä¸€æ¬¡ç”Ÿæˆæ—¥æœŸ',
+  PRIMARY KEY (`ruleid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å•å·ç”Ÿæˆè®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_custom_door
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_custom_door`;
+CREATE TABLE `ff_apaas_t_custom_door`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `door_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é—¨æˆ·åç§°',
+  `door_remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é—¨æˆ·æè¿°',
+  `source_type` int(0) NOT NULL DEFAULT 0 COMMENT 'é—¨æˆ·æ¥æº 0å¹³å° é—¨æˆ· 1é¡¹ç›®é—¨æˆ·',
+  `icon` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é—¨æˆ·å›¾æ ‡',
+  `configjson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é…ç½®JSONå­—ç¬¦ä¸²',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°æ—¶é—´',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `status` int(0) NOT NULL DEFAULT 1 COMMENT 'çŠ¶æ€ 0åœç”¨ 1å¯ç”¨',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è‡ªå®šä¹‰é—¨æˆ·' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_custom_door_right
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_custom_door_right`;
+CREATE TABLE `ff_apaas_t_custom_door_right`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜åç§°',
+  `ref_doorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”é—¨æˆ·ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é—¨æˆ·ç®¡ç†å‘˜æƒé™ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_custom_flowinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_custom_flowinfo`;
+CREATE TABLE `ff_apaas_t_custom_flowinfo`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `ref_formid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”è¡¨å•ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `contentjson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¡¨å•å†…å®¹',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `contentfield` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¡¨å•å­—æ®µ',
+  PRIMARY KEY (`iidd`) USING BTREE,
+  INDEX `index_custom_flowid`(`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è‡ªå®šä¹‰åº”ç”¨è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_custom_form
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_custom_form`;
+CREATE TABLE `ff_apaas_t_custom_form`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `formjson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¡¨å•é…ç½®ï¼Œè¡¨å•è®¾è®¡å­˜å‚¨JSONå­—ç¬¦ä¸²',
+  `oformid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŸå§‹è¡¨å•ID',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è‡ªå®šä¹‰è¡¨å•è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_display_column
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_display_column`;
+CREATE TABLE `ff_apaas_t_display_column`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `fieldname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­—æ®µåç§°',
+  `cname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸­æ–‡åç§°',
+  `isshow` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å±•ç¤º 0å¦ 1æ˜¯',
+  `sortid` int(0) NULL DEFAULT NULL COMMENT 'æ’åºå€¼',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±åº”ç”¨ID',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ•°æ®åˆ—è¡¨å±•ç¤ºåˆ—å­˜å‚¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_exception_record
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_exception_record`;
+CREATE TABLE `ff_apaas_t_exception_record`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `exid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¾‹å¤–è®°å½•å”¯ä¸€ç¼–ç ',
+  `task_config_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å®šåˆ¶ä»»åŠ¡é…ç½®ç¼–å·',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å®šæ—¶ä»»åŠ¡ä¾‹å¤–è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_fastopinion
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_fastopinion`;
+CREATE TABLE `ff_apaas_t_fastopinion`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `opinion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `createrid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `creater` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `addtime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¿«é€Ÿæ„è§ç®¡ç†è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_flowlink_info
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_flowlink_info`;
+CREATE TABLE `ff_apaas_t_flowlink_info`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ•°æ®ç¼–å·',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸»æµç¨‹ç¼–å·',
+  `flowno` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸»æµç¨‹å•å·',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ç¼–å·',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ç¼–å·',
+  `link_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æµç¨‹ç¼–å·',
+  `link_flowno` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æµç¨‹å•å·',
+  `link_type` int(0) NULL DEFAULT NULL COMMENT 'å…³è”ç±»å‹ (0ï¼Œå…³è”ï¼Œ1-å­æµç¨‹ä¸²è¡Œï¼Œ2å­æµç¨‹å¹¶è¡Œ)',
+  `close_mode` int(0) NULL DEFAULT NULL COMMENT 'è¿æ¥ç±»å‹ 0æ­£å¸¸ç»“æŸ 1å¼ºåˆ¶ç»“æŸ',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºç”¨æˆ·ç¼–å·',
+  `create_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºç”¨æˆ·åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'æ•°æ®åˆ›å»ºæ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµç¨‹å…³è”ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_local_method
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_local_method`;
+CREATE TABLE `ff_apaas_t_local_method`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `chinese_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–¹æ³•åŠŸèƒ½åå­—',
+  `method_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ–¹æ³•å',
+  `sort` int(0) NOT NULL DEFAULT 1 COMMENT 'æ’åºå€¼',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_dept_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `types` int(0) NOT NULL DEFAULT 1 COMMENT 'å®šæ—¶ä»»åŠ¡ç±»å‹',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æœ¬åœ°æ–¹æ³•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_login_lock
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_login_lock`;
+CREATE TABLE `ff_apaas_t_login_lock`  (
+  `login_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ç™»å½•è´¦å·',
+  `user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ç”¨æˆ·åç§°',
+  `lock_time` datetime(0) NOT NULL COMMENT 'é”å®šæ—¶é—´',
+  `account_lock_time` decimal(18, 1) NOT NULL COMMENT 'é”å®šæ—¶é•¿(å°æ—¶)',
+  `apply_unlock` tinyint(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦ç”³è¯·è§£é”(0å¦,1:æ˜¯)',
+  `expire_time` datetime(0) NOT NULL COMMENT 'å¤±æ•ˆæ—¶é—´',
+  `retry_count` int(0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`login_name`) USING BTREE,
+  UNIQUE INDEX `login_name`(`login_name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'å·²é”å®šè´¦å·æ¸…å•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_manager_app_info
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_manager_app_info`;
+CREATE TABLE `ff_apaas_t_manager_app_info`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜åç§°',
+  `loginname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•è´¦å·',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨ç®¡ç†å‘˜ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_manager_info
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_manager_info`;
+CREATE TABLE `ff_apaas_t_manager_info`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜åç§°',
+  `loginname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•è´¦å·',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é¡¹ç›®ç®¡ç†å‘˜ä¿¡æ¯è¡¨ï¼Œå¦‚æœåœ¨è¿™ä¸ªè¡¨å­˜åœ¨åˆ™è¡¨ç¤ºç”¨æˆ·å¯ä»¥æ·»åŠ é¡¹ç›®' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_mobile_app_bind
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_mobile_app_bind`;
+CREATE TABLE `ff_apaas_t_mobile_app_bind`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `cid` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸ªæ¨CID',
+  `sys_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åå°ç”¨æˆ·id',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è®°å½•ä¸ªæ¨cidä¸åå°ç”¨æˆ·ç»‘å®šå…³ç³»' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_mobile_terminal_bind
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_mobile_terminal_bind`;
+CREATE TABLE `ff_apaas_t_mobile_terminal_bind`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `source_type` int(0) NOT NULL DEFAULT 1 COMMENT 'æ¥æºç±»å‹ 1å¾®ä¿¡å…¬ä¼—å· 2å¾®ä¿¡å°ç¨‹åº 3ä¼ä¸šå¾®ä¿¡ 4é’‰é’‰',
+  `source_identy` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¥æºæ ‡è¯† å¦‚å¾®ä¿¡å…¬ä¼—å·appidï¼Œä¼ä¸šå¾®ä¿¡åº”ç”¨çš„AgentId',
+  `user_identy` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '10' COMMENT 'ç”¨æˆ·æ ‡è¯†ï¼Œå¦‚å¾®ä¿¡å…¬ä¼—å·çš„openidï¼Œä¼ä¸šå¾®ä¿¡çš„userid',
+  `sys_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åå°ç”¨æˆ·id',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç§»åŠ¨ç«¯ç»‘å®šç”¨æˆ·è®°å½•' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_mobile_terminal_user
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_mobile_terminal_user`;
+CREATE TABLE `ff_apaas_t_mobile_terminal_user`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `source_type` int(0) NOT NULL DEFAULT 1 COMMENT 'æ¥æºç±»å‹ 1å¾®ä¿¡å…¬ä¼—å· 2å¾®ä¿¡å°ç¨‹åº 3ä¼ä¸šå¾®ä¿¡ 4é’‰é’‰',
+  `source_identy` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¥æºæ ‡è¯† å¦‚å¾®ä¿¡å…¬ä¼—å·appidï¼Œä¼ä¸šå¾®ä¿¡åº”ç”¨çš„AgentId',
+  `user_identy` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '10' COMMENT 'ç”¨æˆ·æ ‡è¯†ï¼Œå¦‚å¾®ä¿¡å…¬ä¼—å·çš„openidï¼Œä¼ä¸šå¾®ä¿¡çš„userid',
+  `user_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·æ˜µç§°',
+  `sex` int(0) NOT NULL DEFAULT 0 COMMENT 'ç”¨æˆ·æ€§åˆ« 1ç”· 2å¥³ 0æœªçŸ¥',
+  `province` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çœä»½',
+  `city` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŸå¸‚',
+  `country` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å›½å®¶',
+  `headimgurl` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤´åƒ',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç§»åŠ¨ç«¯å…³æ³¨ç”¨æˆ·è®°å½•' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_notice_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_notice_log`;
+CREATE TABLE `ff_apaas_t_notice_log`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `notice_type` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥æ–¹å¼',
+  `notice_object` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å¯¹è±¡',
+  `notice_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é€šçŸ¥å†…å®¹',
+  `notice_source` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é€šçŸ¥æ¥æº(è‡ªå®šä¹‰æ ‡è¯†ç”¨äºæŸ¥è¯¢)',
+  `remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å¤‡æ³¨ä¿¡æ¯',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é€šçŸ¥æ—¥å¿—è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_notice_method
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_notice_method`;
+CREATE TABLE `ff_apaas_t_notice_method`  (
+  `method_id` int(0) NOT NULL COMMENT 'ä¸»é”®ID',
+  `method_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ–¹æ³•å',
+  `is_show` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦æ˜¾ç¤º (1ï¼šæ˜¾ç¤º,0ï¼šä¸æ˜¾ç¤º)',
+  PRIMARY KEY (`method_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é€šçŸ¥æ–¹æ³•ç§ç±»è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_notice_method_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_notice_method_config`;
+CREATE TABLE `ff_apaas_t_notice_method_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `method_id` int(0) NOT NULL COMMENT 'æ–¹æ³•id',
+  `method_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ–¹æ³•å',
+  `config_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é…ç½®JSONå¯¹è±¡',
+  `is_platform` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦ä¸ºå¹³å°é…ç½® 0å¦ 1æ˜¯',
+  `external_enable` tinyint(1) NULL DEFAULT NULL COMMENT 'å¤–éƒ¨æ˜¯å¦å¯ç”¨(0:å¦, 1: æ˜¯)',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE,
+  UNIQUE INDEX `AK_uq_method_id`(`method_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é€šçŸ¥æ–¹å¼é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_notice_method_config_wxmp
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_notice_method_config_wxmp`;
+CREATE TABLE `ff_apaas_t_notice_method_config_wxmp`  (
+  `template_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¨¡æ¿ID',
+  `template_title` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¨¡æ¿æ ‡é¢˜',
+  `content_rule` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¨¡æ¿å†…å®¹æ ¼å¼',
+  `content_format` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¨¡æ¿å†…å®¹é…ç½® JSONå­—ç¬¦ä¸²{\"aaa\":\"#XXX#\",\"bbb\":\"#å•å·#\"}',
+  `template_scene` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¨¡æ¿é€‚ç”¨åœºæ™¯[{\"name\": \"æ¶ˆæ¯æé†’>å¾…åŠæ¶ˆæ¯\",\"value\": \"0>0\"}, {\"name\": \"æ—¶æ•ˆæé†’>å“åº”è¶…æ—¶å‰\",\"value\":\"1>0\"}]',
+  PRIMARY KEY (`template_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¾®ä¿¡æ¨¡æ¿æ¶ˆæ¯é…ç½®è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_notice_method_enable
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_notice_method_enable`;
+CREATE TABLE `ff_apaas_t_notice_method_enable`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `method_id` int(0) NULL DEFAULT NULL COMMENT 'æ–¹æ³•id',
+  `method_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ–¹æ³•å',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é€šçŸ¥æ–¹å¼å¯ç”¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_online_users
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_online_users`;
+CREATE TABLE `ff_apaas_t_online_users`  (
+  `token` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'tokenç¼–å·',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·å”¯ä¸€ç¼–å·',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `login_time` datetime(0) NOT NULL COMMENT 'ç”¨æˆ·ç™»å½•æ—¶é—´',
+  `expire_time` datetime(0) NOT NULL COMMENT 'å¤±æ•ˆæ—¶é—´',
+  PRIMARY KEY (`token`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åœ¨çº¿ç”¨æˆ·' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_outer_link
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_outer_link`;
+CREATE TABLE `ff_apaas_t_outer_link`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `link_type` int(0) NOT NULL DEFAULT 0 COMMENT 'å¤–é“¾ç±»å‹ 0æ•°æ®åˆ†äº« 1æ•°æ®è¡¥å½• 2æ•°æ®æ–°å¢ 3æ•°æ®æŸ¥è¯¢',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å·¥å•ä¸»é”®ID å½“åº”ç”¨ç±»å‹ä¸ºåŸºç¡€èµ„æ–™æ—¶ï¼Œæ­¤å­—æ®µä¸ä¸ºç©ºï¼Œå€¼ä¸ºä¸šåŠ¡è¡¨è®°å½•ä¸»é”®IDå€¼',
+  `messageid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å·¥å•messageid å½“åº”ç”¨ç±»å‹ä¸ºæµç¨‹åº”ç”¨ï¼Œæ•°æ®åˆ†äº«ä¸æ•°æ®è¡¥å½•æ—¶æ­¤å­—æ®µä¸ä¸ºç©ºï¼Œå–å¯¹åº”æµç¨‹å·¥å•çš„æ¶ˆæ¯IDå€¼',
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å·¥å•flowid',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å·¥å•flowmodelid å½“åº”ç”¨ç±»å‹ä¸ºæµç¨‹åº”ç”¨ï¼Œæ•°æ®æ–°å¢æ—¶æ­¤å­—æ®µä¸ä¸ºç©ºï¼Œå–å¯¹åº”æµç¨‹æ¨¡å‹idå€¼',
+  `begin_time` datetime(0) NULL DEFAULT NULL COMMENT 'é“¾æ¥è®¿é—®å¼€å§‹æ—¶é—´ å½“ä¸ºæ•°æ®è¡¥å½•æ—¶ï¼Œé“¾æ¥è®¿é—®å¼€å§‹æ—¶é—´ã€ç»“æŸæ—¶é—´ã€è®¿é—®å¯†ç å­—æ®µéƒ½ä¸èƒ½ä¸ºç©º',
+  `end_time` datetime(0) NULL DEFAULT NULL COMMENT 'é“¾æ¥è®¿é—®ç»“æŸæ—¶é—´',
+  `visit_pwd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é“¾æ¥è®¿é—®å¯†ç ',
+  `outer_link_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤–é“¾é“¾æ¥åœ°å€',
+  PRIMARY KEY (`iidd`) USING BTREE,
+  INDEX `index_outer_link`(`link_type`, `ref_appid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨æ•°æ®å¤–é“¾è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_outer_link_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_outer_link_config`;
+CREATE TABLE `ff_apaas_t_outer_link_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `link_type` int(0) NOT NULL DEFAULT 0 COMMENT 'å¤–é“¾ç±»å‹ 0æ•°æ®åˆ†äº« 1æ•°æ®è¡¥å½• 2æ•°æ®æ–°å¢ 3æ•°æ®æŸ¥è¯¢',
+  `enabled` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦å¯ç”¨ 0å¦ 1æ˜¯',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `link_rule_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å¤–é“¾é…ç½®',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨æ•°æ®å¤–é“¾é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_password_history_tracker
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_password_history_tracker`;
+CREATE TABLE `ff_apaas_t_password_history_tracker`  (
+  `iidd` bigint(0) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ä¸»é”®ç¼–å·',
+  `userid` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `passwd` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'å†å²å¯†ç ',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ›å»ºæ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 292 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'å†å²å¯†ç è·Ÿè¸ªå™¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_password_strength
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_password_strength`;
+CREATE TABLE `ff_apaas_t_password_strength`  (
+  `rule_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ä¸»é”®ç¼–å·',
+  `pwd_strength_policy_switch` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'å¯†ç å¼ºåº¦ç­–ç•¥å¼€å…³(0:false, 1:true)',
+  `password_min_length` int(0) NULL DEFAULT NULL COMMENT 'å¯†ç æœ€å°é•¿åº¦(ä½)',
+  `password_rule` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'å¯†ç ç»„æˆè§„åˆ™(å¤§å°å†™,ç‰¹æ®Šå­—ç¬¦,æ•°å­—,0å…³é—­,1:å¼€å¯, 1,0,0)',
+  `account_lock_policy_switch` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'è´¦å·é”å®šç­–ç•¥å¼€å…³(0:false, 1:true)',
+  `password_retry_count` int(0) NULL DEFAULT NULL COMMENT 'å¯†ç è¿ç»­é”™è¯¯æ¬¡æ•°',
+  `account_lock_time` decimal(18, 1) NULL DEFAULT NULL COMMENT 'é”å®šæ—¶é•¿(å°æ—¶)',
+  `pwd_use_policy_switch` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'å¯†ç ä½¿ç”¨ç­–ç•¥å¼€å…³(0:false, 1:true)',
+  `allow_password_duplication` tinyint(1) NULL DEFAULT 1 COMMENT 'æ˜¯å¦å…è®¸å¯†ç é‡å¤',
+  `password_change_cycle` int(0) NULL DEFAULT NULL COMMENT 'å¯†ç å¼ºåˆ¶ä¿®æ”¹å‘¨æœŸ(æœˆ)',
+  `force_change_passwd_rule` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0,0' COMMENT 'å¼ºåˆ¶ä¿®æ”¹å¯†ç è§„åˆ™(ä¸æ»¡è¶³å¼ºåº¦ç­–ç•¥ã€ä½¿ç”¨å‘¨æœŸé™åˆ¶)',
+  PRIMARY KEY (`rule_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'å¯†ç ç­–ç•¥è®¾ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_platform_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_platform_config`;
+CREATE TABLE `ff_apaas_t_platform_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `platform_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¹³å°åç§°',
+  `platform_logo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å¹³å°logo å­˜å‚¨å›¾ç‰‡base64å­—ç¬¦ä¸²',
+  `favicon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç½‘ç«™Favicon å­˜å‚¨å›¾ç‰‡base64å­—ç¬¦ä¸²',
+  `language_version` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¯­è¨€ç‰ˆæœ¬',
+  `platform_color` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¹³å°ä¸»è‰² å­˜å‚¨é¢œè‰²ç¼–ç ',
+  `form_rank` int(0) NOT NULL DEFAULT 0 COMMENT 'æ ‡ç­¾å¯¹é½æ–¹å¼ 0 å·¦å¯¹é½ 1 å³å¯¹é½ 2é¡¶éƒ¨å¯¹é½',
+  `form_field_width` int(0) NOT NULL DEFAULT 0 COMMENT 'è¡¨å•å­—æ®µå®½åº¦',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `platform_small_icon` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å¹³å°å°å›¾æ ‡',
+  `home_page_style` int(0) NULL DEFAULT 0 COMMENT 'é¦–é¡µé£æ ¼ (0:ä¸Šä¸‹ç»“æ„ 1:å·¦å³ç»“æ„)',
+  `home_page_project_style` int(0) NULL DEFAULT 0 COMMENT 'é¦–é¡µé¡¹ç›®å±•ç¤ºé£æ ¼ (0:é¡¹ç›®å¹³é“º  1:åº”ç”¨å¹³é“º)',
+  `home_banner` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é¦–é¡µbannerå›¾é…ç½®',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¹³å°é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_project_info
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_project_info`;
+CREATE TABLE `ff_apaas_t_project_info`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `project_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®åç§°',
+  `remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é¡¹ç›®æè¿°',
+  `logo_url` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®LOGO',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººID',
+  `update_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'æœ€åæ›´æ–°æ—¶é—´',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  `project_status` int(0) NOT NULL DEFAULT 1 COMMENT 'é¡¹ç›®çŠ¶æ€ 0åœç”¨ 1å¯ç”¨',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºæ•°å­—',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é¡¹ç›®ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_qiyuesuo_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_qiyuesuo_config`;
+CREATE TABLE `ff_apaas_t_qiyuesuo_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `api_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¼€æ”¾å¹³å°æ¥å£åœ°å€',
+  `app_token` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'AppToken',
+  `app_secret` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'AppSecret',
+  `app_range` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æˆæƒåº”ç”¨èŒƒå›´',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `callback_secret_key` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŠ å¯†å›è°ƒä¿¡æ¯çš„SecretKey',
+  `company_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è®¤è¯å…¬å¸åç§°',
+  `admin_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜å§“å',
+  `admin_mobile` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜æ‰‹æœºå·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¥‘çº¦é”é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_qiyuesuo_contract
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_qiyuesuo_contract`;
+CREATE TABLE `ff_apaas_t_qiyuesuo_contract`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆåŒID',
+  `subject` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆåŒä¸»é¢˜',
+  `sn` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆåŒç¼–å·',
+  `status` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆåŒçŠ¶æ€',
+  `publish_time` datetime(0) NULL DEFAULT NULL COMMENT 'å‘èµ·æ—¶é—´',
+  `result_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¿”å›ç»“æœ',
+  `field_mapping` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å­—æ®µæ˜ å°„',
+  `remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å¤‡æ³¨ä¿¡æ¯',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `ref_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æµç¨‹ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¥‘çº¦é”é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_register_exporter
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_register_exporter`;
+CREATE TABLE `ff_apaas_t_register_exporter`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ³¨å†Œå…¬å¸ID',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å¯¼å‡ºæ‰§è¡Œç”¨æˆ·ID',
+  `create_time` datetime(0) NOT NULL COMMENT 'å¯¼å‡ºå¼€å§‹æ—¶é—´',
+  `completion_time` datetime(0) NOT NULL COMMENT 'å¯¼å‡ºç»“æŸæ—¶é—´',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT 'å¯¼å‡ºç»“æœ(0æˆåŠŸ,1å¤±è´¥)',
+  `export_paths` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¯¼å‡ºæ•°æ®è·¯å¾„',
+  `request_param` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è¯·æ±‚å‚æ•°',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤(0å¦,1æ˜¯)',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_relation_view_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_relation_view_config`;
+CREATE TABLE `ff_apaas_t_relation_view_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `view_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”è§†å›¾åç§°',
+  `source_app_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æºåº”ç”¨ID',
+  `source_app_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æºåº”ç”¨åç§°',
+  `target_app_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›®æ ‡åº”ç”¨ID',
+  `target_app_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›®æ ‡åº”ç”¨åç§°',
+  `rule_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å…³è”è§†å›¾è§„åˆ™é…ç½®',
+  `field_map_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å…³è”å±æ€§æ˜ å°„é…ç½®',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `sortid` int(0) NULL DEFAULT NULL COMMENT 'æ’åºå·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å…³è”è§†å›¾é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_right_app_lot
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_right_app_lot`;
+CREATE TABLE `ff_apaas_t_right_app_lot`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `actiontype` int(0) NOT NULL COMMENT 'æƒé™ç±»åˆ« 0æ•°æ®å¼•ç”¨ 1åº”ç”¨ç®¡ç†',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜åç§°',
+  `loginname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•è´¦å·',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³è”åº”ç”¨ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åº”ç”¨ç®¡ç†å‘˜æƒé™ä¿¡æ¯è¡¨ å¦‚æœåœ¨è¿™ä¸ªè¡¨å­˜åœ¨åˆ™è¡¨ç¤ºç”¨æˆ·å¯ä»¥é€‰æ‹© æˆ–è€… ç®¡ç†æŸä¸ªåº”ç”¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_right_lot
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_right_lot`;
+CREATE TABLE `ff_apaas_t_right_lot`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†å‘˜åç§°',
+  `loginname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•è´¦å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é¡¹ç›®ç®¡ç†å‘˜æƒé™ä¿¡æ¯è¡¨ å¦‚æœåœ¨è¿™è¡¨å­˜åœ¨åˆ™è¡¨ç¤ºç”¨æˆ·å¯¹äºæŸä¸ªé¡¹ç›®ä¿¡æ¯å¯ä»¥ç»´æŠ¤' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_searchcond
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_searchcond`;
+CREATE TABLE `ff_apaas_t_searchcond`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `condname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¡ä»¶åç§°',
+  `cname` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¡ä»¶è§„åˆ™ å­˜å‚¨æ¡ä»¶çš„JSONå­—ç¬¦ä¸²',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±åº”ç”¨ID',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ 1æ˜¯',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æœç´¢æ¡ä»¶å­˜å‚¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_serial_number
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_serial_number`;
+CREATE TABLE `ff_apaas_t_serial_number`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `currbh` int(0) NOT NULL DEFAULT 1 COMMENT 'ç¼–å·å½“å‰æ•°å€¼',
+  `last_date` date NULL DEFAULT NULL COMMENT 'æœ€åä¸€æ¬¡ç”Ÿæˆæ—¥æœŸ',
+  `fieldname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å­—æ®µåç§°',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ‰€å±åº”ç”¨ID',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµæ°´å·ç”Ÿæˆè®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_serial_number_coderule
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_serial_number_coderule`;
+CREATE TABLE `ff_apaas_t_serial_number_coderule`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `currbh` int(0) NOT NULL DEFAULT 1 COMMENT 'ç¼–å·å½“å‰æ•°å€¼',
+  `last_date` date NULL DEFAULT NULL COMMENT 'æœ€åä¸€æ¬¡ç”Ÿæˆæ—¥æœŸ',
+  `fieldname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å­—æ®µåç§°',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ‰€å±åº”ç”¨ID',
+  `projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµæ°´å·ç”Ÿæˆè®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_synch_field_mapping
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_synch_field_mapping`;
+CREATE TABLE `ff_apaas_t_synch_field_mapping`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `ref_synch_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åŒæ­¥è§„åˆ™é…ç½®è¡¨ä¸»é”®',
+  `source_field_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŸå§‹å­—æ®µåç§°',
+  `source_field_code` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŸå§‹å­—æ®µç¼–ç ',
+  `apaas_field_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é˜¿å‡¡æ­åº”ç”¨å­—æ®µåç§°',
+  `apaas_field_code` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é˜¿å‡¡æ­åº”ç”¨å­—æ®µç¼–ç ',
+  `is_primary_key` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦ä¸»é”®',
+  `is_update` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦æ›´æ–°',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_synch_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_synch_log`;
+CREATE TABLE `ff_apaas_t_synch_log`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `ref_synch_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åŒæ­¥è§„åˆ™é…ç½®è¡¨ä¸»é”®',
+  `success_msg` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŒæ­¥æˆåŠŸæ—¥å¿—',
+  `error_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'åŒæ­¥å¤±è´¥æ—¥å¿—',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åŒæ­¥æ—¥å¿—è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_synch_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_synch_rule`;
+CREATE TABLE `ff_apaas_t_synch_rule`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `synch_type` int(0) NOT NULL DEFAULT 0 COMMENT 'åŒæ­¥æ–¹å¼ 0ç›´è¿æ•°æ®åº“ 1è¯»å–æ–‡ä»¶ 2è¯·æ±‚æ¥å£ 3ADåŸŸ',
+  `synch_config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å¯¹åº”åŒæ­¥æ–¹å¼é…ç½®',
+  `synch_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŒæ­¥çš„åº”ç”¨ID',
+  `synch_flowmodel_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŒæ­¥çš„æµç¨‹æ¨¡å‹ID',
+  `synch_action_id` int(0) NULL DEFAULT NULL COMMENT 'åŒæ­¥æµç¨‹æ¨¡å‹èµ·è‰ç¯èŠ‚æŒ‰é’®ID',
+  `synch_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åŒæ­¥ç”¨æˆ·ID',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åŒæ­¥è§„åˆ™é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_template_config
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_template_config`;
+CREATE TABLE `ff_apaas_t_template_config`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `template_type` int(0) NOT NULL COMMENT 'ç±»å‹ï¼š1:å‘èµ·æµç¨‹ä»»åŠ¡,2:åº”ç”¨æ›´æ–°,3:åº”ç”¨æ•°æ®æ¨é€',
+  `template` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¨¡æ¿json',
+  `placeholder` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ¨¡æ¿å€¼json',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å®šæ—¶ä»»åŠ¡æ¨¡æ¿è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_time_process
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_time_process`;
+CREATE TABLE `ff_apaas_t_time_process`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–ç ',
+  `task_type` int(0) NOT NULL COMMENT '1:å®šæ—¶å‘èµ·ä»»åŠ¡2ï¼šå®šæ—¶æ›´æ–°æ•°æ® 3ï¼šå®šæ—¶æ¨é€æ•°æ®  4ï¼šå®šæ—¶ä»»åŠ¡',
+  `task_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡åç§°',
+  `execute_type` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '1:æŒ‰æµç¨‹å‘èµ·ï¼Œ2:ä»ç³»ç»Ÿé€‰æ‹©ä¸€ä¸ªä»»åŠ¡å‘èµ·ï¼Œ3ï¼šæŒ‰åº”ç”¨æ›´æ–°ï¼Œ4ï¼šä»ç³»ç»Ÿé€‰æ‹©ä¸€ä¸ªæ–¹æ³•æ›´æ–°ï¼Œ5ï¼šæŒ‰åº”ç”¨æ¨é€æ•°æ®ï¼Œ6ï¼šä»ç³»ç»Ÿé€‰æ‹©ä¸€ä¸ªæ–¹æ³•æ¨é€æ•°æ®',
+  `target_flow_model_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›®æ ‡æµç¨‹ç¼–å·',
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `invoke_target` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'fftaskçš„æ–¹æ³•å',
+  `allottype` int(0) NULL DEFAULT NULL COMMENT 'ç±»å‹ 0è¡¨ç¤ºç”¨æˆ· 1è¡¨ç¤ºç”¨æˆ·ç»„ 2è¡¨ç¤ºéƒ¨é—¨',
+  `allotobjectid` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»»åŠ¡è´£ä»»äººID',
+  `data_template_config` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¨¡æ¿ç¼–å·',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤‡æ³¨',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäºº,ç”¨äºå‘èµ·æµç¨‹',
+  `create_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_dept_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `job_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'sys_jobè¡¨ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `types` int(0) NOT NULL DEFAULT 1 COMMENT 'å®šæ—¶ä»»åŠ¡ç±»å‹',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å®šæ—¶ä»»åŠ¡é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_timing_task
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_timing_task`;
+CREATE TABLE `ff_apaas_t_timing_task`  (
+  `iidd` varchar(50) CHARACTER SET utf16le COLLATE utf16le_general_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–ç ',
+  `task_type` int(0) NOT NULL COMMENT '1ï¼šå®šæ—¶ä»»åŠ¡ 2ï¼šå®šæ—¶æ¨é€ 3ï¼šäºŒç»´ç é…ç½® 4ï¼šæ“ä½œåˆ—é…ç½®',
+  `task_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡åç§°',
+  `execute_type` int(0) NOT NULL COMMENT '1ï¼šæ­£å¸¸å‘èµ· 2ï¼šæŒ‰è¡¨å•å­—æ®µè§„åˆ™å‘èµ· 3ï¼šä»ç³»ç»Ÿé€‰æ‹©ä¸€ä¸ªä»»åŠ¡æ‰§è¡Œ 4ï¼šæ•°æ®æ–°å¢ 5ï¼šæ•°æ®æäº¤ 6ï¼šæ•°æ®æ›´æ–°',
+  `form_field_rule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¡¨å•å­—æ®µè§„åˆ™',
+  `invoke_target` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'fftaskçš„æ–¹æ³•å',
+  `tartget_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›®æ ‡é¡¹ç›®ç¼–å·',
+  `tartget_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›®æ ‡åº”ç”¨ç¼–å·',
+  `target_flow_model_id` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›®æ ‡æµç¨‹ç¼–å·',
+  `target_flow_action_id` int(0) NULL DEFAULT NULL COMMENT 'æµç¨‹åŠ¨ä½œç¼–å·',
+  `default_value_rule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é»˜è®¤å€¼è§„åˆ™',
+  `receiver_rule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ¥æ”¶äººè§„åˆ™',
+  `is_repeat` int(0) NULL DEFAULT NULL COMMENT 'æ˜¯å¦å¯é‡å¤ç”Ÿæˆ 0å¦ 1æ˜¯',
+  `job_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'sys_jobè¡¨ç¼–å·',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäºº,ç”¨äºå‘èµ·æµç¨‹',
+  `create_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` datetime(0) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `ref_dept_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ–°å®šæ—¶ä»»åŠ¡é…ç½®è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_t_user_regist
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_t_user_regist`;
+CREATE TABLE `ff_apaas_t_user_regist`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `account_type` int(0) NULL DEFAULT 1 COMMENT 'æ³¨å†Œç”¨é€” 0ä¼ä¸šè‡ªç”¨ 1å¯¹å¤–æœåŠ¡',
+  `user_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å§“å',
+  `email` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é‚®ç®±åœ°å€',
+  `mobile` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰‹æœºå·ç ',
+  `company_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼ä¸šåç§°',
+  `job_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èŒä½',
+  `belong_trade_one` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±ä¸€çº§è¡Œä¸š',
+  `belong_trade_two` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±äºŒçº§è¡Œä¸š',
+  `company_scale` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼ä¸šè§„æ¨¡',
+  `is_active` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦æ¿€æ´» 0å¦ 1æ˜¯',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”ç”¨æˆ·ID',
+  `inviter_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é‚€è¯·äººä¿¡æ¯',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç”¨æˆ·æ³¨å†Œä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_actormembers
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_actormembers`;
+CREATE TABLE `ff_apaas_ts_actormembers`  (
+  `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `actorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ç»„ç¼–å·',
+  `actortype` int(0) NOT NULL COMMENT 'æˆå‘˜ç±»åˆ«',
+  `objectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆå‘˜ç¼–å·',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç”¨æˆ·ç»„æˆå‘˜è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_actors
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_actors`;
+CREATE TABLE `ff_apaas_ts_actors`  (
+  `actorid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ç»„ç¼–å·',
+  `actorname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ç»„åç§°',
+  `actordesc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æè¿°',
+  `manager_id` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç®¡ç†å‘˜ç¼–å·',
+  `manager_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç®¡ç†å‘˜åç§°',
+  `use_area` int(0) NULL DEFAULT 0 COMMENT 'ä½¿ç”¨èŒƒå›´ 0é¡¹ç›®å†… 1å…¨å±€',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `creater_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `creater_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`actorid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç”¨æˆ·ç»„ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_business_api_group
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_business_api_group`;
+CREATE TABLE `ff_apaas_ts_business_api_group`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„ID',
+  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„åç§°',
+  `parent_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çˆ¶çº§ç¼–å·',
+  `sort_id` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `class_layer` int(0) NOT NULL DEFAULT 1 COMMENT 'æ‰€å±å±‚çº§',
+  `class_list` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å±‚çº§å­—ç¬¦ç»„',
+  `create_time` datetime(0) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `update_time` datetime(0) NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `update_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°äººID',
+  `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ›´æ–°äººåç§°',
+  `ref_project_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `ref_dept_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…¬å¸ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸šåŠ¡APIåˆ†ç»„ç®¡ç†' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_cross_project_right
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_cross_project_right`;
+CREATE TABLE `ff_apaas_ts_cross_project_right`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒç”¨æˆ·ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒç”¨æˆ·åç§°',
+  `project_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¡¹ç›®ID',
+  `project_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®åç§°',
+  `app_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'åº”ç”¨é›†åˆ å­˜å‚¨æ ¼å¼ä¸º[{value:\'åº”ç”¨id\',name:\'åº”ç”¨åç§°\'}]',
+  `sortid` int(0) NOT NULL COMMENT 'æ’åºå€¼',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è·¨é¡¹ç›®è°ƒç”¨æˆæƒè®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_dept
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_dept`;
+CREATE TABLE `ff_apaas_ts_dept`  (
+  `deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'éƒ¨é—¨ç¼–å·',
+  `fullid` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éƒ¨é—¨å…¨ç¼–å·å­—ç¬¦ä¸²',
+  `orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€åœ¨æœºæ„ç¼–å·',
+  `deptkind` int(0) NOT NULL DEFAULT 0 COMMENT 'éƒ¨é—¨æ€§è´¨',
+  `parentid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸Šçº§éƒ¨é—¨ç¼–ç ',
+  `deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éƒ¨é—¨åç§°',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `managerid` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'éƒ¨é—¨ç®¡ç†å‘˜ç¼–å·',
+  `leaderid` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'éƒ¨é—¨é¢†å¯¼ç¼–å·',
+  `description` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éƒ¨é—¨æè¿°',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ã€1æ˜¯',
+  `createid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººç¼–å·',
+  `createdate` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `updateid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººç¼–å·',
+  `updatedate` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `deptcode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éƒ¨é—¨ç¼–ç  æ­¤å­—æ®µä¸»è¦ç”¨äºåŒæ­¥ç¬¬ä¸‰æ–¹éƒ¨é—¨æ—¶ å­˜å‚¨ç¬¬ä¸‰æ–¹éƒ¨é—¨å”¯ä¸€æ ‡è¯†',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`deptid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'éƒ¨é—¨ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_menu`;
+CREATE TABLE `ff_apaas_ts_menu`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `menuname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•åç§°',
+  `menucode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ç¼–ç ',
+  `menuurl` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èœå•URL',
+  `parentiidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çˆ¶èœå•ID',
+  `classlist` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•çˆ¶IDç»„',
+  `classlayer` int(0) NOT NULL DEFAULT 1 COMMENT 'èœå•å±‚çº§',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºæ•°å­—',
+  `menutype` int(0) NOT NULL DEFAULT 0 COMMENT 'èœå•ç±»å‹ 0åˆ†ç»„ 1èœå• 2æƒé™',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤(1æ˜¯ 0å¦)',
+  `icon` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èœå•å›¾æ ‡',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'èœå•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_menu_mobile
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_menu_mobile`;
+CREATE TABLE `ff_apaas_ts_menu_mobile`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®id',
+  `menucode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èœå•ç¼–ç ',
+  `menuname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èœå•åç§°',
+  `create_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”é¡¹ç›®ID',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç§»åŠ¨ç«¯ä¸å¯å±•ç¤ºçš„èœå•' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_open_api_group
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_open_api_group`;
+CREATE TABLE `ff_apaas_ts_open_api_group`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„ID',
+  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ†ç»„åç§°',
+  `parent_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çˆ¶çº§ç¼–å·',
+  `sort_id` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `class_layer` int(0) NOT NULL DEFAULT 1 COMMENT 'æ‰€å±å±‚çº§',
+  `class_list` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å±‚çº§å­—ç¬¦ç»„',
+  `update_time` datetime(0) NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åˆ›å»ºäºº',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'openApiåˆ†ç»„ç®¡ç†' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_oprateallot
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_oprateallot`;
+CREATE TABLE `ff_apaas_ts_oprateallot`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `allottype` int(0) NOT NULL DEFAULT 0 COMMENT 'æˆæƒç±»å‹ 0è¡¨ç¤ºç”¨æˆ· 1è¡¨ç¤ºç”¨æˆ·ç»„ 2è¡¨ç¤ºéƒ¨é—¨',
+  `allotobjectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç¼–å·',
+  `menuid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ID',
+  `menucode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ç¼–ç ',
+  `actiontype` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æƒé™ç±»åˆ«',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±é¡¹ç›®ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æƒé™åˆ†é…è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_oprateallot_field
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_oprateallot_field`;
+CREATE TABLE `ff_apaas_ts_oprateallot_field`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `allottype` int(0) NOT NULL DEFAULT 0 COMMENT 'æˆæƒç±»å‹ 0è¡¨ç¤ºç”¨æˆ· 1è¡¨ç¤ºç”¨æˆ·ç»„ 2è¡¨ç¤ºéƒ¨é—¨',
+  `allotobjectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç¼–å·',
+  `menuid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ID',
+  `righttype` int(0) NOT NULL DEFAULT 0 COMMENT 'æƒé™ç±»å‹ 0æ–°å¢ã€1ç¼–è¾‘ã€2æŸ¥çœ‹ã€3åˆ—è¡¨å±•ç¤º',
+  `fieldname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å­—æ®µåç§°',
+  `isvisible` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¯è§',
+  `isedit` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¯ç¼–è¾‘',
+  `isrequired` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¿…å¡«',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±é¡¹ç›®ID',
+  `subtable_config` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å­è¡¨ç‰¹æ®Šé…ç½®',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å­—æ®µæƒé™åˆ†é…è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_oprateallot_field_user
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_oprateallot_field_user`;
+CREATE TABLE `ff_apaas_ts_oprateallot_field_user`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `allotobjectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç¼–å·',
+  `menuid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ID',
+  `righttype` int(0) NOT NULL DEFAULT 0 COMMENT 'æƒé™ç±»å‹ 0æ–°å¢ã€1ç¼–è¾‘ã€2æŸ¥çœ‹ã€3åˆ—è¡¨å±•ç¤º',
+  `fieldname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å­—æ®µåç§°',
+  `isvisible` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¯è§',
+  `isedit` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¯ç¼–è¾‘',
+  `isrequired` int(0) NOT NULL DEFAULT 1 COMMENT 'æ˜¯å¦å¿…å¡«',
+  `source_type` int(0) NOT NULL DEFAULT 0 COMMENT 'æ¥æºç±»å‹ 0è¡¨ç¤ºç”¨æˆ· 1è¡¨ç¤ºç”¨æˆ·ç»„ 2è¡¨ç¤ºéƒ¨é—¨',
+  `source_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¥æºå¯¹è±¡ç¼–å·',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±é¡¹ç›®ID',
+  `subtable_config` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å­è¡¨ç‰¹æ®Šé…ç½®',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è®¡ç®—åçš„ç”¨æˆ·å­—æ®µæƒé™åˆ†é…è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_oprateallot_rightrange
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_oprateallot_rightrange`;
+CREATE TABLE `ff_apaas_ts_oprateallot_rightrange`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `allottype` int(0) NOT NULL DEFAULT 0 COMMENT 'æˆæƒç±»å‹ 0è¡¨ç¤ºç”¨æˆ· 1è¡¨ç¤ºç”¨æˆ·ç»„ 2è¡¨ç¤ºéƒ¨é—¨',
+  `allotobjectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç¼–å·',
+  `menuid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ID',
+  `menucode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ç¼–ç ',
+  `rightrange` int(0) NOT NULL COMMENT 'æƒé™èŒƒå›´ 0å…¨å±€ 1æœ¬äººå‘èµ· 2æœ¬éƒ¨é—¨ 3ä¸‹çº§éƒ¨é—¨ 4æœ¬æœºæ„ 5ä¸‹çº§æœºæ„  6è‡ªå®šä¹‰ ',
+  `rule_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§„åˆ™åç§°',
+  `rule_config` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è§„åˆ™é…ç½®',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±é¡¹ç›®ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æƒé™æŸ¥è¯¢èŒƒå›´åˆ†é…è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_platform_manager
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_platform_manager`;
+CREATE TABLE `ff_apaas_ts_platform_manager`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒç”¨æˆ·ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒç”¨æˆ·åç§°',
+  `sortid` int(0) NOT NULL COMMENT 'æ’åºå€¼',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å¹³å°é—¨æˆ·ç®¡ç†å‘˜' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_user
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_user`;
+CREATE TABLE `ff_apaas_ts_user`  (
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `loginname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•è´¦å·',
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•å¯†ç ',
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·åç§°',
+  `sex` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ€§åˆ«',
+  `jobid` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èŒä½ç¼–å·',
+  `job` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èŒä½åç§°',
+  `edulevelid` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­¦å†ç¼–å·',
+  `edulevel` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å­¦å†',
+  `telno` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”µè¯',
+  `mobile` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰‹æœºå·ç ',
+  `email` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é‚®ç®±',
+  `head_img` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤´åƒ',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0å¦ã€1æ˜¯',
+  `agentstatus` int(0) NOT NULL DEFAULT 0 COMMENT 'ä»£ç†çŠ¶æ€',
+  `createid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººç¼–å·',
+  `createdate` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `updateid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººç¼–å·',
+  `updatedate` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `lockstatus` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦é”å®š 0å¦ã€1æ˜¯',
+  `isactive` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦æ¿€æ´» 0å¦ã€1æ˜¯',
+  `usersalt` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·å¯†ç åŠ å¯†éšæœºä¸²',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€åœ¨éƒ¨é—¨ç¼–å·',
+  `account_level` int(0) NOT NULL DEFAULT 0 COMMENT 'è´¦å·çº§åˆ« 0 æ™®é€šç”¨æˆ· 1è¶…çº§ç®¡ç†å‘˜',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `is_register_user` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦æ³¨å†Œç”¨æˆ·',
+  `user_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘˜å·¥ç¼–å· æ­¤å­—æ®µä¸»è¦ç”¨äºåŒæ­¥ç¬¬ä¸‰æ–¹è´¦å·æ—¶ å­˜å‚¨ç¬¬ä¸‰æ–¹ç”¨æˆ·å”¯ä¸€æ ‡è¯†',
+  PRIMARY KEY (`userid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç”¨æˆ·ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_user_expand
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_user_expand`;
+CREATE TABLE `ff_apaas_ts_user_expand`  (
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `loginname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•è´¦å·',
+  `signature` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ‰‹å†™ç­¾å',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `create_app_is_notice` int(0) NULL DEFAULT 0 COMMENT 'åˆ›å»ºåº”ç”¨åæ˜¯å¦æç¤º(0,éœ€è¦æç¤ºï¼Œ1ï¼Œä¸éœ€è¦æç¤º)',
+  PRIMARY KEY (`userid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç”¨æˆ·æ‹“å±•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_user_launch_new_top
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_user_launch_new_top`;
+CREATE TABLE `ff_apaas_ts_user_launch_new_top`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç”¨æˆ·ID',
+  `oflowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åŸå§‹æµç¨‹ç¼–å·',
+  `toptime` datetime(0) NOT NULL COMMENT 'ç½®é¡¶æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é¦–é¡µç”¨æˆ·å‘èµ·æ–°çš„ç½®é¡¶è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_user_oprateallot
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_user_oprateallot`;
+CREATE TABLE `ff_apaas_ts_user_oprateallot`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `allotobjectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç¼–å·',
+  `menuid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ID',
+  `menucode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ç¼–ç ',
+  `actiontype` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æƒé™ç±»åˆ«',
+  `source_type` int(0) NOT NULL DEFAULT 0 COMMENT 'æ¥æºç±»å‹ 0è¡¨ç¤ºç”¨æˆ· 1è¡¨ç¤ºç”¨æˆ·ç»„ 2è¡¨ç¤ºéƒ¨é—¨',
+  `source_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¥æºå¯¹è±¡ç¼–å·',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±é¡¹ç›®ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è®¡ç®—åçš„ç”¨æˆ·æƒé™åˆ†é…è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_user_oprateallot_rightrange
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_user_oprateallot_rightrange`;
+CREATE TABLE `ff_apaas_ts_user_oprateallot_rightrange`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `allotobjectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æˆæƒå¯¹è±¡ç¼–å·',
+  `menuid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ID',
+  `menucode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'èœå•ç¼–ç ',
+  `rightrange` int(0) NOT NULL COMMENT 'æƒé™èŒƒå›´ 0å…¨å±€ 1æœ¬äººå‘èµ· 2æœ¬éƒ¨é—¨ 3ä¸‹çº§éƒ¨é—¨ 4æœ¬æœºæ„ 5ä¸‹çº§æœºæ„  6è‡ªå®šä¹‰ ',
+  `rule_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è§„åˆ™åç§°',
+  `rule_config` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è§„åˆ™é…ç½®',
+  `source_type` int(0) NOT NULL DEFAULT 0 COMMENT 'æ¥æºç±»å‹ 0è¡¨ç¤ºç”¨æˆ· 1è¡¨ç¤ºç”¨æˆ·ç»„ 2è¡¨ç¤ºéƒ¨é—¨',
+  `source_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ¥æºå¯¹è±¡ç¼–å·',
+  `addtime` datetime(0) NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½’å±å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å½’å±é¡¹ç›®ID',
+  `ref_rangeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æƒé™èŒƒå›´åˆ†é…è¡¨id',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è®¡ç®—åçš„ç”¨æˆ·æƒé™æŸ¥è¯¢èŒƒå›´åˆ†é…è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_ts_user_temp
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_ts_user_temp`;
+CREATE TABLE `ff_apaas_ts_user_temp`  (
+  `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `batch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éšæœºä¸²',
+  `indate` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸´æ—¶ç”¨æˆ·è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_up_attachment
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_up_attachment`;
+CREATE TABLE `ff_apaas_up_attachment`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ID',
+  `filename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ–‡ä»¶åç§°',
+  `filepath` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ–‡ä»¶åœ°å€',
+  `uptime` datetime(0) NULL DEFAULT NULL COMMENT 'ä¸Šä¼ æ—¶é—´',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤(0å¦ 1æ˜¯)',
+  `deletetime` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ é™¤æ—¶é—´',
+  `deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éƒ¨é—¨ID',
+  `orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœºæ„ID',
+  `appid` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æœºæ„ID',
+  `sufname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ–‡ä»¶æ‰©å±•å',
+  `objecttype` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”ç±»å‹',
+  `objectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”ä¸»é”®ID',
+  `username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸Šä¼ äºº',
+  `deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸Šä¼ éƒ¨é—¨',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `ref_appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”åº”ç”¨id',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é™„ä»¶ä¸Šä¼ è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for ff_apaas_up_attasecurity
+-- ----------------------------
+DROP TABLE IF EXISTS `ff_apaas_up_attasecurity`;
+CREATE TABLE `ff_apaas_up_attasecurity`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `appid` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç³»ç»ŸID',
+  `appsecurity` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç§˜é’¥',
+  `loginname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç™»å½•åç§°',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'é™„ä»¶æƒé™è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_equ
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_equ`;
+CREATE TABLE `itsm_t_change_equ`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `equ_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ID',
+  `change_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å˜æ›´æµç¨‹ID',
+  `equ_catalog` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±ç±»åˆ«',
+  `equ_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§åç§°',
+  `cino` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'CIç¼–å·',
+  `rolea` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è´£ä»»äººAè§’',
+  `roleb` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è´£ä»»äººBè§’',
+  `repair_begintime` datetime(0) NULL DEFAULT NULL COMMENT 'ç»´ä¿å¼€å§‹æ—¶é—´',
+  `repair_endtime` datetime(0) NULL DEFAULT NULL COMMENT 'ç»´ä¿æˆªæ­¢æ—¶é—´',
+  `online_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¸Šçº¿æ—¶é—´',
+  `down_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¸‹çº¿æ—¶é—´',
+  `equ_level` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ç­‰çº§',
+  `equ_status` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§çŠ¶æ€',
+  `remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'èµ„äº§æè¿°',
+  `change_remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å˜æ›´å¤‡æ³¨',
+  `addtime` datetime(0) NULL DEFAULT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å˜æ›´å…³è”èµ„äº§è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_network
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_network`;
+CREATE TABLE `itsm_t_change_network`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„å',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  `current_nodename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `change_time` datetime(0) NULL DEFAULT NULL COMMENT 'å˜æ›´æ—¶é—´',
+  `equ_info` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç³»ç»Ÿä¿¡æ¯',
+  `change_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å˜æ›´å†…å®¹',
+  `impl_user` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å®æ–½äººå‘˜',
+  `impl_time` datetime(0) NULL DEFAULT NULL COMMENT 'å®æ–½æ—¶é—´',
+  `impl_remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å®æ–½è¯´æ˜',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç½‘ç»œå˜æ›´å·¥å•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_normal
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_normal`;
+CREATE TABLE `itsm_t_change_normal`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„å',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  `current_nodename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `change_time` datetime(0) NULL DEFAULT NULL COMMENT 'å˜æ›´æ—¶é—´',
+  `online_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æŠ•äº§ç±»å‹',
+  `change_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å˜æ›´å†…å®¹',
+  `change_reson` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç´§æ€¥å˜æ›´åŸå› ',
+  `operational_step` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ“ä½œæ­¥éª¤',
+  `risk_assessment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é£é™©è¯„ä¼°',
+  `emergency_plan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'åº”æ€¥å›é€€æ–¹æ¡ˆ',
+  `test_result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æµ‹è¯•ç»“æœ',
+  `implement_result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å®æ–½ç»“æœ',
+  `dev_fileid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶ID',
+  `dev_filename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶åç§°',
+  `uat_fileid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶ID',
+  `uat_filename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶åç§°',
+  `dev_remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶è¿”å›ç»“æœ',
+  `uat_remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶è¿”å›ç»“æœ',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ­£å¸¸å˜æ›´å·¥å•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_offline
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_offline`;
+CREATE TABLE `itsm_t_change_offline`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„å',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  `current_nodename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `offline_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¸‹çº¿æ—¶é—´',
+  `offline_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ä¸‹çº¿è¯´æ˜',
+  `operational_step` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ“ä½œæ­¥éª¤',
+  `risk_assessment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é£é™©è¯„ä¼°',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸‹çº¿å˜æ›´å·¥å•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_online
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_online`;
+CREATE TABLE `itsm_t_change_online`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„å',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  `current_nodename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `equ_info` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç³»ç»Ÿä¿¡æ¯',
+  `online_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¸Šçº¿æ—¶é—´',
+  `online_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ä¸Šçº¿å†…å®¹',
+  `test_user` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµ‹è¯•äººå‘˜',
+  `test_result` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµ‹è¯•ç»“æœ',
+  `test_remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æµ‹è¯•è¯´æ˜',
+  `dev_fileid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶ID',
+  `dev_filename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶åç§°',
+  `uat_fileid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶ID',
+  `uat_filename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶åç§°',
+  `dev_remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶è¿”å›ç»“æœ',
+  `uat_remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶è¿”å›ç»“æœ',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä¸Šçº¿å˜æ›´å·¥å•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_operation
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_operation`;
+CREATE TABLE `itsm_t_change_operation`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `change_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å˜æ›´æµç¨‹ID',
+  `equ_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ID',
+  `equ_catalog` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å˜æ›´å¯¹è±¡',
+  `equ_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§åç§°',
+  `sortid` int(0) NOT NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `operation_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å˜æ›´æ“ä½œ',
+  `step_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å˜æ›´æ­¥éª¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å˜æ›´æ“ä½œä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_relation
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_relation`;
+CREATE TABLE `itsm_t_change_relation`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `change_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å˜æ›´æµç¨‹ID',
+  `rel_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éœ€æ±‚æµç¨‹ID',
+  `rel_flowmodel_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éœ€æ±‚æµç¨‹åç§°',
+  `rel_flowno` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éœ€æ±‚æµç¨‹å•å·',
+  `rel_flowsubject` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éœ€æ±‚æµç¨‹ä¸»é¢˜',
+  `rel_startuser` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'éœ€æ±‚ç™»è®°äºº',
+  `rel_addtime` datetime(0) NULL DEFAULT NULL COMMENT 'éœ€æ±‚ç™»è®°æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å˜æ›´å…³è”éœ€æ±‚è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_server
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_server`;
+CREATE TABLE `itsm_t_change_server`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„å',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  `current_nodename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `change_time` datetime(0) NULL DEFAULT NULL COMMENT 'å˜æ›´æ—¶é—´',
+  `equ_info` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç³»ç»Ÿä¿¡æ¯',
+  `change_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å˜æ›´å†…å®¹',
+  `impl_user` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å®æ–½äººå‘˜',
+  `impl_time` datetime(0) NULL DEFAULT NULL COMMENT 'å®æ–½æ—¶é—´',
+  `impl_remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å®æ–½è¯´æ˜',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æœåŠ¡å™¨å˜æ›´å·¥å•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_change_urgent
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_change_urgent`;
+CREATE TABLE `itsm_t_change_urgent`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„å',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  `current_nodename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `change_time` datetime(0) NULL DEFAULT NULL COMMENT 'å˜æ›´æ—¶é—´',
+  `change_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å˜æ›´å†…å®¹',
+  `change_reson` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç´§æ€¥å˜æ›´åŸå› ',
+  `operational_step` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ“ä½œæ­¥éª¤',
+  `risk_assessment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'é£é™©è¯„ä¼°',
+  `emergency_plan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'åº”æ€¥å›é€€æ–¹æ¡ˆ',
+  `test_result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æµ‹è¯•ç»“æœ',
+  `implement_result` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å®æ–½ç»“æœ',
+  `dev_fileid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶ID',
+  `dev_filename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶åç§°',
+  `uat_fileid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶ID',
+  `uat_filename` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶åç§°',
+  `dev_remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®è®¾è®¡æ–‡ä»¶è¿”å›ç»“æœ',
+  `uat_remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…ƒæ•°æ®æŠ•äº§æ–‡ä»¶è¿”å›ç»“æœ',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç´§æ€¥å˜æ›´å·¥å•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_firewall
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_firewall`;
+CREATE TABLE `itsm_t_firewall`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `facility_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è®¾æ–½åç§°',
+  `facility_use_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½æŠ•äº§æ—¥æœŸ',
+  `facility_ownership_agency` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(æ—¥ç…§é“¶è¡Œè‚¡ä»½æœ‰é™å…¬å¸; æµå®é«˜æ–°æ‘é•‡è‚¡ä»½æœ‰é™å…¬å¸)',
+  `facility_update_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½ä¿¡æ¯æ›´æ–°æ—¥æœŸ',
+  `asset_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ç¼–ç ',
+  `asset_serial_number` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'äº§å“åºåˆ—å·',
+  `asset_value` decimal(10, 2) NULL DEFAULT NULL COMMENT 'èµ„äº§ä»·å€¼',
+  `device_height` int(0) NULL DEFAULT NULL COMMENT 'è®¾å¤‡é«˜åº¦',
+  `management_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†IPåœ°å€',
+  `influence_system` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½±å“ç³»ç»Ÿ',
+  `network_security_capability` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤šé€‰(00ï¼šIPSec; 01ï¼šMACSec; 02ï¼šL2TP; 03ï¼šSSLVPN; 99ï¼šå…¶å®ƒ)',
+  `number_of_cards` float NULL DEFAULT NULL COMMENT 'æ¿å¡æ•°é‡',
+  `security_function` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤šé€‰(00-ä¸‰å±‚æ§åˆ¶; 01-å››å±‚æ§åˆ¶; 02-ä¸ƒå±‚æ§åˆ¶; 99-å…¶å®ƒ)',
+  `bypass_function` int(0) NULL DEFAULT NULL COMMENT 'bypassåŠŸèƒ½',
+  `handling_capacity` float NULL DEFAULT NULL COMMENT 'ååé‡',
+  `maximum_number` int(0) NULL DEFAULT NULL COMMENT 'æœ€å¤§å¹¶å‘è¿æ¥æ•°',
+  `maximum_new_connection_rate` float NULL DEFAULT NULL COMMENT 'æœ€å¤§æ–°å»ºè¿æ¥é€Ÿç‡',
+  `deployment_mode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-è·¯ç”±æ–¹å¼; 01-ç½‘æ¡¥æ–¹å¼; 02-æ—è·¯æ–¹å¼; 03-æ··åˆæ–¹å¼ï¼ˆè·¯ç”±æ–¹å¼+ç½‘æ¡¥æ–¹å¼ï¼‰)',
+  `deploy_gallery` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼åº§',
+  `deploy_floor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼å±‚',
+  `deploy_area` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ä¸»æœºæˆ¿-æœåŠ¡å™¨åŒº; 01-ä¸»æœºæˆ¿-ç½‘ç»œåŒº; 02-ä¸»æœºæˆ¿-å­˜å‚¨åŒº; 03-ä¸»æœºæˆ¿-å…¶å®ƒåŒº; 99-å…¶å®ƒ)',
+  `operation_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `administrative_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `slot_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ§½ä½å·',
+  `log_location` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-æœ¬åœ°å­˜å‚¨; 01-æ—¥å¿—æœåŠ¡å™¨å­˜å‚¨; 99-å…¶å®ƒ)\r\n            ',
+  `storage_period` float NULL DEFAULT NULL COMMENT 'å­˜å‚¨å‘¨æœŸ(å¤©)',
+  `_idcrack` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(	CMDBæ¨¡å‹é€‰æ‹©-åŒºåŸŸ)',
+  `area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æœºæŸœ)',
+  `idc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æ•°æ®ä¸­å¿ƒ)',
+  `vendorinformation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¾›åº”å•†é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-å‚å•†ä¿¡æ¯)',
+  `network_equipment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç½‘ç»œè®¾å¤‡ä¸Šæ¶ä¸»è¡¨ç¼–å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_ids_ips
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_ids_ips`;
+CREATE TABLE `itsm_t_ids_ips`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `facility_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è®¾æ–½åç§°',
+  `facility_use_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½æŠ•äº§æ—¥æœŸ',
+  `facility_ownership_agency` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(æ—¥ç…§é“¶è¡Œè‚¡ä»½æœ‰é™å…¬å¸; æµå®é«˜æ–°æ‘é•‡è‚¡ä»½æœ‰é™å…¬å¸)',
+  `facility_update_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½ä¿¡æ¯æ›´æ–°æ—¥æœŸ',
+  `asset_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ç¼–ç ',
+  `asset_serial_number` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'äº§å“åºåˆ—å·',
+  `asset_value` decimal(10, 2) NULL DEFAULT NULL COMMENT 'èµ„äº§ä»·å€¼',
+  `device_height` int(0) NULL DEFAULT NULL COMMENT 'è®¾å¤‡é«˜åº¦',
+  `management_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†IPåœ°å€',
+  `influence_system` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½±å“ç³»ç»Ÿ',
+  `network_security_capability` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤šé€‰(00ï¼šIPSec; 01ï¼šMACSec; 02ï¼šL2TP; 03ï¼šSSLVPN; 99ï¼šå…¶å®ƒ)',
+  `selling_license` int(0) NULL DEFAULT NULL COMMENT 'å®‰å…¨é”€å”®è®¸å¯',
+  `safetydeployment_mode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00ï¼šæ—è·¯; 01ï¼šä¸²è”-è·¯ç”±æ¨¡å¼; 02ï¼šä¸²è”-ç½‘æ¡¥æ¨¡å¼; 03ï¼šä¸²è”-æ··åˆæ¨¡å¼; 04ï¼šç›´æ¥æ¥å…¥ç½‘ç»œ; 99ï¼šå…¶å®ƒ)',
+  `throughput_rate` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00ï¼šå°äºç­‰äº100Mbps; 01ï¼šå¤§äº100Mbpså°äºç­‰äº1Gbps; 02ï¼šå¤§äº1Gbpså°äºç­‰äº10Gbps; 99ï¼šå…¶å®ƒ)',
+  `category_of_equipment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00ï¼šIDS; 01ï¼šIPS; 99ï¼šå…¶å®ƒ)',
+  `bypass_function` int(0) NULL DEFAULT NULL COMMENT 'å¸ƒå°”å‹(0:true,1:fase)',
+  `deploy_gallery` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼åº§',
+  `deploy_floor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼å±‚',
+  `deploy_area` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ä¸»æœºæˆ¿-æœåŠ¡å™¨åŒº; 01-ä¸»æœºæˆ¿-ç½‘ç»œåŒº; 02-ä¸»æœºæˆ¿-å­˜å‚¨åŒº; 03-ä¸»æœºæˆ¿-å…¶å®ƒåŒº; 99-å…¶å®ƒ)',
+  `operation_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `administrative_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `slot_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ§½ä½å·',
+  `data_location` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-æœ¬åœ°å­˜å‚¨; 01-æ—¥å¿—æœåŠ¡å™¨å­˜å‚¨; 99-å…¶å®ƒ)\r\n            ',
+  `storage_period` float NULL DEFAULT NULL COMMENT 'å­˜å‚¨å‘¨æœŸ(å¤©)',
+  `_idcrack` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(	CMDBæ¨¡å‹é€‰æ‹©-åŒºåŸŸ)',
+  `area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æœºæŸœ)',
+  `idc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æ•°æ®ä¸­å¿ƒ)',
+  `vendorinformation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¾›åº”å•†é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-å‚å•†ä¿¡æ¯)',
+  `network_equipment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç½‘ç»œè®¾å¤‡ä¸Šæ¶ä¸»è¡¨ç¼–å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_ids_load_balancing
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_ids_load_balancing`;
+CREATE TABLE `itsm_t_ids_load_balancing`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `facility_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è®¾æ–½åç§°',
+  `facility_use_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½æŠ•äº§æ—¥æœŸ',
+  `facility_ownership_agency` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(æ—¥ç…§é“¶è¡Œè‚¡ä»½æœ‰é™å…¬å¸; æµå®é«˜æ–°æ‘é•‡è‚¡ä»½æœ‰é™å…¬å¸)',
+  `facility_update_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½ä¿¡æ¯æ›´æ–°æ—¥æœŸ',
+  `asset_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ç¼–ç ',
+  `asset_serial_number` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'äº§å“åºåˆ—å·',
+  `asset_value` decimal(10, 2) NULL DEFAULT NULL COMMENT 'èµ„äº§ä»·å€¼',
+  `device_height` int(0) NULL DEFAULT NULL COMMENT 'è®¾å¤‡é«˜åº¦',
+  `management_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†IPåœ°å€',
+  `influence_system` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½±å“ç³»ç»Ÿ',
+  `network_security_capability` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤šé€‰(00ï¼šIPSec; 01ï¼šMACSec; 02ï¼šL2TP; 03ï¼šSSLVPN; 99ï¼šå…¶å®ƒ)',
+  `number_of_cards` float NULL DEFAULT NULL COMMENT 'æ¿å¡æ•°é‡',
+  `safetydeployment_mode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-è·¯ç”±æ–¹å¼; 01-ç½‘æ¡¥æ–¹å¼; 02-æ—è·¯æ–¹å¼; 03-æ··åˆæ–¹å¼ï¼ˆè·¯ç”±æ–¹å¼+ç½‘æ¡¥æ–¹å¼ï¼‰)',
+  `handling_capacity` float NULL DEFAULT NULL COMMENT 'ååé‡',
+  `maximum_number` int(0) NULL DEFAULT NULL COMMENT 'æœ€å¤§å¹¶å‘è¿æ¥æ•°',
+  `maximum_new_connection_rate` float NULL DEFAULT NULL COMMENT 'æœ€å¤§æ–°å»ºè¿æ¥é€Ÿç‡',
+  `deploy_gallery` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼åº§',
+  `deploy_floor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼å±‚',
+  `deploy_area` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ä¸»æœºæˆ¿-æœåŠ¡å™¨åŒº; 01-ä¸»æœºæˆ¿-ç½‘ç»œåŒº; 02-ä¸»æœºæˆ¿-å­˜å‚¨åŒº; 03-ä¸»æœºæˆ¿-å…¶å®ƒåŒº; 99-å…¶å®ƒ)',
+  `operation_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `administrative_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `slot_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ§½ä½å·',
+  `ipv6_basic_protocol` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'IPv6åŸºç¡€åè®®',
+  `_idcrack` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(	CMDBæ¨¡å‹é€‰æ‹©-åŒºåŸŸ)',
+  `area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æœºæŸœ)',
+  `idc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æ•°æ®ä¸­å¿ƒ)',
+  `vendorinformation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¾›åº”å•†é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-å‚å•†ä¿¡æ¯)',
+  `network_equipment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç½‘ç»œè®¾å¤‡ä¸Šæ¶ä¸»è¡¨ç¼–å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_leave_process
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_leave_process`;
+CREATE TABLE `itsm_t_leave_process`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `current_nodename` varchar(1000) CHARACTER SET utf16le COLLATE utf16le_general_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `vacationer` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼‘å‡äºº',
+  `commencement_data` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼‘å‡å¼€å§‹æ—¥æœŸ',
+  `end_data` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼‘å‡ç»“æŸæ—¥æœŸ',
+  `total_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼‘å‡æ€»å¤©æ•°',
+  `deduct_vacation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰£é™¤å»å¹´å¹´ä¼‘å‡å¤©æ•°',
+  `deduction_leave` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‰©ä½™è¯¥æ‰£é™¤ä¼‘å‡å¤©æ•°',
+  `verification_instruction` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼‘å‡æ ¡éªŒè¯´æ˜',
+  `vacation_reason` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¼‘å‡ç†ç”±è¯´æ˜',
+  `process_topic` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹ä¸»é¢˜',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_network_equipment
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_network_equipment`;
+CREATE TABLE `itsm_t_network_equipment`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(è·¯ç”±å™¨ï¼›äº¤æ¢æœºï¼›é˜²ç«å¢™ï¼›å…¥ä¾µæ£€æµ‹ä¸é˜²å¾¡è®¾å¤‡ï¼›è´Ÿè½½å‡è¡¡è®¾å¤‡)',
+  `environment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(æµ‹è¯•ï¼›å‡†ç”Ÿäº§ï¼›ç”Ÿäº§ï¼›äº’è”ç½‘)',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_router
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_router`;
+CREATE TABLE `itsm_t_router`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `facility_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è®¾æ–½åç§°',
+  `facility_use_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½æŠ•äº§æ—¥æœŸ',
+  `facility_ownership_agency` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(æ—¥ç…§é“¶è¡Œè‚¡ä»½æœ‰é™å…¬å¸; æµå®é«˜æ–°æ‘é•‡è‚¡ä»½æœ‰é™å…¬å¸)',
+  `facility_update_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½ä¿¡æ¯æ›´æ–°æ—¥æœŸ',
+  `asset_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ç¼–ç ',
+  `asset_serial_number` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'äº§å“åºåˆ—å·',
+  `asset_value` decimal(10, 2) NULL DEFAULT NULL COMMENT 'èµ„äº§ä»·å€¼',
+  `device_height` int(0) NULL DEFAULT NULL COMMENT 'è®¾å¤‡é«˜åº¦',
+  `management_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†IPåœ°å€',
+  `influence_system` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½±å“ç³»ç»Ÿ',
+  `network_security_capability` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤šé€‰(00ï¼šIPSec; 01ï¼šMACSec; 02ï¼šL2TP; 03ï¼šSSLVPN; 99ï¼šå…¶å®ƒ)',
+  `number_of_cards` float NULL DEFAULT NULL COMMENT 'æ¿å¡æ•°é‡',
+  `deploy_gallery` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼åº§',
+  `deploy_floor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼å±‚',
+  `deploy_area` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ä¸»æœºæˆ¿-æœåŠ¡å™¨åŒº; 01-ä¸»æœºæˆ¿-ç½‘ç»œåŒº; 02-ä¸»æœºæˆ¿-å­˜å‚¨åŒº; 03-ä¸»æœºæˆ¿-å…¶å®ƒåŒº; 99-å…¶å®ƒ)',
+  `operation_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `administrative_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `slot_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ§½ä½å·',
+  `ipv6_basic_protocol` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'IPv6åŸºç¡€åè®®',
+  `_idcrack` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(	CMDBæ¨¡å‹é€‰æ‹©-åŒºåŸŸ)',
+  `area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æœºæŸœ)',
+  `idc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æ•°æ®ä¸­å¿ƒ)',
+  `vendorinformation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¾›åº”å•†é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-å‚å•†ä¿¡æ¯)',
+  `network_equipment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç½‘ç»œè®¾å¤‡ä¸Šæ¶ä¸»è¡¨ç¼–å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for itsm_t_switches
+-- ----------------------------
+DROP TABLE IF EXISTS `itsm_t_switches`;
+CREATE TABLE `itsm_t_switches`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `facility_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è®¾æ–½åç§°',
+  `facility_use_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½æŠ•äº§æ—¥æœŸ',
+  `facility_ownership_agency` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(æ—¥ç…§é“¶è¡Œè‚¡ä»½æœ‰é™å…¬å¸; æµå®é«˜æ–°æ‘é•‡è‚¡ä»½æœ‰é™å…¬å¸)',
+  `facility_update_date` datetime(0) NULL DEFAULT NULL COMMENT 'è®¾æ–½ä¿¡æ¯æ›´æ–°æ—¥æœŸ',
+  `asset_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§ç¼–ç ',
+  `asset_serial_number` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'äº§å“åºåˆ—å·',
+  `asset_value` decimal(10, 2) NULL DEFAULT NULL COMMENT 'èµ„äº§ä»·å€¼',
+  `device_height` int(0) NULL DEFAULT NULL COMMENT 'è®¾å¤‡é«˜åº¦',
+  `management_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç®¡ç†IPåœ°å€',
+  `influence_system` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½±å“ç³»ç»Ÿ',
+  `network_security_capability` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å¤šé€‰(00ï¼šIPSec; 01ï¼šMACSec; 02ï¼šL2TP; 03ï¼šSSLVPN; 99ï¼šå…¶å®ƒ)',
+  `number_of_cards` float NULL DEFAULT NULL COMMENT 'æ¿å¡æ•°é‡',
+  `deploy_gallery` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼åº§',
+  `deploy_floor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±æ¥¼å±‚',
+  `deploy_area` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ä¸»æœºæˆ¿-æœåŠ¡å™¨åŒº; 01-ä¸»æœºæˆ¿-ç½‘ç»œåŒº; 02-ä¸»æœºæˆ¿-å­˜å‚¨åŒº; 03-ä¸»æœºæˆ¿-å…¶å®ƒåŒº; 99-å…¶å®ƒ)',
+  `operation_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `administrative_department` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å•é€‰(00-ç§‘æŠ€ç®¡ç†éƒ¨é—¨; 01-åå‹¤ç®¡ç†éƒ¨é—¨; 02-ä¸šåŠ¡ç®¡ç†éƒ¨é—¨; 03-ä¿å«ç®¡ç†éƒ¨é—¨; 04-ç‰©ä¸šç®¡ç†éƒ¨é—¨; 05-å¤–åŒ…æœåŠ¡éƒ¨é—¨; 99-å…¶å®ƒ)',
+  `slot_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ§½ä½å·',
+  `_idcrack` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(	CMDBæ¨¡å‹é€‰æ‹©-åŒºåŸŸ)',
+  `area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æœºæŸœ)',
+  `idc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'èµ„äº§é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-æ•°æ®ä¸­å¿ƒ)',
+  `vendorinformation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¾›åº”å•†é€‰æ‹©(CMDBæ¨¡å‹é€‰æ‹©-å‚å•†ä¿¡æ¯)',
+  `network_equipment_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ç½‘ç»œè®¾å¤‡ä¸Šæ¶ä¸»è¡¨ç¼–å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NOT NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤ 0 :æœªåˆ é™¤ 1:å·²åˆ é™¤',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for knowledge_t_base_info
+-- ----------------------------
+DROP TABLE IF EXISTS `knowledge_t_base_info`;
+CREATE TABLE `knowledge_t_base_info`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `subject` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸»é¢˜',
+  `tags` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³é”®å­—',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'çŸ¥è¯†å†…å®¹',
+  `type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'çŸ¥è¯†ç±»åˆ«ID',
+  `refflowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”æµç¨‹ID',
+  `is_top` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦æŒ‡å®šï¼ˆ0ï¼šæ™®é€šï¼Œ1ï¼šç½®é¡¶ï¼‰',
+  `top_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ç½®é¡¶æ—¶é—´,é»˜è®¤ä¸ºçŸ¥è¯†å‘å¸ƒæ—¶é—´',
+  `attachments` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç›¸å…³é™„ä»¶',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'çŸ¥è¯†ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for knowledge_t_catalog
+-- ----------------------------
+DROP TABLE IF EXISTS `knowledge_t_catalog`;
+CREATE TABLE `knowledge_t_catalog`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `catalogname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç±»åˆ«åç§°',
+  `parentid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çˆ¶ç±»ID',
+  `classlayer` int(0) NULL DEFAULT 1 COMMENT 'æ‰€å±å±‚çº§',
+  `classlist` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å±‚çº§å­—ç¬¦ç»„',
+  `sortid` int(0) NULL DEFAULT 0 COMMENT 'æ’åºå€¼',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ›å»ºæ—¶é—´',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'çŸ¥è¯†ç±»åˆ«è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for knowledge_t_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `knowledge_t_comment`;
+CREATE TABLE `knowledge_t_comment`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è¯„è®ºç¼–å·',
+  `content` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¯„è®ºå†…å®¹',
+  `reply_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å›å¤è¯„è®ºIDæˆ–çŸ¥è¯†ID',
+  `ref_commentid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±è¯„è®ºID',
+  `ref_knowledgeid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±çŸ¥è¯†ID',
+  `user_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¯„è®ºäººç¼–å·',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  `publish_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'è¯„è®ºæ—¶é—´',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'çŸ¥è¯†è¯„è®ºè¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for knowledge_t_filed
+-- ----------------------------
+DROP TABLE IF EXISTS `knowledge_t_filed`;
+CREATE TABLE `knowledge_t_filed`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `project_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¡¹ç›®ID',
+  `app_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ID',
+  `subject` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'çŸ¥è¯†ä¸»é¢˜',
+  `keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³é”®è¯',
+  `attachments` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç›¸å…³é™„ä»¶',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'çŸ¥è¯†å†…å®¹',
+  `sort` int(0) NOT NULL COMMENT 'æ’åºå€¼',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'çŸ¥è¯†å½’æ¡£è§„åˆ™è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for knowledge_t_flow_info
+-- ----------------------------
+DROP TABLE IF EXISTS `knowledge_t_flow_info`;
+CREATE TABLE `knowledge_t_flow_info`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘èµ·äººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘èµ·äººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘èµ·éƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘èµ·éƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘èµ·æœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å‘èµ·æœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'å‘èµ·æ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'çŸ¥è¯†ç±»åˆ«',
+  `subject` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çŸ¥è¯†ä¸»é¢˜',
+  `tags` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'å…³é”®å­—',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'çŸ¥è¯†å†…å®¹',
+  `attachments` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'ç›¸å…³é™„ä»¶',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'çŸ¥è¯†æµç¨‹ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for knowledge_t_reference
+-- ----------------------------
+DROP TABLE IF EXISTS `knowledge_t_reference`;
+CREATE TABLE `knowledge_t_reference`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `project_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'é¡¹ç›®ID',
+  `app_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'åº”ç”¨ID',
+  `keyword` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å…³é”®è¯å­—æ®µ',
+  `sort` int(0) NOT NULL COMMENT 'æ’åºå€¼',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'çŸ¥è¯†å‚è€ƒè§„åˆ™è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for knowledge_t_related
+-- ----------------------------
+DROP TABLE IF EXISTS `knowledge_t_related`;
+CREATE TABLE `knowledge_t_related`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å”¯ä¸€ç¼–å·',
+  `like_type` int(0) NULL DEFAULT 0 COMMENT 'ç±»å‹ï¼š1 é˜…è¯»ï¼Œ2 ç‚¹èµ 3 æ”¶è—',
+  `data_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'çŸ¥è¯†ç¼–å·æˆ–è¯„è®ºç¼–å·',
+  `user_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨æˆ·ç¼–å·',
+  `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'åˆ›å»ºæ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…¬å¸ç¼–å·',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'é¡¹ç›®ç¼–å·',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'çŸ¥è¯†ç›¸å…³æ“ä½œè¡¨(ç‚¹èµ/æ”¶è—/é˜…è¯»)' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for new_vm_hosts
+-- ----------------------------
+DROP TABLE IF EXISTS `new_vm_hosts`;
+CREATE TABLE `new_vm_hosts`  (
+  `instance_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å®ä¾‹åç§°',
+  `instance_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å®ä¾‹ID',
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¿è¥çŠ¶æ€ï¼Œå·²å…³æœº/è¿è¡Œä¸­',
+  `ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'IPåœ°å€',
+  `vm_ips` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è™šæ‹ŸIPåœ°å€',
+  `host_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å®¿ä¸»æœºIPåœ°å€',
+  `osDistro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ“ä½œç³»ç»Ÿ',
+  `cpus` int(0) NULL DEFAULT NULL COMMENT 'cpuæ ¸æ•°',
+  `mem_size` double NULL DEFAULT NULL COMMENT 'å†…å­˜å¤§å°',
+  `disk_size` double NULL DEFAULT NULL COMMENT 'ç£ç›˜å¤§å°',
+  `app_env` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡ç¯å¢ƒ',
+  `app_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç³»ç»Ÿåç§°',
+  `parent_dept_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è´Ÿè´£éƒ¨é—¨',
+  `app_admin_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸»æœºè´Ÿè´£äººåç§°',
+  `host_admin_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸»æœºç»´æŠ¤äººåç§°',
+  PRIMARY KEY (`instance_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_blob_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_blob_triggers`;
+CREATE TABLE `qrtz_blob_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_nameçš„å¤–é”®',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_groupçš„å¤–é”®',
+  `blob_data` blob NULL COMMENT 'å­˜æ”¾æŒä¹…åŒ–Triggerå¯¹è±¡',
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `FK_reference_4` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Blobç±»å‹çš„è§¦å‘å™¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_calendars
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_calendars`;
+CREATE TABLE `qrtz_calendars`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `calendar_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ—¥å†åç§°',
+  `calendar` blob NOT NULL COMMENT 'å­˜æ”¾æŒä¹…åŒ–calendarå¯¹è±¡',
+  PRIMARY KEY (`sched_name`, `calendar_name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æ—¥å†ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_cron_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_cron_triggers`;
+CREATE TABLE `qrtz_cron_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_nameçš„å¤–é”®',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_groupçš„å¤–é”®',
+  `cron_expression` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'cronè¡¨è¾¾å¼',
+  `time_zone_id` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ—¶åŒº',
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `FK_reference_3` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'Cronç±»å‹çš„è§¦å‘å™¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_fired_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_fired_triggers`;
+CREATE TABLE `qrtz_fired_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `entry_id` varchar(95) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦å™¨å®ä¾‹id',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_nameçš„å¤–é”®',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_groupçš„å¤–é”®',
+  `instance_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦å™¨å®ä¾‹å',
+  `fired_time` bigint(0) NOT NULL COMMENT 'è§¦å‘çš„æ—¶é—´',
+  `sched_time` bigint(0) NOT NULL COMMENT 'å®šæ—¶å™¨åˆ¶å®šçš„æ—¶é—´',
+  `priority` int(0) NOT NULL COMMENT 'ä¼˜å…ˆçº§',
+  `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'çŠ¶æ€',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»»åŠ¡åç§°',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»»åŠ¡ç»„å',
+  `is_nonconcurrent` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ˜¯å¦å¹¶å‘',
+  `requests_recovery` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ˜¯å¦æ¥å—æ¢å¤æ‰§è¡Œ',
+  PRIMARY KEY (`sched_name`, `entry_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å·²è§¦å‘çš„è§¦å‘å™¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_job_details
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_job_details`;
+CREATE TABLE `qrtz_job_details`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡åç§°',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä»»åŠ¡ç»„å',
+  `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›¸å…³ä»‹ç»',
+  `job_class_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ‰§è¡Œä»»åŠ¡ç±»åç§°',
+  `is_durable` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ˜¯å¦æŒä¹…åŒ–',
+  `is_nonconcurrent` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ˜¯å¦å¹¶å‘',
+  `is_update_data` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ˜¯å¦æ›´æ–°æ•°æ®',
+  `requests_recovery` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ˜¯å¦æ¥å—æ¢å¤æ‰§è¡Œ',
+  `job_data` blob NULL COMMENT 'å­˜æ”¾æŒä¹…åŒ–jobå¯¹è±¡',
+  PRIMARY KEY (`sched_name`, `job_name`, `job_group`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ä»»åŠ¡è¯¦ç»†ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_locks
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_locks`;
+CREATE TABLE `qrtz_locks`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `lock_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æ‚²è§‚é”åç§°',
+  PRIMARY KEY (`sched_name`, `lock_name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'å­˜å‚¨çš„æ‚²è§‚é”ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_paused_trigger_grps
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_paused_trigger_grps`;
+CREATE TABLE `qrtz_paused_trigger_grps`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_groupçš„å¤–é”®',
+  PRIMARY KEY (`sched_name`, `trigger_group`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æš‚åœçš„è§¦å‘å™¨è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_scheduler_state
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_scheduler_state`;
+CREATE TABLE `qrtz_scheduler_state`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `instance_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'å®ä¾‹åç§°',
+  `last_checkin_time` bigint(0) NOT NULL COMMENT 'ä¸Šæ¬¡æ£€æŸ¥æ—¶é—´',
+  `checkin_interval` bigint(0) NOT NULL COMMENT 'æ£€æŸ¥é—´éš”æ—¶é—´',
+  PRIMARY KEY (`sched_name`, `instance_name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è°ƒåº¦å™¨çŠ¶æ€è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_simple_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_simple_triggers`;
+CREATE TABLE `qrtz_simple_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_nameçš„å¤–é”®',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_groupçš„å¤–é”®',
+  `repeat_count` bigint(0) NOT NULL COMMENT 'é‡å¤çš„æ¬¡æ•°ç»Ÿè®¡',
+  `repeat_interval` bigint(0) NOT NULL COMMENT 'é‡å¤çš„é—´éš”æ—¶é—´',
+  `times_triggered` bigint(0) NOT NULL COMMENT 'å·²ç»è§¦å‘çš„æ¬¡æ•°',
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `FK_reference_2` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'ç®€å•è§¦å‘å™¨çš„ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_simprop_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_simprop_triggers`;
+CREATE TABLE `qrtz_simprop_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_nameçš„å¤–é”®',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_triggersè¡¨trigger_groupçš„å¤–é”®',
+  `str_prop_1` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'Stringç±»å‹çš„triggerçš„ç¬¬ä¸€ä¸ªå‚æ•°',
+  `str_prop_2` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'Stringç±»å‹çš„triggerçš„ç¬¬äºŒä¸ªå‚æ•°',
+  `str_prop_3` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'Stringç±»å‹çš„triggerçš„ç¬¬ä¸‰ä¸ªå‚æ•°',
+  `int_prop_1` int(0) NULL DEFAULT NULL COMMENT 'intç±»å‹çš„triggerçš„ç¬¬ä¸€ä¸ªå‚æ•°',
+  `int_prop_2` int(0) NULL DEFAULT NULL COMMENT 'intç±»å‹çš„triggerçš„ç¬¬äºŒä¸ªå‚æ•°',
+  `long_prop_1` bigint(0) NULL DEFAULT NULL COMMENT 'longç±»å‹çš„triggerçš„ç¬¬ä¸€ä¸ªå‚æ•°',
+  `long_prop_2` bigint(0) NULL DEFAULT NULL COMMENT 'longç±»å‹çš„triggerçš„ç¬¬äºŒä¸ªå‚æ•°',
+  `dec_prop_1` decimal(13, 4) NULL DEFAULT NULL COMMENT 'decimalç±»å‹çš„triggerçš„ç¬¬ä¸€ä¸ªå‚æ•°',
+  `dec_prop_2` decimal(13, 4) NULL DEFAULT NULL COMMENT 'decimalç±»å‹çš„triggerçš„ç¬¬äºŒä¸ªå‚æ•°',
+  `bool_prop_1` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'Booleanç±»å‹çš„triggerçš„ç¬¬ä¸€ä¸ªå‚æ•°',
+  `bool_prop_2` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'Booleanç±»å‹çš„triggerçš„ç¬¬äºŒä¸ªå‚æ•°',
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `FK_reference_5` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'åŒæ­¥æœºåˆ¶çš„è¡Œé”è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_triggers`;
+CREATE TABLE `qrtz_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è°ƒåº¦åç§°',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è§¦å‘å™¨çš„åå­—',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è§¦å‘å™¨æ‰€å±ç»„çš„åå­—',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_job_detailsè¡¨job_nameçš„å¤–é”®',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'qrtz_job_detailsè¡¨job_groupçš„å¤–é”®',
+  `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç›¸å…³ä»‹ç»',
+  `next_fire_time` bigint(0) NULL DEFAULT NULL COMMENT 'ä¸Šä¸€æ¬¡è§¦å‘æ—¶é—´ï¼ˆæ¯«ç§’ï¼‰',
+  `prev_fire_time` bigint(0) NULL DEFAULT NULL COMMENT 'ä¸‹ä¸€æ¬¡è§¦å‘æ—¶é—´ï¼ˆé»˜è®¤ä¸º-1è¡¨ç¤ºä¸è§¦å‘ï¼‰',
+  `priority` int(0) NULL DEFAULT NULL COMMENT 'ä¼˜å…ˆçº§',
+  `trigger_state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è§¦å‘å™¨çŠ¶æ€',
+  `trigger_type` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'è§¦å‘å™¨çš„ç±»å‹',
+  `start_time` bigint(0) NOT NULL COMMENT 'å¼€å§‹æ—¶é—´',
+  `end_time` bigint(0) NULL DEFAULT NULL COMMENT 'ç»“æŸæ—¶é—´',
+  `calendar_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ—¥ç¨‹è¡¨åç§°',
+  `misfire_instr` smallint(0) NULL DEFAULT NULL COMMENT 'è¡¥å¿æ‰§è¡Œçš„ç­–ç•¥',
+  `job_data` blob NULL COMMENT 'å­˜æ”¾æŒä¹…åŒ–jobå¯¹è±¡',
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  INDEX `FK_reference_1`(`sched_name`, `job_name`, `job_group`) USING BTREE,
+  CONSTRAINT `FK_reference_1` FOREIGN KEY (`sched_name`, `job_name`, `job_group`) REFERENCES `qrtz_job_details` (`sched_name`, `job_name`, `job_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è§¦å‘å™¨è¯¦ç»†ä¿¡æ¯è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_expenses_chaim
+-- ----------------------------
+DROP TABLE IF EXISTS `t_expenses_chaim`;
+CREATE TABLE `t_expenses_chaim`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `billnum` int(0) NULL DEFAULT NULL COMMENT 'é™„å•æ®',
+  `total_amount` decimal(18, 2) NULL DEFAULT NULL COMMENT 'åˆè®¡é‡‘é¢',
+  `borrow_money` decimal(18, 2) NULL DEFAULT NULL COMMENT 'åŸå€Ÿæ¬¾',
+  `spare_money` decimal(18, 2) NULL DEFAULT NULL COMMENT 'åº”é€€ä½™æ¬¾',
+  `pay_reason` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»˜æ¬¾åŸå› ',
+  `detail_reperson` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æŠ¥é”€å…³è”äºº',
+  `detail_department` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æŠ¥é”€å…³è”éƒ¨é—¨',
+  `detail_classification` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æŠ¥é”€åˆ†ç±»',
+  `detail_date` datetime(0) NULL DEFAULT NULL COMMENT 'å•æ®å¡«å†™æ—¥æœŸ',
+  `detail_deamount` int(0) NULL DEFAULT NULL COMMENT 'æŠ¥é”€æŠµæ‰£é‡‘é¢',
+  `detail_description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æŠ¥é”€æè¿°',
+  `cost_attribution` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è´¹ç”¨å½’å±',
+  `detail_role` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æŠ¥é”€å…³è”è§’è‰²',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è´¹ç”¨æŠ¥é”€è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_expenses_chaim_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `t_expenses_chaim_detail`;
+CREATE TABLE `t_expenses_chaim_detail`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `ref_flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”è´¹ç”¨æŠ¥é”€æµç¨‹ID',
+  `purpose` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç”¨é€”',
+  `catalog_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æ‰€å±ç§‘ç›®',
+  `chaim_money` decimal(18, 2) NULL DEFAULT NULL COMMENT 'æŠ¥é”€é‡‘é¢',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è´¹ç”¨æŠ¥é”€æ˜ç»†è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_expenses_chaim_test
+-- ----------------------------
+DROP TABLE IF EXISTS `t_expenses_chaim_test`;
+CREATE TABLE `t_expenses_chaim_test`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `borrow_money` decimal(18, 2) NULL DEFAULT NULL COMMENT 'åŸå€Ÿæ¬¾',
+  `spare_money` decimal(18, 2) NULL DEFAULT NULL COMMENT 'åº”é€€ä½™æ¬¾',
+  `pay_reason` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»˜æ¬¾åŸå› ',
+  `detail_reperson` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æŠ¥é”€å…³è”äºº',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è´¹ç”¨æŠ¥é”€è®°å½•è¡¨' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_leave
+-- ----------------------------
+DROP TABLE IF EXISTS `t_leave`;
+CREATE TABLE `t_leave`  (
+  `flowid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'æµç¨‹ID',
+  `flowmodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹æ¨¡å‹ID',
+  `nodemodelid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ç¯èŠ‚æ¨¡å‹ID',
+  `flowno` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æµç¨‹å•å·',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `current_nodename` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†ç¯èŠ‚',
+  `current_hander` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å½“å‰å¤„ç†äºº',
+  `business_status` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¸šåŠ¡çŠ¶æ€',
+  `leave_user` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¯·å‡äºº',
+  `leave_day` int(0) NOT NULL DEFAULT 0 COMMENT 'è¯·å‡å¤©æ•°',
+  `leave_reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¯·å‡åŸå› ',
+  PRIMARY KEY (`flowid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è¯·å‡ç®¡ç†' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_leave_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `t_leave_detail`;
+CREATE TABLE `t_leave_detail`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®ID',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `leave_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'è¯·å‡ç±»ç›®',
+  `remark` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'è¯·å‡å¤‡æ³¨',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'è¯·å‡æ˜ç»†' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_test
+-- ----------------------------
+DROP TABLE IF EXISTS `t_test`;
+CREATE TABLE `t_test`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_test_synch
+-- ----------------------------
+DROP TABLE IF EXISTS `t_test_synch`;
+CREATE TABLE `t_test_synch`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `contratname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `job` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_text
+-- ----------------------------
+DROP TABLE IF EXISTS `t_text`;
+CREATE TABLE `t_text`  (
+  `iidd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'ä¸»é”®D',
+  `create_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººID',
+  `create_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºäººåç§°',
+  `create_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨ID',
+  `create_deptname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºéƒ¨é—¨åç§°',
+  `create_orgid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„ID',
+  `create_orgname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'åˆ›å»ºæœºæ„åç§°',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `update_userid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººID',
+  `update_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä¿®æ”¹äººåç§°',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT 'ä¿®æ”¹æ—¶é—´',
+  `ref_deptid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'å…³è”å…¬å¸ID',
+  `ref_projectid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'æ‰€å±é¡¹ç›®ID',
+  `deleted` int(0) NULL DEFAULT 0 COMMENT 'æ˜¯å¦åˆ é™¤',
+  `billnum` int(0) NULL DEFAULT NULL COMMENT 'é™„å•æ®',
+  `pay_reason` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ä»˜æ¬¾åŸå› ',
+  `detail_reperson` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'æŠ¥é”€å…³è”äºº',
+  PRIMARY KEY (`iidd`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = 'æµ‹è¯•äºŒæ¬¡å¼€å‘åŸºç¡€èµ„æ–™' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 
 -- ---------------------------------------------------------
--- ³õÊ¼»¯OpenApi½Å±¾
+-- åˆå§‹åŒ–OpenApiè„šæœ¬
 -- ---------------------------------------------------------
-INSERT INTO ff_apaas_ts_open_api_group (iidd, group_name, parent_id, sort_id, class_layer, class_list, update_time, create_person) VALUES ('DD2849C5028B44A7A08E0972A29D552C', '»ù´¡Ó¦ÓÃ', '', 0, 1, 'DD2849C5028B44A7A08E0972A29D552C', '2022-05-30 10:46:13', '·Ç·²');
-INSERT INTO ff_apaas_ts_open_api_group (iidd, group_name, parent_id, sort_id, class_layer, class_list, update_time, create_person) VALUES ('EA6D284FBAFF430DA9F945ADE74CFA8D', 'Á÷³Ì·Ö×é', '', 1, 1, 'EA6D284FBAFF430DA9F945ADE74CFA8D', '2022-05-30 10:46:35', '·Ç·²');
+INSERT INTO ff_apaas_ts_open_api_group (iidd, group_name, parent_id, sort_id, class_layer, class_list, update_time, create_person) VALUES ('DD2849C5028B44A7A08E0972A29D552C', 'åŸºç¡€åº”ç”¨', '', 0, 1, 'DD2849C5028B44A7A08E0972A29D552C', '2022-05-30 10:46:13', 'éå‡¡');
+INSERT INTO ff_apaas_ts_open_api_group (iidd, group_name, parent_id, sort_id, class_layer, class_list, update_time, create_person) VALUES ('EA6D284FBAFF430DA9F945ADE74CFA8D', 'æµç¨‹åˆ†ç»„', '', 1, 1, 'EA6D284FBAFF430DA9F945ADE74CFA8D', '2022-05-30 10:46:35', 'éå‡¡');
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name)
-VALUES ('34CF987C3B084EFDAB4BBB81D92C5C46', 'openApi»ù´¡×ÊÁÏ·Ö×éID', 'open_api_basic_data_group_id',
+VALUES ('34CF987C3B084EFDAB4BBB81D92C5C46', 'openApiåŸºç¡€èµ„æ–™åˆ†ç»„ID', 'open_api_basic_data_group_id',
         'DD2849C5028B44A7A08E0972A29D552C', 'Y', '72306761D85B44C685F0617E74562E0E', sysdate(), NULL, NULL, NULL, 'OPEN-API');
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name)
-VALUES ('D1731A916AC24861A219A2D83D38A1E0', 'openApiÁ÷³Ì·Ö×éID', 'open_api_flow_group_id',
+VALUES ('D1731A916AC24861A219A2D83D38A1E0', 'openApiæµç¨‹åˆ†ç»„ID', 'open_api_flow_group_id',
         'EA6D284FBAFF430DA9F945ADE74CFA8D', 'Y', '72306761D85B44C685F0617E74562E0E', sysdate(), NULL, NULL, NULL, 'OPEN-API');
 
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('34BE3978AE304A30954D3BB2AF6E628B', '»ù´¡×ÊÁÏ-ĞŞ¸Ä', 'DD2849C5028B44A7A08E0972A29D552C', '»ù´¡Ó¦ÓÃ', 'pub/editBasics', 2, 3, '[{\"id\":\"498C4E30FE1F7303AEA79097D94C318D\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"Ó¦ÓÃID£¬»ò({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"15D8447234D67A69BA10EA492864DE40\",\"name\":\"iidd\",\"type\":\"String\",\"explain\":\"»ù´¡×ÊÁÏÖ÷¼üID£¬»ò({\\\"name\\\":\\\"iidd\\\",\\\"value\\\":\\\"iidd\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"68D0ECF17A042063FEB1E3DE4CBD09CF\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"ĞŞ¸ÄµÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"42AA967132D10F792B979A3DA3E8B363\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÒµÎñÊı¾İ(JSON×Ö·û´®)\",\"children\":[],\"required\":\"±ØÌî\"}]', '[{\"id\":\"2BA21B95289C82EB111C424ECC48E1EE\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"A25816AE30CD4E65808F57B9AADF9015\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"371A6CFD26077E9608A95E76F17040F0\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('890BCA77D52B4683BCC027A1F3156D17', '»ù´¡×ÊÁÏ-ÁĞ±í', 'DD2849C5028B44A7A08E0972A29D552C', '»ù´¡Ó¦ÓÃ', 'pub/listBasic', 2, 3, '[{\"id\":\"E123E7E02059603F554732E4216ED0E6\",\"name\":\"appid\",\"explain\":\"Ó¦ÓÃID£¬»ò({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"78392042EBA7705EEEEDDB3BC583410F\",\"name\":\"userId\",\"explain\":\"µÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"83D847A6CFEBB934B9C9729D413C3404\",\"name\":\"pageNum\",\"explain\":\"Ò³Âë£¬²»´«²éÑ¯ËùÓĞ\",\"type\":\"Number\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"A3B8F8BA02F6058AAF2E69662C250677\",\"name\":\"pageSize\",\"explain\":\"Ã¿Ò³´óĞ¡£¬²»´«²éÑ¯ËùÓĞ\",\"type\":\"Number\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"F0C3A41174FE818C038D1F472D314FD1\",\"name\":\"queryConditions\",\"explain\":\"²éÑ¯Ìõ¼ş,[{\\\"column\\\":\\\"E1CC30923E5040E7EA247A0066B85905\\\",\\\"queryType\\\":\\\"like\\\",\\\"value\\\":[{\\\"name\\\":\\\"Ó¦ÓÃ¹ÜÀíÖĞĞÄ\\\",\\\"value\\\":\\\"Ó¦ÓÃ¹ÜÀíÖĞĞÄ\\\"}]}]\",\"type\":\"Object\",\"required\":\"±ØÌî\",\"children\":[]}]', '[{\"id\":\"C3EE139C30504E4D86D1B5BE8B78CF9A\",\"name\":\"code\",\"explain\":\"ÏìÓ¦Âë\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"291A9D5A536C9B5D9D43230559A7BEE8\",\"name\":\"msg\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"EB32E5AFECC0163271C630CFBAC0D882\",\"name\":\"data\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"type\":\"Object\",\"required\":\"±ØÌî\",\"children\":[]}]', '{\n	\"total\": 1,\n	\"rows\": [{\n		\"refFormid\": \"D4BE7D56324042EFAE786E380A5BDDF4\",\n		\"updateUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n		\"DE6696C3920427CDEC10FBC76A787E6E\": \"[{\\\"name\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\",\\\"value\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\"}]\",\n		\"refDeptid\": \"3435840D6BB648228100C54175439012\",\n		\"createDeptname\": \"ÉîÛÚÊĞ·Ç·²ĞÅÏ¢¼¼ÊõÓĞÏŞ¹«Ë¾\",\n		\"createOrgid\": \"3435840D6BB648228100C54175439012\",\n		\"iidd\": \"CACEE62DFDF74B00941BB3D2F02E69DC\",\n		\"createUsername\": \"½ªÌØÑó\",\n		\"refProjectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n		\"refAppid\": \"8F3F2AE6F2D34FBAB14A0BBA3E7C3721\",\n		\"createDeptid\": \"3435840D6BB648228100C54175439012\",\n		\"createUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n		\"updateTime\": \"2023-03-23 14:50:32\",\n		\"createOrgname\": \"ÉîÛÚÊĞ·Ç·²ĞÅÏ¢¼¼ÊõÓĞÏŞ¹«Ë¾\",\n		\"ref_projectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n		\"deleted\": 0,\n		\"createTime\": \"2023-03-23 14:50:29\",\n		\"updateUsername\": \"½ªÌØÑó\",\n		\"contentjson\": \"{\\\"DE6696C3920427CDEC10FBC76A787E6E\\\":[{\\\"name\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\",\\\"value\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\"}],\\\"ref_projectid\\\":\\\"A03769DA38284D138A1356DC93C2F9C9\\\"}\"\n	}],\n	\"code\": 200\n}', '{\n	\"code\": 401,\n	\"msg\": \"ÇëÇó·ÃÎÊ£º/ffapaas/pub/listBasic£¬ÈÏÖ¤Ê§°Ü£¬ÎŞ·¨·ÃÎÊÏµÍ³×ÊÔ´\"\n}', 0, '2023-03-23 15:59:40', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('8AF57982C71F492AA96F25145D2F3547', '»ù´¡×ÊÁÏ-É¾³ı', 'DD2849C5028B44A7A08E0972A29D552C', '»ù´¡Ó¦ÓÃ', 'pub/deletedBasic', 2, 3, '[{\"id\":\"3D6F8F00DC0734B5A1E8A7C2819E1BCC\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"Ó¦ÓÃ±àºÅ£¬»ò({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"2F605F857A314BDBB6C31CC0A6E558C2\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"ĞŞ¸ÄµÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"B53F27593AF5229A7F717FDF475524BD\",\"name\":\"iidds\",\"type\":\"String\",\"explain\":\"¼ÇÂ¼ID,¶à¸öÓ¢ÎÄ¶ººÅ·Ö¸î£¬»ò({\\\"name\\\":\\\"iidds\\\",\\\"value\\\":\\\"iidds\\\"})\",\"children\":[],\"required\":\"±ØÌî\"}]', '[{\"id\":\"E87795ECE4AE7860559646CC4FE9E363\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"4C7776B4A2AA28D5D8C7749F13207C4F\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"D94E71F67F1D992401FA8B8B74844481\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 500,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('ABBAE00027DF4970B6340BE4DD0E4930', '»ù´¡×ÊÁÏ-ĞÂÔö', 'DD2849C5028B44A7A08E0972A29D552C', '»ù´¡Ó¦ÓÃ', 'pub/saveBasics', 2, 3, '[{\"id\":\"1C1E5044FD02A93377962F1976FC1F31\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"Ó¦ÓÃID£¬»ò({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"2A13307CC5FC138FA55093AC71CAED0F\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"·¢ÆğÈËµÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"75CD59012F362D3CF08BE005466454B3\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÒµÎñÊı¾İ(JSON×Ö·û´®)\",\"children\":[],\"required\":\"±ØÌî\"}]', '[{\"id\":\"BA74C5D2497F5CA8BF84C247994D214F\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"59E4223E5A3ABB2574DB49C2A20E090B\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"25C35852E5C0B369F8540B338996D245\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 500,\r\n  \"msg\": \"\",\r\n  \"data\": \"·şÎñÆ÷ÄÚ²¿´íÎó\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('AFF83C3AFACA42779225BBE6C75070B7', '»ù´¡×ÊÁÏ-ÏêÇé', 'DD2849C5028B44A7A08E0972A29D552C', '»ù´¡Ó¦ÓÃ', 'pub/detailBasic', 2, 3, '[{\"id\":\"A0C83DD4E7CCE22FA497AEDFD5B9F5F6\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"Ó¦ÓÃID£¬»ò({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"4ADB7C0E119DCA11B9C2542F0AABD7B7\",\"name\":\"iidds\",\"type\":\"String\",\"explain\":\"Ö÷¼üID£¬»ò({\\\"name\\\":\\\"iidds\\\",\\\"value\\\":\\\"iidds\\\"})\",\"children\":[],\"required\":\"±ØÌî\"}]', '[{\"id\":\"B6160C6D2B1014ACF90EE91C9331A188\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"7D7BEA3ECAE5ADD4EE2F859192D64B4C\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"48E650C8D4B0CF1E00EBD4B76DAFA702\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('1BE64A11E01345F4B1AE033FCD576CC7', 'Á÷³ÌÓ¦ÓÃ-É¾³ı', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'Á÷³Ì·Ö×é', 'pub/deletedProc', 2, 3, '[{\"id\":\"D3A0CA120E000B8E890B51B695EE0149\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"²Ù×÷ÈËµÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"9E27E73A1CD4580D601E41CFA0B86638\",\"name\":\"flowIds\",\"type\":\"String\",\"explain\":\"Á÷³ÌID£¬¶à¸öÓ¢ÎÄ¶ººÅ·Ö¸î£¬»ò({\\\"name\\\":\\\"flowIds\\\",\\\"value\\\":\\\"flowIds\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"461894D1C33469764685B7A1762FFCF9\",\"name\":\"delRelease\",\"type\":\"String\",\"explain\":\"É¾³ıÔ­Òò£¬»ò({\\\"name\\\":\\\"delRelease\\\",\\\"value\\\":\\\"delRelease\\\"})\",\"children\":[],\"required\":\"·Ç±ØÌî\"}]', '[{\"id\":\"D04B60D26F78601736A701BD768BDA5F\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"FA4AA1162D90B0B8323107540C48E945\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"493DE16DB3976DD6D189A65FCD4596EC\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('5479888D89D145EC8032BC7E5049D6C0', 'Á÷³ÌÓ¦ÓÃ-ÏêÇé', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'Á÷³Ì·Ö×é', 'pub/detailProc', 2, 3, '[{\"id\":\"DF974A6F91F8CDE4CC1CF90CE85AEC30\",\"name\":\"flowIds\",\"type\":\"String\",\"explain\":\"Á÷³ÌID£¬¶à¸ö¶ººÅ·Ö¸î£¬»ò({\\\"name\\\":\\\"flowIds\\\",\\\"value\\\":\\\"flowIds\\\"})\",\"children\":[],\"required\":\"±ØÌî\"}]', '[{\"id\":\"2BCB6561DBFAB30C069665C960B263C4\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"EDF987CEE4F065BE0B8422FB57BE17DE\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"CDAE2299DC50EF26DB39D64AF1FB44FB\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('6680F4C6BEEF4CDCB6E487C67B3F5D5D', 'Á÷³ÌÓ¦ÓÃ-ÉóÅú', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'Á÷³Ì·Ö×é', 'pub/completeProc', 2, 3, '[{\"id\":\"F29A0FB2AAC8546A48277E194FA4BD9D\",\"name\":\"flowId\",\"type\":\"String\",\"explain\":\"Á÷³ÌID£¬»ò({\\\"name\\\":\\\"flowid\\\",\\\"value\\\":\\\"flowid\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"8DDDA9DE79A095046B35787E59EA15B4\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"ÉóÅúÈËµÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"23A3FE631531870FFFE754E005356F93\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÒµÎñÊı¾İ(JOSN×Ö·û´®)\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"5D11413E623C2D76F7960FF0B2988F48\",\"name\":\"fileBase64\",\"type\":\"Object\",\"explain\":\"[{\\\"name\\\":\\\"Á÷´¨·ã.jpg\\\",\\\"value\\\":\\\"base64±àÂë\\\"},{\\\"name\\\":\\\"img103.png\\\",\\\"value\\\":\\\"base64±àÂë\\\"}]\",\"children\":[],\"required\":\"·Ç±ØÌî\"}]', '[{\"id\":\"33D9314D38D14701E658AAFE90898FBE\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"F0D4C304BC723D8B8E4A1BF7576964FF\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"43B250187324C04CA5ACE699A7F51B15\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('976AE1F624594FC494FFFA4AFB40B8CA', 'Á÷³ÌÓ¦ÓÃ-·¢Æğ', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'Á÷³Ì·Ö×é', 'pub/startProc', 2, 3, '[{\"id\":\"E959CA7D27B3CB7179AB776D74995465\",\"name\":\"flowModelId\",\"type\":\"String\",\"explain\":\"Á÷³ÌÄ£ĞÍ£¬ID»ò({\\\"name\\\":\\\"flowModelId\\\",\\\"value\\\":\\\"flowModelId\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"E2C6C141C4ABBA3ECDFFDC09A35E601D\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"·¢ÆğÈËµÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"CBCFA83F8EC0FA7381212A698359FA13\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÒµÎñ²ÎÊı(JSON×Ö·û´®)\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"E050333F4077078485AA5CBB79DB8D4C\",\"name\":\"fileBase64\",\"type\":\"Object\",\"explain\":\"[{\\\"name\\\":\\\"Á÷´¨·ã.jpg\\\",\\\"value\\\":\\\"base64±àÂë\\\"},{\\\"name\\\":\\\"img103.png\\\",\\\"value\\\":\\\"base64±àÂë\\\"}]\",\"children\":[],\"required\":\"·Ç±ØÌî\"}]', '[{\"id\":\"4283D53E8D44C05EF5C21CB6BC2C317B\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"ÏìÓ¦Âë\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"BB3DCDDF45C93B5A84FF4BE121FFFEAF\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"ÏìÓ¦ÏûÏ¢\",\"children\":[],\"required\":\"±ØÌî\"},{\"id\":\"525BFE5947F771A4F0893B190E8E1309\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"children\":[],\"required\":\"±ØÌî\"}]', '{\r\n    \"code\": 200,\r\n    \"msg\": \"²Ù×÷³É¹¦\",\r\n    \"data\": {\r\n        \"flowNo\": \"WTGDXXB2022060028\",\r\n        \"flowId\": \"9688A3C1B5A9442E9531863D2D84F590\"\r\n    }\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('D69681B88427464BA48057D391E76EA1', 'Á÷³ÌÓ¦ÓÃ-ĞŞ¸Ä', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'Á÷³Ì·Ö×é', 'pub/modifyingFormData', 2, 3, '[{\"id\":\"ED1C81684FB0A912A0BC858D23C35FE8\",\"name\":\"appid\",\"explain\":\"Ó¦ÓÃID£¬»ò({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"3B028E67E3C701AD2CA493376E93BCA1\",\"name\":\"userId\",\"explain\":\"µÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"4B4EB514A4CDBDC95F434429A10F509F\",\"name\":\"id\",\"explain\":\"ĞŞ¸Ä¼ÇÂ¼Á÷³Ìid(flowid)£¬»ò({\\\"name\\\":\\\"id\\\",\\\"value\\\":\\\"id\\\"})\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"37ABF573171C061C582EFB0115DB1A18\",\"name\":\"body\",\"explain\":\"[{\\\"fieldname\\\":\\\"6227F42445151407A63AD817D08A6BC3\\\",\\\"updateEnd\\\":[{\\\"name\\\":\\\"1133xx\\\",\\\"value\\\":\\\"1133xx\\\"}]}]\",\"type\":\"Object\",\"required\":\"±ØÌî\",\"children\":[]}]', '[{\"id\":\"77FBA64AD2D0CE64C2111F7698E5E7B8\",\"name\":\"code\",\"explain\":\"ÏìÓ¦Âë\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"A79ACB7759C5586052DEB7A08F7536E8\",\"name\":\"msg\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"86101A799A0620E7D773280100A3032C\",\"name\":\"data\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"type\":\"Object\",\"required\":\"±ØÌî\",\"children\":[]}]', '{\n  \"code\": 200,\n  \"msg\": \"\",\n  \"data\": \"\"\n}', '{\n  \"code\": 401,\n  \"msg\": \"ÇëÇó·ÃÎÊ£º/ffapaas/pub/listBasic£¬ÈÏÖ¤Ê§°Ü£¬ÎŞ·¨·ÃÎÊÏµÍ³×ÊÔ´\"\n}', 0, '2023-03-23 18:09:37', 'ÓàÏÈÉú');
-INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('FC6B4D9A7669472AA6BA15B702328C1D', 'Á÷³ÌÓ¦ÓÃ-ÁĞ±í', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'Á÷³Ì·Ö×é', 'pub/listBasic', 2, 3, '[{\"id\":\"3E82F2284D81877C072BD6F349511D12\",\"name\":\"appid\",\"explain\":\"Ó¦ÓÃID£¬»ò({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"5FAC062D9FAAA635D710C7E31FB5B858\",\"name\":\"userId\",\"explain\":\"µÇÂ¼ÕËºÅ£¬»ò({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"E6C02CE1F51C5E9D73CE60C11B3DC9D7\",\"name\":\"pageNum\",\"explain\":\"Ò³Âë£¬²»´«²éÑ¯ËùÓĞ\",\"type\":\"Number\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"DDED86B09ADB9661BF9CC8F67854E7EC\",\"name\":\"pageSize\",\"explain\":\"Ã¿Ò³´óĞ¡£¬²»´«²éÑ¯ËùÓĞ\",\"type\":\"Number\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"B4F4D186C7E73720E65341E1AFDA20C6\",\"name\":\"queryConditions\",\"explain\":\"²éÑ¯Ìõ¼ş,[{\\\"column\\\":\\\"E1CC30923E5040E7EA247A0066B85905\\\",\\\"queryType\\\":\\\"like\\\",\\\"value\\\":[{\\\"name\\\":\\\"Ó¦ÓÃ¹ÜÀíÖĞĞÄ\\\",\\\"value\\\":\\\"Ó¦ÓÃ¹ÜÀíÖĞĞÄ\\\"}]}]\",\"type\":\"Object\",\"required\":\"±ØÌî\",\"children\":[]}]', '[{\"id\":\"9C3BABD0AB6F5F583A888CC0093A0FF8\",\"name\":\"code\",\"explain\":\"ÏìÓ¦Âë\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"C281663A7A8EDCF7BD7B9C4F471D1433\",\"name\":\"msg\",\"explain\":\"ÏìÓ¦ËµÃ÷\",\"type\":\"String\",\"required\":\"±ØÌî\",\"children\":[]},{\"id\":\"79E11342F86A0E0211CD4E7D2C3E365B\",\"name\":\"data\",\"explain\":\"ÏìÓ¦Êı¾İ\",\"type\":\"Object\",\"required\":\"±ØÌî\",\"children\":[]}]', '{\n  \"total\": 1,\n  \"rows\": [\n    {\n      \"refFormid\": \"D4BE7D56324042EFAE786E380A5BDDF4\",\n      \"updateUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n      \"DE6696C3920427CDEC10FBC76A787E6E\": \"[{\\\"name\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\",\\\"value\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\"}]\",\n      \"refDeptid\": \"3435840D6BB648228100C54175439012\",\n      \"createDeptname\": \"ÉîÛÚÊĞ·Ç·²ĞÅÏ¢¼¼ÊõÓĞÏŞ¹«Ë¾\",\n      \"createOrgid\": \"3435840D6BB648228100C54175439012\",\n      \"iidd\": \"CACEE62DFDF74B00941BB3D2F02E69DC\",\n      \"createUsername\": \"½ªÌØÑó\",\n      \"refProjectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n      \"refAppid\": \"8F3F2AE6F2D34FBAB14A0BBA3E7C3721\",\n      \"createDeptid\": \"3435840D6BB648228100C54175439012\",\n      \"createUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n      \"updateTime\": \"2023-03-23 14:50:32\",\n      \"createOrgname\": \"ÉîÛÚÊĞ·Ç·²ĞÅÏ¢¼¼ÊõÓĞÏŞ¹«Ë¾\",\n      \"ref_projectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n      \"deleted\": 0,\n      \"createTime\": \"2023-03-23 14:50:29\",\n      \"updateUsername\": \"½ªÌØÑó\",\n      \"contentjson\": \"{\\\"DE6696C3920427CDEC10FBC76A787E6E\\\":[{\\\"name\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\",\\\"value\\\":\\\"ÏîÄ¿ĞÅÏ¢Î¬»¤\\\"}],\\\"ref_projectid\\\":\\\"A03769DA38284D138A1356DC93C2F9C9\\\"}\"\n    }\n  ],\n  \"code\": 200\n}', '\n{\n  \"code\": 401,\n  \"msg\": \"ÇëÇó·ÃÎÊ£º/ffapaas/pub/listBasic£¬ÈÏÖ¤Ê§°Ü£¬ÎŞ·¨·ÃÎÊÏµÍ³×ÊÔ´\"\n}', 0, '2023-03-23 16:11:25', 'ÓàÏÈÉú');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('34BE3978AE304A30954D3BB2AF6E628B', 'åŸºç¡€èµ„æ–™-ä¿®æ”¹', 'DD2849C5028B44A7A08E0972A29D552C', 'åŸºç¡€åº”ç”¨', 'pub/editBasics', 2, 3, '[{\"id\":\"498C4E30FE1F7303AEA79097D94C318D\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"åº”ç”¨IDï¼Œæˆ–({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"15D8447234D67A69BA10EA492864DE40\",\"name\":\"iidd\",\"type\":\"String\",\"explain\":\"åŸºç¡€èµ„æ–™ä¸»é”®IDï¼Œæˆ–({\\\"name\\\":\\\"iidd\\\",\\\"value\\\":\\\"iidd\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"68D0ECF17A042063FEB1E3DE4CBD09CF\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"ä¿®æ”¹ç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"42AA967132D10F792B979A3DA3E8B363\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ä¸šåŠ¡æ•°æ®(JSONå­—ç¬¦ä¸²)\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '[{\"id\":\"2BA21B95289C82EB111C424ECC48E1EE\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"A25816AE30CD4E65808F57B9AADF9015\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”è¯´æ˜\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"371A6CFD26077E9608A95E76F17040F0\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('890BCA77D52B4683BCC027A1F3156D17', 'åŸºç¡€èµ„æ–™-åˆ—è¡¨', 'DD2849C5028B44A7A08E0972A29D552C', 'åŸºç¡€åº”ç”¨', 'pub/listBasic', 2, 3, '[{\"id\":\"E123E7E02059603F554732E4216ED0E6\",\"name\":\"appid\",\"explain\":\"åº”ç”¨IDï¼Œæˆ–({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"78392042EBA7705EEEEDDB3BC583410F\",\"name\":\"userId\",\"explain\":\"ç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"83D847A6CFEBB934B9C9729D413C3404\",\"name\":\"pageNum\",\"explain\":\"é¡µç ï¼Œä¸ä¼ æŸ¥è¯¢æ‰€æœ‰\",\"type\":\"Number\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"A3B8F8BA02F6058AAF2E69662C250677\",\"name\":\"pageSize\",\"explain\":\"æ¯é¡µå¤§å°ï¼Œä¸ä¼ æŸ¥è¯¢æ‰€æœ‰\",\"type\":\"Number\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"F0C3A41174FE818C038D1F472D314FD1\",\"name\":\"queryConditions\",\"explain\":\"æŸ¥è¯¢æ¡ä»¶,[{\\\"column\\\":\\\"E1CC30923E5040E7EA247A0066B85905\\\",\\\"queryType\\\":\\\"like\\\",\\\"value\\\":[{\\\"name\\\":\\\"åº”ç”¨ç®¡ç†ä¸­å¿ƒ\\\",\\\"value\\\":\\\"åº”ç”¨ç®¡ç†ä¸­å¿ƒ\\\"}]}]\",\"type\":\"Object\",\"required\":\"å¿…å¡«\",\"children\":[]}]', '[{\"id\":\"C3EE139C30504E4D86D1B5BE8B78CF9A\",\"name\":\"code\",\"explain\":\"å“åº”ç \",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"291A9D5A536C9B5D9D43230559A7BEE8\",\"name\":\"msg\",\"explain\":\"å“åº”è¯´æ˜\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"EB32E5AFECC0163271C630CFBAC0D882\",\"name\":\"data\",\"explain\":\"å“åº”æ•°æ®\",\"type\":\"Object\",\"required\":\"å¿…å¡«\",\"children\":[]}]', '{\n	\"total\": 1,\n	\"rows\": [{\n		\"refFormid\": \"D4BE7D56324042EFAE786E380A5BDDF4\",\n		\"updateUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n		\"DE6696C3920427CDEC10FBC76A787E6E\": \"[{\\\"name\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\",\\\"value\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\"}]\",\n		\"refDeptid\": \"3435840D6BB648228100C54175439012\",\n		\"createDeptname\": \"æ·±åœ³å¸‚éå‡¡ä¿¡æ¯æŠ€æœ¯æœ‰é™å…¬å¸\",\n		\"createOrgid\": \"3435840D6BB648228100C54175439012\",\n		\"iidd\": \"CACEE62DFDF74B00941BB3D2F02E69DC\",\n		\"createUsername\": \"å§œç‰¹æ´‹\",\n		\"refProjectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n		\"refAppid\": \"8F3F2AE6F2D34FBAB14A0BBA3E7C3721\",\n		\"createDeptid\": \"3435840D6BB648228100C54175439012\",\n		\"createUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n		\"updateTime\": \"2023-03-23 14:50:32\",\n		\"createOrgname\": \"æ·±åœ³å¸‚éå‡¡ä¿¡æ¯æŠ€æœ¯æœ‰é™å…¬å¸\",\n		\"ref_projectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n		\"deleted\": 0,\n		\"createTime\": \"2023-03-23 14:50:29\",\n		\"updateUsername\": \"å§œç‰¹æ´‹\",\n		\"contentjson\": \"{\\\"DE6696C3920427CDEC10FBC76A787E6E\\\":[{\\\"name\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\",\\\"value\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\"}],\\\"ref_projectid\\\":\\\"A03769DA38284D138A1356DC93C2F9C9\\\"}\"\n	}],\n	\"code\": 200\n}', '{\n	\"code\": 401,\n	\"msg\": \"è¯·æ±‚è®¿é—®ï¼š/ffapaas/pub/listBasicï¼Œè®¤è¯å¤±è´¥ï¼Œæ— æ³•è®¿é—®ç³»ç»Ÿèµ„æº\"\n}', 0, '2023-03-23 15:59:40', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('8AF57982C71F492AA96F25145D2F3547', 'åŸºç¡€èµ„æ–™-åˆ é™¤', 'DD2849C5028B44A7A08E0972A29D552C', 'åŸºç¡€åº”ç”¨', 'pub/deletedBasic', 2, 3, '[{\"id\":\"3D6F8F00DC0734B5A1E8A7C2819E1BCC\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"åº”ç”¨ç¼–å·ï¼Œæˆ–({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"2F605F857A314BDBB6C31CC0A6E558C2\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"ä¿®æ”¹ç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"B53F27593AF5229A7F717FDF475524BD\",\"name\":\"iidds\",\"type\":\"String\",\"explain\":\"è®°å½•ID,å¤šä¸ªè‹±æ–‡é€—å·åˆ†å‰²ï¼Œæˆ–({\\\"name\\\":\\\"iidds\\\",\\\"value\\\":\\\"iidds\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '[{\"id\":\"E87795ECE4AE7860559646CC4FE9E363\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"4C7776B4A2AA28D5D8C7749F13207C4F\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”è¯´æ˜\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"D94E71F67F1D992401FA8B8B74844481\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 500,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('ABBAE00027DF4970B6340BE4DD0E4930', 'åŸºç¡€èµ„æ–™-æ–°å¢', 'DD2849C5028B44A7A08E0972A29D552C', 'åŸºç¡€åº”ç”¨', 'pub/saveBasics', 2, 3, '[{\"id\":\"1C1E5044FD02A93377962F1976FC1F31\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"åº”ç”¨IDï¼Œæˆ–({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"2A13307CC5FC138FA55093AC71CAED0F\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"å‘èµ·äººç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"75CD59012F362D3CF08BE005466454B3\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ä¸šåŠ¡æ•°æ®(JSONå­—ç¬¦ä¸²)\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '[{\"id\":\"BA74C5D2497F5CA8BF84C247994D214F\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"59E4223E5A3ABB2574DB49C2A20E090B\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”è¯´æ˜\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"25C35852E5C0B369F8540B338996D245\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 500,\r\n  \"msg\": \"\",\r\n  \"data\": \"æœåŠ¡å™¨å†…éƒ¨é”™è¯¯\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('AFF83C3AFACA42779225BBE6C75070B7', 'åŸºç¡€èµ„æ–™-è¯¦æƒ…', 'DD2849C5028B44A7A08E0972A29D552C', 'åŸºç¡€åº”ç”¨', 'pub/detailBasic', 2, 3, '[{\"id\":\"A0C83DD4E7CCE22FA497AEDFD5B9F5F6\",\"name\":\"appid\",\"type\":\"String\",\"explain\":\"åº”ç”¨IDï¼Œæˆ–({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"4ADB7C0E119DCA11B9C2542F0AABD7B7\",\"name\":\"iidds\",\"type\":\"String\",\"explain\":\"ä¸»é”®IDï¼Œæˆ–({\\\"name\\\":\\\"iidds\\\",\\\"value\\\":\\\"iidds\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '[{\"id\":\"B6160C6D2B1014ACF90EE91C9331A188\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"7D7BEA3ECAE5ADD4EE2F859192D64B4C\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”è¯´æ˜\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"48E650C8D4B0CF1E00EBD4B76DAFA702\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('1BE64A11E01345F4B1AE033FCD576CC7', 'æµç¨‹åº”ç”¨-åˆ é™¤', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'æµç¨‹åˆ†ç»„', 'pub/deletedProc', 2, 3, '[{\"id\":\"D3A0CA120E000B8E890B51B695EE0149\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"æ“ä½œäººç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"9E27E73A1CD4580D601E41CFA0B86638\",\"name\":\"flowIds\",\"type\":\"String\",\"explain\":\"æµç¨‹IDï¼Œå¤šä¸ªè‹±æ–‡é€—å·åˆ†å‰²ï¼Œæˆ–({\\\"name\\\":\\\"flowIds\\\",\\\"value\\\":\\\"flowIds\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"461894D1C33469764685B7A1762FFCF9\",\"name\":\"delRelease\",\"type\":\"String\",\"explain\":\"åˆ é™¤åŸå› ï¼Œæˆ–({\\\"name\\\":\\\"delRelease\\\",\\\"value\\\":\\\"delRelease\\\"})\",\"children\":[],\"required\":\"éå¿…å¡«\"}]', '[{\"id\":\"D04B60D26F78601736A701BD768BDA5F\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"FA4AA1162D90B0B8323107540C48E945\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”è¯´æ˜\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"493DE16DB3976DD6D189A65FCD4596EC\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('5479888D89D145EC8032BC7E5049D6C0', 'æµç¨‹åº”ç”¨-è¯¦æƒ…', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'æµç¨‹åˆ†ç»„', 'pub/detailProc', 2, 3, '[{\"id\":\"DF974A6F91F8CDE4CC1CF90CE85AEC30\",\"name\":\"flowIds\",\"type\":\"String\",\"explain\":\"æµç¨‹IDï¼Œå¤šä¸ªé€—å·åˆ†å‰²ï¼Œæˆ–({\\\"name\\\":\\\"flowIds\\\",\\\"value\\\":\\\"flowIds\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '[{\"id\":\"2BCB6561DBFAB30C069665C960B263C4\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"EDF987CEE4F065BE0B8422FB57BE17DE\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”è¯´æ˜\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"CDAE2299DC50EF26DB39D64AF1FB44FB\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('6680F4C6BEEF4CDCB6E487C67B3F5D5D', 'æµç¨‹åº”ç”¨-å®¡æ‰¹', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'æµç¨‹åˆ†ç»„', 'pub/completeProc', 2, 3, '[{\"id\":\"F29A0FB2AAC8546A48277E194FA4BD9D\",\"name\":\"flowId\",\"type\":\"String\",\"explain\":\"æµç¨‹IDï¼Œæˆ–({\\\"name\\\":\\\"flowid\\\",\\\"value\\\":\\\"flowid\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"8DDDA9DE79A095046B35787E59EA15B4\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"å®¡æ‰¹äººç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"23A3FE631531870FFFE754E005356F93\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ä¸šåŠ¡æ•°æ®(JOSNå­—ç¬¦ä¸²)\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"5D11413E623C2D76F7960FF0B2988F48\",\"name\":\"fileBase64\",\"type\":\"Object\",\"explain\":\"[{\\\"name\\\":\\\"æµå·æ«.jpg\\\",\\\"value\\\":\\\"base64ç¼–ç \\\"},{\\\"name\\\":\\\"img103.png\\\",\\\"value\\\":\\\"base64ç¼–ç \\\"}]\",\"children\":[],\"required\":\"éå¿…å¡«\"}]', '[{\"id\":\"33D9314D38D14701E658AAFE90898FBE\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"F0D4C304BC723D8B8E4A1BF7576964FF\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”è¯´æ˜\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"43B250187324C04CA5ACE699A7F51B15\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('976AE1F624594FC494FFFA4AFB40B8CA', 'æµç¨‹åº”ç”¨-å‘èµ·', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'æµç¨‹åˆ†ç»„', 'pub/startProc', 2, 3, '[{\"id\":\"E959CA7D27B3CB7179AB776D74995465\",\"name\":\"flowModelId\",\"type\":\"String\",\"explain\":\"æµç¨‹æ¨¡å‹ï¼ŒIDæˆ–({\\\"name\\\":\\\"flowModelId\\\",\\\"value\\\":\\\"flowModelId\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"E2C6C141C4ABBA3ECDFFDC09A35E601D\",\"name\":\"userId\",\"type\":\"String\",\"explain\":\"å‘èµ·äººç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"CBCFA83F8EC0FA7381212A698359FA13\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"ä¸šåŠ¡å‚æ•°(JSONå­—ç¬¦ä¸²)\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"E050333F4077078485AA5CBB79DB8D4C\",\"name\":\"fileBase64\",\"type\":\"Object\",\"explain\":\"[{\\\"name\\\":\\\"æµå·æ«.jpg\\\",\\\"value\\\":\\\"base64ç¼–ç \\\"},{\\\"name\\\":\\\"img103.png\\\",\\\"value\\\":\\\"base64ç¼–ç \\\"}]\",\"children\":[],\"required\":\"éå¿…å¡«\"}]', '[{\"id\":\"4283D53E8D44C05EF5C21CB6BC2C317B\",\"name\":\"code\",\"type\":\"Number\",\"explain\":\"å“åº”ç \",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"BB3DCDDF45C93B5A84FF4BE121FFFEAF\",\"name\":\"msg\",\"type\":\"String\",\"explain\":\"å“åº”æ¶ˆæ¯\",\"children\":[],\"required\":\"å¿…å¡«\"},{\"id\":\"525BFE5947F771A4F0893B190E8E1309\",\"name\":\"data\",\"type\":\"Object\",\"explain\":\"å“åº”æ•°æ®\",\"children\":[],\"required\":\"å¿…å¡«\"}]', '{\r\n    \"code\": 200,\r\n    \"msg\": \"æ“ä½œæˆåŠŸ\",\r\n    \"data\": {\r\n        \"flowNo\": \"WTGDXXB2022060028\",\r\n        \"flowId\": \"9688A3C1B5A9442E9531863D2D84F590\"\r\n    }\r\n}', '{\r\n  \"code\": 200,\r\n  \"msg\": \"\",\r\n  \"data\": \"\"\r\n}', 0, '2022-07-18 17:55:02', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('D69681B88427464BA48057D391E76EA1', 'æµç¨‹åº”ç”¨-ä¿®æ”¹', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'æµç¨‹åˆ†ç»„', 'pub/modifyingFormData', 2, 3, '[{\"id\":\"ED1C81684FB0A912A0BC858D23C35FE8\",\"name\":\"appid\",\"explain\":\"åº”ç”¨IDï¼Œæˆ–({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"3B028E67E3C701AD2CA493376E93BCA1\",\"name\":\"userId\",\"explain\":\"ç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"4B4EB514A4CDBDC95F434429A10F509F\",\"name\":\"id\",\"explain\":\"ä¿®æ”¹è®°å½•æµç¨‹id(flowid)ï¼Œæˆ–({\\\"name\\\":\\\"id\\\",\\\"value\\\":\\\"id\\\"})\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"37ABF573171C061C582EFB0115DB1A18\",\"name\":\"body\",\"explain\":\"[{\\\"fieldname\\\":\\\"6227F42445151407A63AD817D08A6BC3\\\",\\\"updateEnd\\\":[{\\\"name\\\":\\\"1133xx\\\",\\\"value\\\":\\\"1133xx\\\"}]}]\",\"type\":\"Object\",\"required\":\"å¿…å¡«\",\"children\":[]}]', '[{\"id\":\"77FBA64AD2D0CE64C2111F7698E5E7B8\",\"name\":\"code\",\"explain\":\"å“åº”ç \",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"A79ACB7759C5586052DEB7A08F7536E8\",\"name\":\"msg\",\"explain\":\"å“åº”è¯´æ˜\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"86101A799A0620E7D773280100A3032C\",\"name\":\"data\",\"explain\":\"å“åº”æ•°æ®\",\"type\":\"Object\",\"required\":\"å¿…å¡«\",\"children\":[]}]', '{\n  \"code\": 200,\n  \"msg\": \"\",\n  \"data\": \"\"\n}', '{\n  \"code\": 401,\n  \"msg\": \"è¯·æ±‚è®¿é—®ï¼š/ffapaas/pub/listBasicï¼Œè®¤è¯å¤±è´¥ï¼Œæ— æ³•è®¿é—®ç³»ç»Ÿèµ„æº\"\n}', 0, '2023-03-23 18:09:37', 'ä½™å…ˆç”Ÿ');
+INSERT INTO `ff_apaas_open_api`(`iidd`, `name`, `group_id`, `group_name`, `url`, `method`, `context_type`, `body`, `response`, `success_examples`, `fail_examples`, `sort_id`, `update_time`, `create_person`) VALUES ('FC6B4D9A7669472AA6BA15B702328C1D', 'æµç¨‹åº”ç”¨-åˆ—è¡¨', 'EA6D284FBAFF430DA9F945ADE74CFA8D', 'æµç¨‹åˆ†ç»„', 'pub/listBasic', 2, 3, '[{\"id\":\"3E82F2284D81877C072BD6F349511D12\",\"name\":\"appid\",\"explain\":\"åº”ç”¨IDï¼Œæˆ–({\\\"name\\\":\\\"appid\\\",\\\"value\\\":\\\"appid\\\"})\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"5FAC062D9FAAA635D710C7E31FB5B858\",\"name\":\"userId\",\"explain\":\"ç™»å½•è´¦å·ï¼Œæˆ–({\\\"name\\\":\\\"userId\\\",\\\"value\\\":\\\"userId\\\"})\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"E6C02CE1F51C5E9D73CE60C11B3DC9D7\",\"name\":\"pageNum\",\"explain\":\"é¡µç ï¼Œä¸ä¼ æŸ¥è¯¢æ‰€æœ‰\",\"type\":\"Number\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"DDED86B09ADB9661BF9CC8F67854E7EC\",\"name\":\"pageSize\",\"explain\":\"æ¯é¡µå¤§å°ï¼Œä¸ä¼ æŸ¥è¯¢æ‰€æœ‰\",\"type\":\"Number\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"B4F4D186C7E73720E65341E1AFDA20C6\",\"name\":\"queryConditions\",\"explain\":\"æŸ¥è¯¢æ¡ä»¶,[{\\\"column\\\":\\\"E1CC30923E5040E7EA247A0066B85905\\\",\\\"queryType\\\":\\\"like\\\",\\\"value\\\":[{\\\"name\\\":\\\"åº”ç”¨ç®¡ç†ä¸­å¿ƒ\\\",\\\"value\\\":\\\"åº”ç”¨ç®¡ç†ä¸­å¿ƒ\\\"}]}]\",\"type\":\"Object\",\"required\":\"å¿…å¡«\",\"children\":[]}]', '[{\"id\":\"9C3BABD0AB6F5F583A888CC0093A0FF8\",\"name\":\"code\",\"explain\":\"å“åº”ç \",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"C281663A7A8EDCF7BD7B9C4F471D1433\",\"name\":\"msg\",\"explain\":\"å“åº”è¯´æ˜\",\"type\":\"String\",\"required\":\"å¿…å¡«\",\"children\":[]},{\"id\":\"79E11342F86A0E0211CD4E7D2C3E365B\",\"name\":\"data\",\"explain\":\"å“åº”æ•°æ®\",\"type\":\"Object\",\"required\":\"å¿…å¡«\",\"children\":[]}]', '{\n  \"total\": 1,\n  \"rows\": [\n    {\n      \"refFormid\": \"D4BE7D56324042EFAE786E380A5BDDF4\",\n      \"updateUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n      \"DE6696C3920427CDEC10FBC76A787E6E\": \"[{\\\"name\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\",\\\"value\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\"}]\",\n      \"refDeptid\": \"3435840D6BB648228100C54175439012\",\n      \"createDeptname\": \"æ·±åœ³å¸‚éå‡¡ä¿¡æ¯æŠ€æœ¯æœ‰é™å…¬å¸\",\n      \"createOrgid\": \"3435840D6BB648228100C54175439012\",\n      \"iidd\": \"CACEE62DFDF74B00941BB3D2F02E69DC\",\n      \"createUsername\": \"å§œç‰¹æ´‹\",\n      \"refProjectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n      \"refAppid\": \"8F3F2AE6F2D34FBAB14A0BBA3E7C3721\",\n      \"createDeptid\": \"3435840D6BB648228100C54175439012\",\n      \"createUserid\": \"04BBE297F27149B08CD3DFE64ADC711A\",\n      \"updateTime\": \"2023-03-23 14:50:32\",\n      \"createOrgname\": \"æ·±åœ³å¸‚éå‡¡ä¿¡æ¯æŠ€æœ¯æœ‰é™å…¬å¸\",\n      \"ref_projectid\": \"A03769DA38284D138A1356DC93C2F9C9\",\n      \"deleted\": 0,\n      \"createTime\": \"2023-03-23 14:50:29\",\n      \"updateUsername\": \"å§œç‰¹æ´‹\",\n      \"contentjson\": \"{\\\"DE6696C3920427CDEC10FBC76A787E6E\\\":[{\\\"name\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\",\\\"value\\\":\\\"é¡¹ç›®ä¿¡æ¯ç»´æŠ¤\\\"}],\\\"ref_projectid\\\":\\\"A03769DA38284D138A1356DC93C2F9C9\\\"}\"\n    }\n  ],\n  \"code\": 200\n}', '\n{\n  \"code\": 401,\n  \"msg\": \"è¯·æ±‚è®¿é—®ï¼š/ffapaas/pub/listBasicï¼Œè®¤è¯å¤±è´¥ï¼Œæ— æ³•è®¿é—®ç³»ç»Ÿèµ„æº\"\n}', 0, '2023-03-23 16:11:25', 'ä½™å…ˆç”Ÿ');
 
--- ½Ó¿Ú°ïÖúÖĞĞÄ£¬Í³Ò»½Ó¿ÚÃû³Æ
-UPDATE ff_apaas_open_api a set a.`name` = REPLACE(a.`name`, '»ù´¡×ÊÁÏ-', 'Êı¾İ');
-UPDATE ff_apaas_open_api a set a.`name` = REPLACE(a.`name`, 'Á÷³ÌÓ¦ÓÃ-', 'Êı¾İ');
-UPDATE ff_apaas_open_api a set a.`name` = 'Êı¾İĞÂÔö' where a.`name` = 'Êı¾İ·¢Æğ';
-UPDATE ff_apaas_open_api a set a.`name` = 'Á÷³ÌÉóÅú' where a.`name` = 'Êı¾İÉóÅú';
-
--- ---------------------------------------------------------
--- ³õÊ¼»¯Ó¦ÓÃÄ¬ÈÏ²Ù×÷Ïî
--- ---------------------------------------------------------
-
-insert into ff_apaas_es_app_actiontype_default values('A3FADADD52F54C899BFE08395788C30A',0,'²é¿´','View',0);
-insert into ff_apaas_es_app_actiontype_default values('D4D99B43E7DA4D98BBF1D1F6DD9B638D',0,'Ìí¼Ó','Add',1);
-insert into ff_apaas_es_app_actiontype_default values('9BA36B78FB604A89AB55230311E547EE',0,'ĞŞ¸Ä','Edit',2);
-insert into ff_apaas_es_app_actiontype_default values('C21909DAC994401F8E91CE5B2D07C1DC',0,'É¾³ı','Delete',3);
-insert into ff_apaas_es_app_actiontype_default values('50E42D343F71463DBC8439E48A16CA56',0,'µ¼³ö','ExlOut',4);
-insert into ff_apaas_es_app_actiontype_default values('BDFAF31031CC11EE81AA000C2948FADF',0,'µ¼Èë','Import',5);
-insert into ff_apaas_es_app_actiontype_default values('BDFAF31031CC11EE81AA000C294PRINT',0,'´òÓ¡','Print',6);
-
-insert into ff_apaas_es_app_actiontype_default values('B0F416664AF34A17AAFF22D5A4C4C9BB',1,'²é¿´','View',0);
-insert into ff_apaas_es_app_actiontype_default values('5562E6BB476D45DA8D43C0675C12C01A',1,'Ìí¼Ó','Add',1);
-insert into ff_apaas_es_app_actiontype_default values('A2C88FA1E01C4F9B8C1D90506C525260',1,'ĞŞ¸Ä','Edit',2);
-insert into ff_apaas_es_app_actiontype_default values('7521CC9C15F54CC88188BF908436E718',1,'É¾³ı','Delete',3);
-insert into ff_apaas_es_app_actiontype_default values('8E2A69E7CA9047949B2A7046B7A09D14',1,'µ¼³ö','ExlOut',4);
-insert into ff_apaas_es_app_actiontype_default values('C599854F31CC11EE81AA000C2948FADF',1,'µ¼Èë','Import',5);
-insert into ff_apaas_es_app_actiontype_default values('C599854F31CC11EE81AA000C294PRINT',1,'´òÓ¡','Print',6);
-insert into ff_apaas_es_app_actiontype_default values('FA4D1DD0A91311EEB8E4000C29CB1D9E',1,'Ó¦ÓÃ¸ÅÀÀ','AppOverview',7);
+-- æ¥å£å¸®åŠ©ä¸­å¿ƒï¼Œç»Ÿä¸€æ¥å£åç§°
+UPDATE ff_apaas_open_api a set a.`name` = REPLACE(a.`name`, 'åŸºç¡€èµ„æ–™-', 'æ•°æ®');
+UPDATE ff_apaas_open_api a set a.`name` = REPLACE(a.`name`, 'æµç¨‹åº”ç”¨-', 'æ•°æ®');
+UPDATE ff_apaas_open_api a set a.`name` = 'æ•°æ®æ–°å¢' where a.`name` = 'æ•°æ®å‘èµ·';
+UPDATE ff_apaas_open_api a set a.`name` = 'æµç¨‹å®¡æ‰¹' where a.`name` = 'æ•°æ®å®¡æ‰¹';
 
 -- ---------------------------------------------------------
--- ³õÊ¼»¯ÎÄµµ¹ÜÀí
+-- åˆå§‹åŒ–åº”ç”¨é»˜è®¤æ“ä½œé¡¹
 -- ---------------------------------------------------------
-INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7001', 'doc_t_catalog_info', 0, 'NewFolder', 'ĞÂ½¨×ÓÄ¿Â¼', 1, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
-INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7002', 'doc_t_catalog_info', 0, 'DeleteFolder', 'É¾³ı×ÓÄ¿Â¼', 2, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
-INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7003', 'doc_t_catalog_info', 0, 'Upload', 'ÉÏ´«ÎÄ¼ş', 3, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
-INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7004', 'doc_t_catalog_info', 0, 'DeleteFile', 'É¾³ıÎÄ¼ş', 4, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
-INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7005', 'doc_t_catalog_info', 0, 'ManagerWhitelist', '¹ÜÀí°×Ãûµ¥', 5, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
-INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('E9F7DB76D08B410EB96CEAE93FEF7001', 'doc_t_catalog_info', 1, 'View', '²é¿´', 1, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
-INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('E9F7DB76D08B410EB96CEAE93FEF7003', 'doc_t_catalog_info', 1, 'Download', 'ÏÂÔØ', 2, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+
+insert into ff_apaas_es_app_actiontype_default values('A3FADADD52F54C899BFE08395788C30A',0,'æŸ¥çœ‹','View',0);
+insert into ff_apaas_es_app_actiontype_default values('D4D99B43E7DA4D98BBF1D1F6DD9B638D',0,'æ·»åŠ ','Add',1);
+insert into ff_apaas_es_app_actiontype_default values('9BA36B78FB604A89AB55230311E547EE',0,'ä¿®æ”¹','Edit',2);
+insert into ff_apaas_es_app_actiontype_default values('C21909DAC994401F8E91CE5B2D07C1DC',0,'åˆ é™¤','Delete',3);
+insert into ff_apaas_es_app_actiontype_default values('50E42D343F71463DBC8439E48A16CA56',0,'å¯¼å‡º','ExlOut',4);
+insert into ff_apaas_es_app_actiontype_default values('BDFAF31031CC11EE81AA000C2948FADF',0,'å¯¼å…¥','Import',5);
+insert into ff_apaas_es_app_actiontype_default values('BDFAF31031CC11EE81AA000C294PRINT',0,'æ‰“å°','Print',6);
+
+insert into ff_apaas_es_app_actiontype_default values('B0F416664AF34A17AAFF22D5A4C4C9BB',1,'æŸ¥çœ‹','View',0);
+insert into ff_apaas_es_app_actiontype_default values('5562E6BB476D45DA8D43C0675C12C01A',1,'æ·»åŠ ','Add',1);
+insert into ff_apaas_es_app_actiontype_default values('A2C88FA1E01C4F9B8C1D90506C525260',1,'ä¿®æ”¹','Edit',2);
+insert into ff_apaas_es_app_actiontype_default values('7521CC9C15F54CC88188BF908436E718',1,'åˆ é™¤','Delete',3);
+insert into ff_apaas_es_app_actiontype_default values('8E2A69E7CA9047949B2A7046B7A09D14',1,'å¯¼å‡º','ExlOut',4);
+insert into ff_apaas_es_app_actiontype_default values('C599854F31CC11EE81AA000C2948FADF',1,'å¯¼å…¥','Import',5);
+insert into ff_apaas_es_app_actiontype_default values('C599854F31CC11EE81AA000C294PRINT',1,'æ‰“å°','Print',6);
+insert into ff_apaas_es_app_actiontype_default values('FA4D1DD0A91311EEB8E4000C29CB1D9E',1,'åº”ç”¨æ¦‚è§ˆ','AppOverview',7);
 
 -- ---------------------------------------------------------
--- ³õÊ¼»¯»·½ÚÍ¨Öª¶¨Ê±ÈÎÎñ
+-- åˆå§‹åŒ–æ–‡æ¡£ç®¡ç†
+-- ---------------------------------------------------------
+INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7001', 'doc_t_catalog_info', 0, 'NewFolder', 'æ–°å»ºå­ç›®å½•', 1, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7002', 'doc_t_catalog_info', 0, 'DeleteFolder', 'åˆ é™¤å­ç›®å½•', 2, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7003', 'doc_t_catalog_info', 0, 'Upload', 'ä¸Šä¼ æ–‡ä»¶', 3, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7004', 'doc_t_catalog_info', 0, 'DeleteFile', 'åˆ é™¤æ–‡ä»¶', 4, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('C9F7DB76D08B410EB96CEAE93FEF7005', 'doc_t_catalog_info', 0, 'ManagerWhitelist', 'ç®¡ç†ç™½åå•', 5, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('E9F7DB76D08B410EB96CEAE93FEF7001', 'doc_t_catalog_info', 1, 'View', 'æŸ¥çœ‹', 1, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+INSERT INTO ff_apaas_t_business_right_item (iidd, business_code, right_type_code, right_item_code, right_item_name, sordid, update_time, update_userid) VALUES ('E9F7DB76D08B410EB96CEAE93FEF7003', 'doc_t_catalog_info', 1, 'Download', 'ä¸‹è½½', 2, '2021-11-12 11:39:29', 'F1C8933146E746BDBC3C0BF4E4CBDE6C');
+
+-- ---------------------------------------------------------
+-- åˆå§‹åŒ–ç¯èŠ‚é€šçŸ¥å®šæ—¶ä»»åŠ¡
 -- ---------------------------------------------------------
 INSERT INTO ff_apaas_sys_job (job_id, job_name, job_group, invoke_target, cron_expression, misfire_policy,
                                      concurrent, status, create_by, create_time, update_by, update_time, remark,
                                      ref_deptid)
-VALUES ('610295454243434099', 'È«Á÷³Ì³¬Ê±¼ì²é', 'DEFAULT', 'ffTask.completeFlowNotice()',
-        '0 0/5 * * * ? *', 3, 1, 0, 'ÕÅÈı', sysdate(), NULL, null, NULL,NULL);
+VALUES ('610295454243434099', 'å…¨æµç¨‹è¶…æ—¶æ£€æŸ¥', 'DEFAULT', 'ffTask.completeFlowNotice()',
+        '0 0/5 * * * ? *', 3, 1, 0, 'å¼ ä¸‰', sysdate(), NULL, null, NULL,NULL);
 
 
 INSERT INTO ff_apaas_sys_job (job_id, job_name, job_group, invoke_target, cron_expression, misfire_policy,
                               concurrent, status, create_by, create_time, update_by, update_time, remark,
                               ref_deptid)
-VALUES ('620295454243434100', 'Á÷³Ì»·½Ú³¬Ê±¼ì²é', 'DEFAULT', 'ffTask.singleNodeFlowNotice()',
-        '0 0/5 * * * ? *', 3, 1, 0, 'ÕÅÈı', sysdate(), NULL, null, NULL,NULL);
+VALUES ('620295454243434100', 'æµç¨‹ç¯èŠ‚è¶…æ—¶æ£€æŸ¥', 'DEFAULT', 'ffTask.singleNodeFlowNotice()',
+        '0 0/5 * * * ? *', 3, 1, 0, 'å¼ ä¸‰', sysdate(), NULL, null, NULL,NULL);
 
-INSERT INTO FF_APAAS_T_TIME_PROCESS (IIDD, TASK_TYPE, TASK_NAME, EXECUTE_TYPE, TARGET_FLOW_MODEL_ID, APPID, INVOKE_TARGET, ALLOTTYPE, ALLOTOBJECTID, DATA_TEMPLATE_CONFIG, REMARK, CREATE_ID, CREATE_NAME, CREATE_TIME, REF_DEPT_ID, JOB_ID, REF_PROJECTID, TYPES) VALUES ('186250F610154B8CA2C66F1E8ACCE2AA', 1, 'È«Á÷³ÌÍ¨Öª¶¨Ê±ÈÎÎñ', '2', null, null, 'ffTask.completeFlowNotice()', null, null, null, null, 'F1DD5C21715A4DA7B873AD98BC5D1494', 'admin', '2021-11-18 09:20:15', null, '610295454243434099', null, 0);
-INSERT INTO FF_APAAS_T_TIME_PROCESS (IIDD, TASK_TYPE, TASK_NAME, EXECUTE_TYPE, TARGET_FLOW_MODEL_ID, APPID, INVOKE_TARGET, ALLOTTYPE, ALLOTOBJECTID, DATA_TEMPLATE_CONFIG, REMARK, CREATE_ID, CREATE_NAME, CREATE_TIME, REF_DEPT_ID, JOB_ID, REF_PROJECTID, TYPES) VALUES ('286250F610154B8CA2C66F1E8ACCE2BB', 1, 'µ¥½ÚµãÁ÷³ÌÍ¨Öª', '2', null, null, 'ffTask.singleNodeFlowNotice()', null, null, null, null, 'F1DD5C21715A4DA7B873AD98BC5D1494', 'admin', '2021-11-18 09:20:16', null, '620295454243434100', null, 0);
-INSERT INTO FF_APAAS_T_LOCAL_METHOD (IIDD, CHINESE_NAME, METHOD_NAME, SORT, CREATE_TIME, REF_DEPT_ID, REF_PROJECTID, TYPES) VALUES ('10CB7C37D1AD8DAB20913FFCE60F3D11', 'È«Á÷³Ì³¬Ê±¼ì²é', 'ffTask.completeFlowNotice()', -2, '2021-11-18 09:20:15', null, null, 0);
-INSERT INTO FF_APAAS_T_LOCAL_METHOD (IIDD, CHINESE_NAME, METHOD_NAME, SORT, CREATE_TIME, REF_DEPT_ID, REF_PROJECTID, TYPES) VALUES ('20CB7C37D1AD8DAB20913FFCE60F3D22', 'Á÷³Ì»·½Ú³¬Ê±¼ì²é', 'ffTask.singleNodeFlowNotice()', -1, '2021-11-18 09:20:15', null, null, 0);
+INSERT INTO FF_APAAS_T_TIME_PROCESS (IIDD, TASK_TYPE, TASK_NAME, EXECUTE_TYPE, TARGET_FLOW_MODEL_ID, APPID, INVOKE_TARGET, ALLOTTYPE, ALLOTOBJECTID, DATA_TEMPLATE_CONFIG, REMARK, CREATE_ID, CREATE_NAME, CREATE_TIME, REF_DEPT_ID, JOB_ID, REF_PROJECTID, TYPES) VALUES ('186250F610154B8CA2C66F1E8ACCE2AA', 1, 'å…¨æµç¨‹é€šçŸ¥å®šæ—¶ä»»åŠ¡', '2', null, null, 'ffTask.completeFlowNotice()', null, null, null, null, 'F1DD5C21715A4DA7B873AD98BC5D1494', 'admin', '2021-11-18 09:20:15', null, '610295454243434099', null, 0);
+INSERT INTO FF_APAAS_T_TIME_PROCESS (IIDD, TASK_TYPE, TASK_NAME, EXECUTE_TYPE, TARGET_FLOW_MODEL_ID, APPID, INVOKE_TARGET, ALLOTTYPE, ALLOTOBJECTID, DATA_TEMPLATE_CONFIG, REMARK, CREATE_ID, CREATE_NAME, CREATE_TIME, REF_DEPT_ID, JOB_ID, REF_PROJECTID, TYPES) VALUES ('286250F610154B8CA2C66F1E8ACCE2BB', 1, 'å•èŠ‚ç‚¹æµç¨‹é€šçŸ¥', '2', null, null, 'ffTask.singleNodeFlowNotice()', null, null, null, null, 'F1DD5C21715A4DA7B873AD98BC5D1494', 'admin', '2021-11-18 09:20:16', null, '620295454243434100', null, 0);
+INSERT INTO FF_APAAS_T_LOCAL_METHOD (IIDD, CHINESE_NAME, METHOD_NAME, SORT, CREATE_TIME, REF_DEPT_ID, REF_PROJECTID, TYPES) VALUES ('10CB7C37D1AD8DAB20913FFCE60F3D11', 'å…¨æµç¨‹è¶…æ—¶æ£€æŸ¥', 'ffTask.completeFlowNotice()', -2, '2021-11-18 09:20:15', null, null, 0);
+INSERT INTO FF_APAAS_T_LOCAL_METHOD (IIDD, CHINESE_NAME, METHOD_NAME, SORT, CREATE_TIME, REF_DEPT_ID, REF_PROJECTID, TYPES) VALUES ('20CB7C37D1AD8DAB20913FFCE60F3D22', 'æµç¨‹ç¯èŠ‚è¶…æ—¶æ£€æŸ¥', 'ffTask.singleNodeFlowNotice()', -1, '2021-11-18 09:20:15', null, null, 0);
 
 -- ---------------------------------------------------------
--- ³õÊ¼»¯ÏµÍ³ÅäÖÃ²ÎÊı
+-- åˆå§‹åŒ–ç³»ç»Ÿé…ç½®å‚æ•°
 -- ---------------------------------------------------------
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('FC67C33AEB8C4CBAB81AC39CC471EB03', 'Ä¬ÈÏÖ÷Ìâ', 'DefaultSubject', 'ÎŞÖ÷Ìâ','Y', null, sysdate(), NULL, NULL, NULL, 'ÏµÍ³',0);
+VALUES ('FC67C33AEB8C4CBAB81AC39CC471EB03', 'é»˜è®¤ä¸»é¢˜', 'DefaultSubject', 'æ— ä¸»é¢˜','Y', null, sysdate(), NULL, NULL, NULL, 'ç³»ç»Ÿ',0);
 
-INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time, update_by, update_time, remark, group_name, ref_dept_id, ref_projectid, types) VALUES ('XNXN2FDA175845E392977EE55EB6BB99', '×Ô¶¨ÒåÓ¦ÓÃÊı¾İÁĞ±íµ¼ÈëÍ¨Öª·½Ê½', 'importerNoticeMethod', '1', 'Y', null, sysdate(), null, sysdate(), '×Ô¶¨ÒåÓ¦ÓÃÊı¾İµ¼ÈëÍê³ÉÍ¨Öª·½Ê½ÈçÏÂ:
-0(ÌÚÑ¶ÔÆ¶ÌĞÅ)
-1(ÓÊ¼ş)
-2(Î¢ĞÅÆóÒµºÅ)
-3(°¢ÀïÔÆ¶ÌĞÅ)
-4(¶¤¶¤)
-5(·ÉÊé)
-6(Î¢ĞÅ¹«ÖÚºÅ)
-7(Î¢ĞÅĞ¡³ÌĞò)
-8(ÃôĞĞ)
-9(ESB¶ÌĞÅ)', 'ÏµÍ³', null, null, 0);
-
-INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
-                                 update_by, update_time, remark, group_name,types)
-VALUES ('96C9CE3E457011EE81AA000C2948FADF', 'PC¶ËÓòÃû', 'PCUrl', 'http://192.168.0.86','Y', null, sysdate(), NULL, NULL, NULL, 'ÏµÍ³',0);
+INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time, update_by, update_time, remark, group_name, ref_dept_id, ref_projectid, types) VALUES ('XNXN2FDA175845E392977EE55EB6BB99', 'è‡ªå®šä¹‰åº”ç”¨æ•°æ®åˆ—è¡¨å¯¼å…¥é€šçŸ¥æ–¹å¼', 'importerNoticeMethod', '1', 'Y', null, sysdate(), null, sysdate(), 'è‡ªå®šä¹‰åº”ç”¨æ•°æ®å¯¼å…¥å®Œæˆé€šçŸ¥æ–¹å¼å¦‚ä¸‹:
+0(è…¾è®¯äº‘çŸ­ä¿¡)
+1(é‚®ä»¶)
+2(å¾®ä¿¡ä¼ä¸šå·)
+3(é˜¿é‡Œäº‘çŸ­ä¿¡)
+4(é’‰é’‰)
+5(é£ä¹¦)
+6(å¾®ä¿¡å…¬ä¼—å·)
+7(å¾®ä¿¡å°ç¨‹åº)
+8(æ•è¡Œ)
+9(ESBçŸ­ä¿¡)', 'ç³»ç»Ÿ', null, null, 0);
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('019D2D96F06641C9BB990F5982F04176', 'ÒÆ¶¯¶ËÓòÃû', 'MobileUrl', 'http://192.168.0.86','Y', null, sysdate(), NULL, NULL, NULL, 'ÏµÍ³',0);
+VALUES ('96C9CE3E457011EE81AA000C2948FADF', 'PCç«¯åŸŸå', 'PCUrl', 'http://192.168.0.86','Y', null, sysdate(), NULL, NULL, NULL, 'ç³»ç»Ÿ',0);
+
+INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
+                                 update_by, update_time, remark, group_name,types)
+VALUES ('019D2D96F06641C9BB990F5982F04176', 'ç§»åŠ¨ç«¯åŸŸå', 'MobileUrl', 'http://192.168.0.86','Y', null, sysdate(), NULL, NULL, NULL, 'ç³»ç»Ÿ',0);
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name, ref_dept_id, ref_projectid, types)
-VALUES ('AABB2FDA175845E392977EE55EB6CC88', 'ÖÕ¶ËµÇÂ¼', 'soloLogin', 'true', 'Y', null, '2022-08-17 16:03:34', null, null,
-        'ÊÇ·ñÔÊĞíÕË»§¶àÖÕ¶ËÍ¬Ê±µÇÂ¼£¨trueÔÊĞí false²»ÔÊĞí£©', 'ÏµÍ³', null, null, 0);
+VALUES ('AABB2FDA175845E392977EE55EB6CC88', 'ç»ˆç«¯ç™»å½•', 'soloLogin', 'true', 'Y', null, '2022-08-17 16:03:34', null, null,
+        'æ˜¯å¦å…è®¸è´¦æˆ·å¤šç»ˆç«¯åŒæ—¶ç™»å½•ï¼ˆtrueå…è®¸ falseä¸å…è®¸ï¼‰', 'ç³»ç»Ÿ', null, null, 0);
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('019D2D96F06641C9BB990F5982F04177', 'Êı¾İÁĞ±íÄ¬ÈÏ·ÖÒ³Êı', 'defaultPageSize', '15','Y', null, sysdate(), NULL, NULL, 'ÉèÖÃÏµÍ³ËùÓĞÊı¾İÁĞ±íµÄÄ¬ÈÏ·ÖÒ³Êı', 'ÏµÍ³',0);
+VALUES ('019D2D96F06641C9BB990F5982F04177', 'æ•°æ®åˆ—è¡¨é»˜è®¤åˆ†é¡µæ•°', 'defaultPageSize', '15','Y', null, sysdate(), NULL, NULL, 'è®¾ç½®ç³»ç»Ÿæ‰€æœ‰æ•°æ®åˆ—è¡¨çš„é»˜è®¤åˆ†é¡µæ•°', 'ç³»ç»Ÿ',0);
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('019D2D96F06641C9BB990F5982F04178', 'Ä¬ÈÏÕ¹¿ª´¦Àí¹ı³ÌÒ³Ç©', 'defaultShowFlowProcess', 'ÊÇ','Y', null, sysdate(), NULL, NULL, '¿ØÖÆÁ÷³ÌÏêÇéÒ³ÃæÄ¬ÈÏÊÇ·ñÕ¹¿ª´¦Àí¹ı³ÌÒ³Ç©', 'ÏµÍ³',0);
+VALUES ('019D2D96F06641C9BB990F5982F04178', 'é»˜è®¤å±•å¼€å¤„ç†è¿‡ç¨‹é¡µç­¾', 'defaultShowFlowProcess', 'æ˜¯','Y', null, sysdate(), NULL, NULL, 'æ§åˆ¶æµç¨‹è¯¦æƒ…é¡µé¢é»˜è®¤æ˜¯å¦å±•å¼€å¤„ç†è¿‡ç¨‹é¡µç­¾', 'ç³»ç»Ÿ',0);
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time, update_by, update_time, remark, group_name, ref_dept_id, ref_projectid, types)
-VALUES ('5B3D2FDA175845E392977EE55EB6A653', '¸½¼şÀàĞÍ', 'allowed_extension', 'bmp,gif,jpg,jpeg,png,doc,docx,xls,xlsx,ppt,pptx,html,htm,txt,rar,zip,gz,bz2,pdf,ico', 'Y', null, sysdate(), null, null, 'ÔÊĞíÉÏ´«µÄ¸½¼şÀàĞÍ(Ó¢ÎÄ¶ººÅ·Ö¸î)', 'ÏµÍ³¸½¼ş', null, null, 0);
+VALUES ('5B3D2FDA175845E392977EE55EB6A653', 'é™„ä»¶ç±»å‹', 'allowed_extension', 'bmp,gif,jpg,jpeg,png,doc,docx,xls,xlsx,ppt,pptx,html,htm,txt,rar,zip,gz,bz2,pdf,ico', 'Y', null, sysdate(), null, null, 'å…è®¸ä¸Šä¼ çš„é™„ä»¶ç±»å‹(è‹±æ–‡é€—å·åˆ†å‰²)', 'ç³»ç»Ÿé™„ä»¶', null, null, 0);
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('2BE8EE39F7A511EE8A0F000C29CB1D9E', '°Ù¶ÈµØÍ¼Ó¦ÓÃKey', 'map_baidu_key', '','Y', null, sysdate(), NULL, NULL, NULL, 'ÏµÍ³',0);
+VALUES ('2BE8EE39F7A511EE8A0F000C29CB1D9E', 'ç™¾åº¦åœ°å›¾åº”ç”¨Key', 'map_baidu_key', '','Y', null, sysdate(), NULL, NULL, NULL, 'ç³»ç»Ÿ',0);
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('7BC9585AF7A511EE8A0F000C29CB1D9E', 'ÌÚÑ¶µØÍ¼Ó¦ÓÃKey', 'map_tx_key', '','Y', null, sysdate(), NULL, NULL, NULL, 'ÏµÍ³',0);
+VALUES ('7BC9585AF7A511EE8A0F000C29CB1D9E', 'è…¾è®¯åœ°å›¾åº”ç”¨Key', 'map_tx_key', '','Y', null, sysdate(), NULL, NULL, NULL, 'ç³»ç»Ÿ',0);
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('7F6B52C8F7A511EE8A0F000C29CB1D9E', '¸ßµÂµØÍ¼Ó¦ÓÃKey', 'map_gaode_key', '','Y', null, sysdate(), NULL, NULL, NULL, 'ÏµÍ³',0);
+VALUES ('7F6B52C8F7A511EE8A0F000C29CB1D9E', 'é«˜å¾·åœ°å›¾åº”ç”¨Key', 'map_gaode_key', '','Y', null, sysdate(), NULL, NULL, NULL, 'ç³»ç»Ÿ',0);
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by,
                                          create_time, update_by, update_time, remark, group_name, ref_dept_id,
                                          ref_projectid, types)
-VALUES ('0B31B924FD514DF9BAC698B4B086715B', 'Í¬²½ÏÂÔØÏŞÖÆ', 'syncDownloadLimit',
+VALUES ('0B31B924FD514DF9BAC698B4B086715B', 'åŒæ­¥ä¸‹è½½é™åˆ¶', 'syncDownloadLimit',
         '500', 'Y', '72306761D85B44C685F0617E74562E0E', '2023-08-02 12:22:14', null, null,
-        'Í¬²½ÏÂÔØÏŞÖÆ,Î´ÅäÖÃÔòÄ¬ÈÏĞ¡ÓÚµÈÓÚ500Ìõ', 'ÏµÍ³', null, null, 0);
+        'åŒæ­¥ä¸‹è½½é™åˆ¶,æœªé…ç½®åˆ™é»˜è®¤å°äºç­‰äº500æ¡', 'ç³»ç»Ÿ', null, null, 0);
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by,
                                          create_time, update_by, update_time, remark, group_name, ref_dept_id,
                                          ref_projectid, types)
-VALUES ('9DFDD8B8B2AC11EFBC33000C29CB1D9E', '¿ªÆôµÇÂ¼ÑéÖ¤Âë', 'open_verify_code',
-        'true', 'Y', null, sysdate(), NULL, NULL, NULL, 'ÏµÍ³',null, null,0);
+VALUES ('9DFDD8B8B2AC11EFBC33000C29CB1D9E', 'å¼€å¯ç™»å½•éªŒè¯ç ', 'open_verify_code',
+        'true', 'Y', null, sysdate(), NULL, NULL, NULL, 'ç³»ç»Ÿ',null, null,0);
 
 INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
                                  update_by, update_time, remark, group_name,types)
-VALUES ('019D2D96F06641C9BB990F5982F02025', 'Ä¬ÈÏÏÔÊ¾´´½¨Ó¦ÓÃ°´Å¥', 'default_show_create_app_button', 'ÊÇ','Y', null, sysdate(), NULL, NULL, 'Ä¬ÈÏÏÔÊ¾´´½¨Ó¦ÓÃ°´Å¥', 'ÏµÍ³',0);
+VALUES ('019D2D96F06641C9BB990F5982F02025', 'é»˜è®¤æ˜¾ç¤ºåˆ›å»ºåº”ç”¨æŒ‰é’®', 'default_show_create_app_button', 'æ˜¯','Y', null, sysdate(), NULL, NULL, 'é»˜è®¤æ˜¾ç¤ºåˆ›å»ºåº”ç”¨æŒ‰é’®', 'ç³»ç»Ÿ',0);
 
 CREATE INDEX receiverid_deptid_projectid_isread_noticetype_one_noticetype_two ON ff_apaas_es_site_news (receiverid, ref_deptid, projectid, isread, noticetype_one, noticetype_two);
 -- ---------------------------------------------------------
--- ³õÊ¼»¯Í¨Öª·½Ê½
+-- åˆå§‹åŒ–é€šçŸ¥æ–¹å¼
 -- ---------------------------------------------------------
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (0, '¶ÌĞÅ(ÌÚÑ¶)', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (1, 'ÓÊ¼ş', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (2, 'Î¢ĞÅÆóÒµºÅ', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (3, '¶ÌĞÅ(°¢ÀïÔÆ)', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (4, '¶¤¶¤', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (5, '·ÉÊé', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (6, '¹«ÖÚºÅ', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (7, 'Ğ¡³ÌĞò', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (8, 'ÃôĞĞ', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (9, '¶ÌĞÅ(ESB)', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (0, 'çŸ­ä¿¡(è…¾è®¯)', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (1, 'é‚®ä»¶', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (2, 'å¾®ä¿¡ä¼ä¸šå·', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (3, 'çŸ­ä¿¡(é˜¿é‡Œäº‘)', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (4, 'é’‰é’‰', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (5, 'é£ä¹¦', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (6, 'å…¬ä¼—å·', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (7, 'å°ç¨‹åº', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (8, 'æ•è¡Œ', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (9, 'çŸ­ä¿¡(ESB)', 1);
 INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (10, 'uni-push', 1);
-INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (11, 'Î¢ĞÅ¿ª·ÅÆ½Ì¨', 1);
+INSERT INTO ff_apaas_t_notice_method(`method_id`, `method_name`, `is_show`) VALUES (11, 'å¾®ä¿¡å¼€æ”¾å¹³å°', 1);
+
+INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_value, config_type, create_by, create_time,
+                                 update_by, update_time, remark, group_name,types)
+VALUES ('9E8D879AE17C40F7AC5ED3C0B5E7FAA5', 'çŸ¥è¯†å…¨éƒ¨ç±»åˆ«ID', 'knowledge-all-type-id', '8E3D879AE17C40F7AC5ED3C0B5E7FAA5',
+        'Y', 'F1DD5C21715A4DA7B873AD98BC5D1494', sysdate(), NULL, NULL, NULL, 'çŸ¥è¯†',0);
