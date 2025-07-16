@@ -3989,7 +3989,6 @@ INSERT INTO ff_apaas_sys_config (config_id, config_name, config_key, config_valu
                                  update_by, update_time, remark, group_name,types)
 VALUES ('019D2D96F06641C9BB990F5982F02025', '默认显示创建应用按钮', 'default_show_create_app_button', '是','Y', null, sysdate(), NULL, NULL, '默认显示创建应用按钮', '系统',0);
 
-CREATE INDEX receiverid_deptid_projectid_isread_noticetype_one_noticetype_two ON ff_apaas_es_site_news (receiverid, ref_deptid, projectid, isread, noticetype_one, noticetype_two);
 -- ---------------------------------------------------------
 -- 初始化通知方式
 -- ---------------------------------------------------------
